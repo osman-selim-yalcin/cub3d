@@ -2,10 +2,14 @@
 
 int main()
 {
-	t_data data;
+	t_game game;
 
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 1024, 1024, "lol");
+	game.libx.mlx = mlx_init();
+	if (check_map(game)); //error_managment;
+	{
+		;
+	}
+	game.libx.win = mlx_new_window(game.libx.mlx, 1024, 1024, "lol");
 	
 	return(0);
 }
