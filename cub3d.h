@@ -39,7 +39,7 @@ typedef struct s_libx
 typedef struct s_game
 {
 	t_libx		libx;
-	t_player	player;
+	t_player	layer;
 	t_map		map;
 }			t_game;
 
