@@ -2,7 +2,7 @@
 
 int check_map(t_game *game)
 {
-	//mapdeki ilk 6 şeye bakılacak ve kaç kere gnl çağrıldığı döndürülecek isimchecka
+	//mapdeki ilk 6 şeye bakılacak ve kaç kere gnl çağrıldığı döndürülecek isimcheckaa
 	//burak
 	return (0);
 }
