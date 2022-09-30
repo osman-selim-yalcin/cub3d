@@ -21,6 +21,7 @@ typedef struct s_map
 	char	**map;
 	char	*map_path;
 	int		gnl_count;
+	int		started_reading;
 }		t_map;
 
 typedef struct s_player
