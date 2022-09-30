@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include "minilibx/mlx.h"
 # include <stdlib.h>
+# include <fcntl.h>
 
 typedef struct s_map
 {
@@ -14,6 +15,7 @@ typedef struct s_map
 	int		floor_rgb;
 	int		ceilling_rgb;
 	char	**map;
+	int		started_reading;
 }		t_map;
 
 typedef struct s_player
@@ -42,5 +44,7 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 }			t_game;
+
+char	*get_next_line(int fd);
 
 #endif
