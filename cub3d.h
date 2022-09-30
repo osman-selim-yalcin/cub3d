@@ -35,20 +35,12 @@ typedef struct s_img
 	void	*south_img;
 	void	*east_img;
 	void	*west_img;
-	//deneme
-	void	*big_img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 }			t_img;
 
 typedef struct s_libx
 {
 	void	*mlx;
 	void	*win;
-	int		top_start;//tmp
-	int		bottom_start;
 }			t_libx;
 
 typedef struct s_game
@@ -62,10 +54,10 @@ typedef struct s_game
 //check_map.c
 int map_element_check(t_game *game);
 int rgb_check(t_game *game, int i);
-int check_map(t_game *game);
+int check_map(t_game *game, int ac);
 
 //file_xpm_check.c
-int is_that_xpm(char *texture);
+int is_this_xpm(char *texture);
 int is_xpm_exist(char *texture);
 int get_xpm_files(t_game *game, char *texture);
 
@@ -74,7 +66,6 @@ void fill_map(t_game *game, char **av);
 void get_value(t_game *game, char **av);
 
 //utilities_1/2.c functions
-int check_map(t_game *game);
 char	*newk(char *k);
 char	*gnl_print(char *k);
 char	*rd(char *k, int fd);

@@ -112,14 +112,27 @@ int is_map_cube(t_game *game)
 	return (0);
 }
 
-int check_map(t_game *game)
+int check_map(t_game *game, int ac)
 {
+	if (ac != 2)
+	{
+		printf("invalid arguments\n");
+		exit(1);
+	}
 	if (is_map_cube(game))
+	{
+		printf(".cub file is not valid\n");
 		return (1);
+	}
 	if (map_element_check(game))//mapdeki ilk 6 şeye bakılacak ve kaç kere gnl çağrıldığı döndürülecek isimcheckaa
+	{
+		printf("map element check failed\n");
 		return (1);
+	}
 	if (rgb_check(game, 0) || rgb_check(game, 1))//rgb check
+	{
+		printf("rgb check failed\n");
 		return (1);
-	//buraka
+	}
 	return (0);
 }
