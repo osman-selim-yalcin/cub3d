@@ -24,11 +24,11 @@ int map_element_check(t_game *game)
 			game->map.west_wall = ft_strdup(tmp);
 		else if (element_strncmp(tmp, "E", 2 == 0) || element_strncmp(tmp, "EA", 3) == 0)
 			game->map.east_wall = ft_strdup(tmp);
-		else if (element_strncmp(tmp, "F", 2) == 0)
+		else if (element_strncmp(tmp, "F", 2) == 0 || element_strncmp(tmp, "FL", 3) == 0)
 			game->map.floor_char = ft_strdup(tmp);
-		else if (element_strncmp(tmp, "C", 2) == 0)
+		else if (element_strncmp(tmp, "C", 2) == 0 || element_strncmp(tmp, "CE", 3) == 0)
 			game->map.ceilling_char = ft_strdup(tmp);
-		if (tmp[0] != '\0')
+		if (tmp[0] != '\0' && tmp[0] != '\n')
 			i++;
 		free(tmp);
 	}
@@ -37,7 +37,7 @@ int map_element_check(t_game *game)
 	// printf("east: %s\n", game->map.east_wall);
 	// printf("west: %s\n", game->map.west_wall);
 	// printf("floor: %s\n", game->map.floor_char);
-	// printf("ceiling: %s\n", game->map.ceilling_char);
+	// printf("ceiLling: %s\n", game->map.ceilling_char);
 	// printf("i: %d\n", i);
 	close(fd);
 	if (i != 6 || !game->map.north_wall || !game->map.south_wall || \
@@ -60,7 +60,9 @@ int rgb_check(t_game *game, int i)
 		tmp_2 = ft_strdup(game->map.floor_char);
 	else
 		tmp_2 = ft_strdup(game->map.ceilling_char);
-	a = 1;
+	a = 0;
+	while (tmp_2[a] != ' ')
+		a++;
 	while (tmp_2[a] == ' ')
 		a++;
 	b = a;
