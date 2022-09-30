@@ -35,12 +35,6 @@ typedef struct s_img
 	void	*south_img;
 	void	*east_img;
 	void	*west_img;
-	//deneme
-	void	*big_img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 }			t_img;
 
 typedef struct s_libx
@@ -51,10 +45,10 @@ typedef struct s_libx
 
 typedef struct s_game
 {
-	t_libx		*libx;
-	t_player	*player;
-	t_map		*map;
-	t_img		*img;
+	t_libx		libx;
+	t_player	player;
+	t_map		map;
+	t_img		img;
 }			t_game;
 
 //check_map.c
