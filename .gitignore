@@ -1,4 +1,7 @@
-.DS_Store
-.vs_code/
 *.out
 *.exe
+.DS_Store
+.vscode/
+deneme/a.out
+deneme/deneme.c
+cub3d.dSYM
