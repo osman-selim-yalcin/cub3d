@@ -41,7 +41,6 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-
 }			t_img;
 
 typedef struct s_libx
@@ -59,7 +58,14 @@ typedef struct s_game
 }			t_game;
 
 //check_map.c
+int map_element_check(t_game *game);
 int rgb_check(t_game *game, int i);
+int check_map(t_game *game);
+
+//file_xpm_check.c
+int is_that_xpm(char *texture);
+int is_xpm_exist(char *texture);
+int get_xpm_files(t_game *game, char *texture);
 
 //get_value.c
 void fill_map(t_game *game, char **av);
@@ -82,7 +88,7 @@ int	element_strncmp(char *s1, char *s2, size_t size);
 int	ft_atoi(char *str);
 size_t	ft_strlcpy(char *dst, char *src, size_t b);
 char	**ft_split(char *s, char c);
-
+int	create_trgb(int t, int r, int g, int b);
 
 
 
