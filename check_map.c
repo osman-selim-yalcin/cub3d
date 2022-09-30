@@ -64,7 +64,7 @@ int rgb_check(t_game *game, int i)
 	while (tmp_2[a] == ' ')
 		a++;
 	b = a;
-	while (tmp_2[a] != '\0' && tmp_2[a] != '\n')
+	while (tmp_2[a] != '\0' && tmp_2[a] != '\n' && tmp_2[a] != ' ')
 	{
 		if (!(tmp_2[a] >= '0' && tmp_2[a] <= '9') && tmp_2[a] != ',')
 			return (1);

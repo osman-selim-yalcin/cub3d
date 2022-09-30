@@ -47,6 +47,8 @@ typedef struct s_libx
 {
 	void	*mlx;
 	void	*win;
+	int		top_start;//tmp
+	int		bottom_start;
 }			t_libx;
 
 typedef struct s_game
