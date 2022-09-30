@@ -51,8 +51,6 @@ char	*gnl_print(char *k)
 		last[p] = k[p];
 		p++;
 	}
-	if (k[p] == '\n')
-		last[p++] = '\n';
 	last[p] = '\0';
 	return (last);
 }

@@ -1,5 +1,45 @@
 #include "cub3d.h"
 
+int is_that_xpm(char *texture)
+{
+	int a;
+
+	a = 0;
+	while (texture[a] != '\0' && texture[a] != ' ')
+		a++;
+	if (texture[a - 1] == 'p' && texture[a - 2] == 'm' && texture[a - 3] == 'x' && texture[a - 4] == '.')
+		return (1);
+	return (0);
+}
+
+int is_xpm_exist(char *texture)
+{
+	int fd;
+
+	fd = open(texture, O_RDONLY);
+	if (fd == -1)
+		return (1);
+	close(fd);
+	return (0);
+}
+
+int get_xpm_files(t_game *game, char *texture)
+{
+	int a;
+
+	a = 0;
+	(void)game;
+	while (texture[a] != ' ')
+		a++;
+	while (texture[a] == ' ')
+		a++;
+	if (is_xpm_exist(texture + a))
+		return (1);
+	if (is_that_xpm(texture + a))
+		return (1);
+	return (0);
+}
+
 int map_element_check(t_game *game)
 {
 	char *tmp;
@@ -28,7 +68,7 @@ int map_element_check(t_game *game)
 			game->map.floor_char = ft_strdup(tmp);
 		else if (element_strncmp(tmp, "C", 2) == 0)
 			game->map.ceilling_char = ft_strdup(tmp);
-		if (tmp[0] != '\n')
+		if (tmp[0] != '\0')
 			i++;
 		free(tmp);
 	}
@@ -37,10 +77,14 @@ int map_element_check(t_game *game)
 	// printf("east: %s\n", game->map.east_wall);
 	// printf("west: %s\n", game->map.west_wall);
 	// printf("floor: %s\n", game->map.floor_char);
-	// printf("ceiling: %s\n", game->map.ceiling_char);
+	// printf("ceiling: %s\n", game->map.ceilling_char);
 	// printf("i: %d\n", i);
+	close(fd);
 	if (i != 6 || !game->map.north_wall || !game->map.south_wall || \
 		!game->map.east_wall || !game->map.west_wall || !game->map.floor_char || !game->map.ceilling_char)
+		return (1);
+	if (get_xpm_files(game, game->map.north_wall) == 1 || get_xpm_files(game, game->map.south_wall) == 1 || \
+		get_xpm_files(game, game->map.east_wall) == 1 || get_xpm_files(game, game->map.west_wall) == 1)
 		return (1);
 	return (0);
 }
@@ -55,15 +99,28 @@ int rgb_check(t_game *game, int i)
 	char **tmp;
 	char *tmp_2;
 	int a;
+	int b;
 
 	if (i == 0)
 		tmp_2 = ft_strdup(game->map.floor_char);
 	else
 		tmp_2 = ft_strdup(game->map.ceilling_char);
-	a = 0;
-	while (!(tmp_2[a] > '0' && tmp_2[a] < '9'))
+	a = 1;
+	while (tmp_2[a] == ' ')
 		a++;
-	tmp = ft_split(tmp_2 + a, ',');
+	b = a;
+	while (tmp_2[a] != '\0' && tmp_2[a] != '\n')
+	{
+		if (!(tmp_2[a] >= '0' && tmp_2[a] <= '9') && tmp_2[a] != ',')
+			return (1);
+		a++;
+	}
+	tmp = ft_split(tmp_2 + b, ',');
+	a = 0;
+	while (tmp[a] != NULL)
+		a++;
+	if (a != 3)
+		return (1);
 	a = 0;
 	while (a < 3)
 	{

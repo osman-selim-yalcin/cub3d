@@ -106,6 +106,7 @@ char	**ft_split(char *s, char c)
 			ft_strlcpy(arr[a -1], s - j, j + 1);
 		}
 	}
+	arr[a] = NULL;
 	return (arr);
 }
 

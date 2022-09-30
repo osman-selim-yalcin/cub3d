@@ -35,6 +35,13 @@ typedef struct s_img
 	void	*south_img;
 	void	*east_img;
 	void	*west_img;
+	//deneme
+	void	*big_img;
+	void	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+
 }			t_img;
 
 typedef struct s_libx
@@ -53,6 +60,10 @@ typedef struct s_game
 
 //check_map.c
 int rgb_check(t_game *game, int i);
+
+//get_value.c
+void fill_map(t_game *game, char **av);
+void get_value(t_game *game, char **av);
 
 //utilities_1/2.c functions
 int check_map(t_game *game);
