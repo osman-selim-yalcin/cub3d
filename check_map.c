@@ -97,8 +97,23 @@ int rgb_check(t_game *game, int i)
 	return (0);
 }
 
+int is_map_cube(t_game *game)
+{
+	int i;
+
+	i = 0;
+	while (game->map.map_path[i] != '\0')
+		i++;
+	if (game->map.map_path[i - 1] != 'b' || game->map.map_path[i - 2] != 'u' || \
+		game->map.map_path[i - 3] != 'c' || game->map.map_path[i - 4] != '.')
+		return (1);
+	return (0);
+}
+
 int check_map(t_game *game)
 {
+	if (is_map_cube(game))
+		return (1);
 	if (map_element_check(game))//mapdeki ilk 6 şeye bakılacak ve kaç kere gnl çağrıldığı döndürülecek isimcheckaa
 		return (1);
 	if (rgb_check(game, 0) || rgb_check(game, 1))//rgb check
