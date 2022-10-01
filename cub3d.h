@@ -31,6 +31,12 @@ typedef struct s_player
 {
 	int	pos_x;
 	int	pos_y;
+	int horizontal;
+	int vertical;
+	int	fov;
+	int direction;
+	int area_fov;
+	float ray_absoulete; 
 }		t_player;
 
 typedef struct s_img
@@ -39,6 +45,12 @@ typedef struct s_img
 	void	*south_img;
 	void	*east_img;
 	void	*west_img;
+
+	void *img;
+	void *addr;
+	int	line_length;
+	int bits_per_pixel;
+	int endian;
 }			t_img;
 
 typedef struct s_libx

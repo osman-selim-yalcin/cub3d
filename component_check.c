@@ -14,7 +14,18 @@ int	is_line_valid(t_game *game, char *line)
 			&& line[i] != '1' && line[i] != '0')
 			return (0);
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
+		{
+			if (line[i] == 'N')
+				game->player.direction = M_PI / 2;
+			if (line[i] == 'S')
+				game->player.direction = 3 * M_PI / 2;
+			if (line[i] == 'W')
+				game->player.direction = M_PI;
+			if (line[i] == 'E')
+				game->player.direction = 0;//BAKALIM
+			
 			game->map.player_count += 1;
+		}
 		++i;
 	}
 	return (1);
