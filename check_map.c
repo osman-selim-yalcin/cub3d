@@ -117,9 +117,11 @@ int is_map_cube(t_game *game)
 
 int check_map(t_game *game, int ac)
 {
+	int	i;
+
 	if (ac != 2)
 	{
-		printf("invalid arguments\n");
+		printf("Invalid arguments\n");
 		exit(1);
 	}
 	if (is_map_cube(game))
@@ -129,12 +131,34 @@ int check_map(t_game *game, int ac)
 	}
 	if (map_element_check(game))//mapdeki ilk 6 şeye bakılacak ve kaç kere gnl çağrıldığı döndürülecek isimcheckaa
 	{
-		printf("map element check failed\n");
+		printf("Map element check failed\n");
 		return (1);
 	}
 	if (rgb_check(game, 0) || rgb_check(game, 1))//rgb check
 	{
-		printf("rgb check failed\n");
+		printf("RGB check failed\n");
+		return (1);
+	}
+	if (read_map(game))
+	{
+		printf("Invalid map elements\n");
+		return (1);
+	}
+	i = check_component(game);
+	if (i == 1)
+	{
+		printf("Invalid map components\n");
+		return (1);
+	}
+	else if (i == 2)
+	{
+		printf("Number of player is not 1\n");
+		return (1);
+	}
+	// put_frame_to_map(game);
+	if (put_frame_to_map(game))
+	{
+		printf("Map is not surrounded by walls\n");
 		return (1);
 	}
 	return (0);

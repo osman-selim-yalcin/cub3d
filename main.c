@@ -29,8 +29,10 @@ int main(int ac, char **av)
 	get_value(&game, av);
 	if (check_map(&game, ac)) //error_managment;
 		return (1);
+	system("leaks cub3d");
 	game.libx.mlx = mlx_init();
 	game.libx.win = mlx_new_window(game.libx.mlx, 1920, 1080, "cub3d");
+
 
 	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game);
 	mlx_hook(game.libx.win, 17, 0L, tmp_exit, &game);
