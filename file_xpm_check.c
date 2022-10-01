@@ -26,6 +26,12 @@ int is_xpm_exist(char *texture)
 		a++;
 	}
 	tmp[a] = '\0';
+	while (texture[a] != '\0')
+	{
+		if (texture[a] != ' ' && texture[a] != '\n')
+			return(1);
+		a++;
+	}
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 	{
@@ -43,6 +49,8 @@ int get_xpm_files(t_game *game, char *texture)
 
 	a = 0;
 	(void)game;
+	while (texture[a] == ' ')
+		a++;
 	while (texture[a] != ' ')
 		a++;
 	while (texture[a] == ' ')
