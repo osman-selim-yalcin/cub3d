@@ -12,7 +12,9 @@ void fill_map(t_game *game, char **av)
 	game->map.ceilling_char = NULL;
 	game->map.floor_rgb = 0;
 	game->map.ceilling_rgb = 0;
-	game->map.map = NULL;	
+	game->map.map = NULL;
+	game->map.started_reading = 0;
+	game->map.player_count = 0;
 }
 
 void get_value(t_game *game, char **av)
