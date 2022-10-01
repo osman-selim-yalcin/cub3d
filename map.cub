@@ -1,6 +1,6 @@
 NO ./bg_test.xpm
-SO ./bg_test.xpm
-WE ./bg_test.xpm
+     SO ./bg_test.xpm
+WE      ./bg_test.xpm
 EA ./bg_test.xpm
 
 C 225,30,0
