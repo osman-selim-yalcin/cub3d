@@ -8,6 +8,10 @@
 # include <math.h>
 # include <string.h>
 # include "minilibx/mlx.h"
+# define SCREEN_LEN 1080
+# define SCREEN_WID 1920
+# define D_FOV 120
+# define R_FOV 2 * M_PI / 3
 typedef struct s_map
 {
 	char	*north_wall;
@@ -33,8 +37,8 @@ typedef struct s_player
 	int	pos_y;
 	int horizontal;
 	int vertical;
-	int	fov;
-	int direction;
+	float	fov;
+	float direction;
 	int area_fov;
 	float ray_absoulete; 
 }		t_player;
@@ -79,7 +83,7 @@ void	add_to_map(t_game *game, char *line);
 char	**append_2d_array(char **map, char *line);
 int		is_nl(t_game *game, char *line);
 void	free_2d_char_arr(char **ptr);
-int		is_line_valid(t_game *game, char *line);
+int		is_line_valid(t_game *game, char *line, int coor_y);
 int		check_component(t_game *game);
 int	put_frame_to_map(t_game *game);
 
@@ -117,7 +121,10 @@ size_t	ft_strlcpy(char *dst, char *src, size_t b);
 char	**ft_split(char *s, char c);
 int	create_trgb(int t, int r, int g, int b);
 
-
+//tmp
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void pixelput(t_game *game, float hypo_tmp, float ray_counter);
+void tmp(t_game *game);
 
 
 void print_map(char **map);

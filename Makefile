@@ -18,7 +18,7 @@ $(EXT):
 	make -C minilibx
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(EXT) $(FLAGS) -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) $(EXT) $(FLAGS) -framework OpenGL -framework AppKit -o $(NAME) -g
 
 fclean : clean
 	$(RM) *.a
