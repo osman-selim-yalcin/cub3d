@@ -37,6 +37,19 @@ void put_floorceil(t_game *game)
 	}
 }
 
+int	direction_angle(t_game *game)
+{
+	if (game->player.direction > 0 && game->player.direction < M_PI / 2)
+		return (1);
+	if (game->player.direction < M_PI && game->player.direction > M_PI / 2)
+		return (2);
+	if (game->player.direction < 3 * M_PI / 2 && game->player.direction > M_PI)
+		return (3);
+	if (game->player.direction < 2 * M_PI && game->player.direction > 3 * M_PI / 2)
+		return (4);
+	return (5);
+}
+
 int key_event(int keycode, t_game *game)
 {
 	mlx_clear_window(game->libx.mlx, game->libx.win);
@@ -44,44 +57,77 @@ int key_event(int keycode, t_game *game)
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 	put_floorceil(game);
-	printf("lkey %d\n", keycode);
 	if (keycode == 0)
 	{
 		game->player.direction = game->player.direction + 10 * (M_PI / 180);
-		if (game->player.direction > (360 - (D_FOV / 2)) * (M_PI / 180))
+		if (game->player.direction > 360 * (M_PI / 180))
 		{
 			game->player.direction -= 2 * M_PI;
 		}
-		printf("direct %f\n", game->player.direction * 180 / M_PI);
 		tmp(game);
 	}
 
 	if (keycode == 2)
 	{
 		game->player.direction = game->player.direction - 10 * (M_PI / 180);
-		if (game->player.direction < -(D_FOV / 2) * (M_PI / 180))
+		if (game->player.direction < 0)
 		{
 			game->player.direction += 2 * M_PI;
 		}
-		printf("direct %f\n", game->player.direction * 180 / M_PI);
 		tmp(game);
 	}
 
 	if (keycode == 13)
 	{
-		printf("pos_x %d\n", game->player.pos_x);
-		printf("pos_y %d\n", game->player.pos_y);
+		printf("game->player.direction = %f\n", game->player.direction * 180 / M_PI);
+		if (direction_angle(game) == 1)
+		{
+			game->player.pos_x = game->player.pos_x + 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y - 10 * fabs(sin(game->player.direction));
+		}
+		if (direction_angle(game) == 2)
+		{
+			game->player.pos_x = game->player.pos_x - 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y - 10 * fabs(sin(game->player.direction));
+		}
+		if (direction_angle(game) == 3)
+		{
+			game->player.pos_x = game->player.pos_x - 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y + 10 * fabs(sin(game->player.direction));
+		}
+		if (direction_angle(game) == 4)
+		{
+			game->player.pos_x = game->player.pos_x + 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y + 10 * fabs(sin(game->player.direction));
+		}
 		tmp(game);
 
 	}
 	if (keycode == 1)
 	{
-
-		printf("pos_x %d\n", game->player.pos_x);
-		printf("pos_y %d\n", game->player.pos_y);
+		printf("game->player.direction = %f\n", game->player.direction * 180 / M_PI);
+		if (direction_angle(game) == 1)
+		{
+			game->player.pos_x = game->player.pos_x - 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y + 10 * fabs(sin(game->player.direction));
+		}
+		if (direction_angle(game) == 2)
+		{
+			game->player.pos_x = game->player.pos_x + 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y + 10 * fabs(sin(game->player.direction));
+		}
+		if (direction_angle(game) == 3)
+		{
+			game->player.pos_x = game->player.pos_x + 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y - 10 * fabs(sin(game->player.direction));
+		}
+		if (direction_angle(game) == 4)
+		{
+			game->player.pos_x = game->player.pos_x - 10 * fabs(cos(game->player.direction));
+			game->player.pos_y = game->player.pos_y - 10 * fabs(sin(game->player.direction));
+		}
 		tmp(game);
 	}
-	
 	if (keycode == 53)
 		tmp_exit();
 	return(1);
@@ -150,6 +196,8 @@ void tmp(t_game *game)
 		game->player.ray_absoulete = (game->player.direction - game->player.fov / 2) + (ray_counter * M_PI / 180);
 		if (game->player.ray_absoulete < 0)
 			game->player.ray_absoulete += 2 * M_PI;
+		else if (game->player.ray_absoulete > 360 * M_PI / 180)
+			game->player.ray_absoulete -= 2 * M_PI;
 		hypo_tmp = 0;
 		if (ray_angle(game) == 1)
 		{
