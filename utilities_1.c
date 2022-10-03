@@ -1,21 +1,5 @@
 #include "cub3d.h"
 
-int	ft_check(char *look, int c)
-{
-	int	l;
-
-	l = 0;
-	if (!look)
-		return (1);
-	while (look[l] != '\0')
-	{
-		if (look[l] == (char)c)
-			return (0);
-		l++;
-	}
-	return (1);
-}
-
 int	ft_strlen(char *s)
 {
 	int	p;
@@ -26,26 +10,6 @@ int	ft_strlen(char *s)
 	while (s[p] != '\0')
 		p++;
 	return (p);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*last;
-
-	if (!s1)
-	{
-		s1 = (char *)malloc(1 * sizeof(char));
-		s1[0] = '\0';
-	}
-	if (!s1 || !s2)
-		return (NULL);
-	last = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!last)
-		return (0);
-	ft_memcpy(last, s1, ft_strlen(s1));
-	ft_memcpy(&last[ft_strlen(s1)], s2, ft_strlen(s2));
-	free(s1);
-	return (last);
 }
 
 void	*ft_memcpy(void *dst, void *src, int n)
@@ -80,4 +44,56 @@ char	*ft_strdup(char *s1)
 	}
 	s[i] = '\0';
 	return (s);
+}
+
+int	string_length(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (*str++)
+		i++;
+	return (i);
+}
+
+int	check_newline(char *ptr)
+{
+	if (!ptr)
+		return (1);
+	while (*ptr)
+	{
+		if (*ptr == '\n')
+			return (0);
+		ptr++;
+	}
+	return (1);
+}
+
+char	*append_string(char *str, char *buf)
+{
+	char	*result;
+	int		i;
+	int		j;
+
+	if (!buf)
+		return (NULL);
+	if (!str)
+	{	
+		str = malloc(1);
+		*str = '\0';
+	}
+	result = malloc(string_length(str) + string_length(buf) + 1);
+	if (!result)
+		return (NULL);
+	i = -1;
+	while (str[++i])
+		result[i] = str[i];
+	j = 0;
+	while (buf[j])
+		result[i++] = buf[j++];
+	result[i] = '\0';
+	free(str);
+	return (result);
 }

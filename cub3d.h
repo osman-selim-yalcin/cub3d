@@ -109,11 +109,12 @@ char	*newk(char *k);
 char	*gnl_print(char *k);
 char	*rd(char *k, int fd);
 char	*get_next_line(int fd);
-int	ft_check(char *look, int c);
-int	ft_strlen(char *s);
-char	*ft_strjoin(char *s1, char *s2);
+int		ft_strlen(char *s);
 void	*ft_memcpy(void *dst, void *src, int n);
 char	*ft_strdup(char *s1);
+int	string_length(char *str);
+int	check_newline(char *ptr);
+char	*append_string(char *str, char *buf);
 
 //utilities_3
 int	element_strncmp(char *s1, char *s2, size_t size);

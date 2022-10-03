@@ -1,97 +1,95 @@
 #include "cub3d.h"
 
-char	*newk(char *k)
+char	*get_line(char *str)
 {
-	char	*temp;
-	int		p;
-	int		p2;
+	char	*line;
+	int		i;
+	int		j;
 
-	p = 0;
-	while (k[p] != '\n' && k[p] != '\0')
-		p++;
-	if (k[p] == '\0')
-	{
-		free(k);
+	if (!(*str))
 		return (NULL);
-	}
-	temp = malloc((ft_strlen(k) - p + 1) * sizeof(char));
-	if (!temp)
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i])
+		i++;
+	line = malloc(i + 1);
+	if (!line)
 		return (NULL);
-	p2 = 0;
-	p++;
-	while (k[p + p2])
+	j = 0;
+	while (j < i)
 	{
-		temp[p2] = k[p + p2];
-		p2++;
+		line[j] = str[j];
+		++j;
 	}
-	temp [p2] = '\0';
-	free(k);
-	return (temp);
+	line[j] = '\0';
+	return (line);
 }
 
-char	*gnl_print(char *k)
+char	*reading_from_file(int fd, char *str)
 {
-	char	*last;
-	int		p;
+	char	*buf;
+	int		byte_num;
 
-	p = 0;
-	if (k[p] == '\0')
+	byte_num = 1;
+	buf = malloc(1 + 1);
+	if (!buf)
 		return (NULL);
-	while (k[p] != '\n' && k[p] != '\0')
-		p++;
-	if (!k[p])
-		last = malloc((p + 1) * sizeof(char));
-	else
-		last = malloc((p + 2) * sizeof(char));
-	if (!last)
-		return (NULL);
-	p = 0;
-	while (k[p] != '\n' && k[p] != '\0')
+	while (check_newline(str) && byte_num)
 	{
-		last[p] = k[p];
-		p++;
-	}
-	if (k[p] == '\n')
-		last[p++] = '\n';
-	last[p] = '\0';
-	return (last);
-}
-
-char	*rd(char *k, int fd)
-{
-	int		p;
-	char	*buffer;
-
-	buffer = malloc(2 + 1 * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	p = 1;
-	while (ft_check(k, '\n') == 1 && p != 0)
-	{
-		p = read(fd, buffer, 2);
-		if (p == -1)
+		byte_num = read(fd, buf, 1);
+		if (byte_num == -1)
 		{
-			free (buffer);
+			free(buf);
 			return (NULL);
 		}
-		buffer[p] = '\0';
-		k = ft_strjoin(k, buffer);
+		buf[byte_num] = '\0';
+		str = append_string(str, buf);
 	}
-	free(buffer);
-	return (k);
+	free(buf);
+	return (str);
+}
+
+char	*shift_to_endline(char *str)
+{
+	char	*shifted_str;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		++i;
+	if (!str[i])
+	{
+		free(str);
+		return (NULL);
+	}
+	++i;
+	shifted_str = malloc(string_length(str) - i + 1);
+	if (!shifted_str)
+		return (NULL);
+	j = 0;
+	while (j < string_length(str) - i)
+	{
+		shifted_str[j] = str[j + i];
+		j++;
+	}
+	shifted_str[j] = '\0';
+	free(str);
+	return (shifted_str);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*k;
-	char		*last;
+	static char	*str;
+	char		*line;
 
 	if (fd < 0)
-		return (0);
-	k = rd(k, fd);
-	if (!k)
 		return (NULL);
-	last = gnl_print(k);
-	k = newk(k);
-	return (last);
+	str = reading_from_file(fd, str);
+	if (!str)
+		return (NULL);
+	line = get_line(str);
+	str = shift_to_endline(str);
+	return (line);
 }

@@ -13,22 +13,6 @@ void	free_2d_char_arr(char **ptr)
 	free(ptr);
 }
 
-int	is_nl(t_game *game, char *line)
-{
-	if (line == NULL && game->map.started_reading == 0)
-	{
-		game->map.started_reading = 1;
-		return (1);
-	}
-	if (line == NULL)
-		return (0);
-	if (line[0] == '\n')
-	{
-		free(line);
-		return (1);
-	}
-	return (0);
-}
 
 char	**append_2d_array(char **map, char *line)
 {
@@ -58,6 +42,24 @@ char	**append_2d_array(char **map, char *line)
 	return (map);
 }
 
+int	is_nl(t_game *game, char *line)
+{
+	if (line == NULL && game->map.started_reading == 0)
+	{
+		game->map.started_reading = 1;
+		return (1);
+	}
+	if (line == NULL)
+		return (0);
+	if (line[0] == '\n')
+	{
+		free(line);
+		return (1);
+	}
+	
+	return (0);
+}
+
 void	add_to_map(t_game *game, char *line)
 {
 	game->map.map = append_2d_array(game->map.map, line);
@@ -77,8 +79,12 @@ int	read_map(t_game *game)
 		free(line);
 	}
 	line = NULL;
+		int a=0;
 	while (is_nl(game, line) == 1)
+	{
+		a++;
 		line = get_next_line(fd);
+	}
 	if (line == NULL)
 	{
 		close(fd);

@@ -19,7 +19,6 @@ $(EXT):
 
 $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(EXT) $(FLAGS) -framework OpenGL -framework AppKit -o $(NAME) -g
-
 fclean : clean
 	$(RM) *.a
 	$(RM) $(NAME)

@@ -296,7 +296,6 @@ int main(int ac, char **av)
 	if (check_map(&game, ac)) //error_managment;
 		return (1);
 	
-	exit(1);
 	game.libx.mlx = mlx_init();
 	game.libx.win = mlx_new_window(game.libx.mlx, SCREEN_WID, SCREEN_LEN, "cub3d");
 
