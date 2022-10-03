@@ -21,17 +21,17 @@ int map_element_check(t_game *game)
 		while (tmp[a] == ' ' && tmp[a] != '\0')
 			a++;
 		if (element_strncmp(tmp + a, "N", 2) == 0 || element_strncmp(tmp + a, "NO", 3) == 0)
-			game->map.north_wall = ft_strdup(tmp);
+			game->map.north_wall = ft_strdup(tmp + a);
 		else if (element_strncmp(tmp + a, "S", 2 == 0) || element_strncmp(tmp + a, "SO", 3) == 0)
-			game->map.south_wall = ft_strdup(tmp);
+			game->map.south_wall = ft_strdup(tmp + a);
 		else if (element_strncmp(tmp + a, "W", 2 == 0) || element_strncmp(tmp + a, "WE", 3) == 0)
 			game->map.west_wall = ft_strdup(tmp + a);
 		else if (element_strncmp(tmp + a, "E", 2 == 0) || element_strncmp(tmp + a, "EA", 3) == 0)
 			game->map.east_wall = ft_strdup(tmp + a);
 		else if (element_strncmp(tmp + a, "F", 2) == 0 || element_strncmp(tmp + a, "FL", 3) == 0)
-			game->map.floor_char = ft_strdup(tmp);
+			game->map.floor_char = ft_strdup(tmp + a);
 		else if (element_strncmp(tmp + a, "C", 2) == 0 || element_strncmp(tmp + a, "CE", 3) == 0)
-			game->map.ceilling_char = ft_strdup(tmp);
+			game->map.ceilling_char = ft_strdup(tmp + a);
 		if (tmp[0] != '\0' && tmp[0] != '\n')
 			i++;
 		free(tmp);
@@ -40,9 +40,10 @@ int map_element_check(t_game *game)
 	if (i != 6 || !game->map.north_wall || !game->map.south_wall || \
 		!game->map.east_wall || !game->map.west_wall || !game->map.floor_char || !game->map.ceilling_char)
 		return (1);
-	if (get_xpm_files(game, game->map.north_wall) == 1 || get_xpm_files(game, game->map.south_wall) == 1 || \
-		get_xpm_files(game, game->map.east_wall) == 1 || get_xpm_files(game, game->map.west_wall) == 1)
+	if (get_xpm_files(game, game->map.north_wall, 1) == 1 || get_xpm_files(game, game->map.south_wall, 3) == 1 || \
+		get_xpm_files(game, game->map.east_wall, 4) == 1 || get_xpm_files(game, game->map.west_wall, 2) == 1)
 		return (1);
+	printf("%d\n", game->map.gnl_count);
 	return (0);
 }
 

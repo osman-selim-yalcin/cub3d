@@ -14,16 +14,44 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+void put_floorceil(t_game *game)
+{
+	int x;
+	int y;
+
+	x = 0;
+	while (x < SCREEN_WID)
+	{
+		y = 0;
+		while (y < SCREEN_LEN / 2)
+		{
+			my_mlx_pixel_put(game, x, y, game->map.ceilling_rgb);
+			++y;
+		}
+		while (y < SCREEN_LEN)
+		{
+			my_mlx_pixel_put(game, x, y, game->map.floor_rgb);
+			++y;
+		}
+		x++;
+	}
+}
+
 int key_event(int keycode, t_game *game)
 {
 	mlx_clear_window(game->libx.mlx, game->libx.win);
 	mlx_destroy_image(game->libx.mlx, game->img.img);
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
+	put_floorceil(game);
 	printf("lkey %d\n", keycode);
 	if (keycode == 0)
 	{
-			game->player.direction = game->player.direction + 10 * (M_PI / 180);
+		game->player.direction = game->player.direction + 10 * (M_PI / 180);
+		if (game->player.direction > (360 - (D_FOV / 2)) * (M_PI / 180))
+		{
+			game->player.direction -= 2 * M_PI;
+		}
 		printf("direct %f\n", game->player.direction * 180 / M_PI);
 		tmp(game);
 	}
@@ -31,14 +59,16 @@ int key_event(int keycode, t_game *game)
 	if (keycode == 2)
 	{
 		game->player.direction = game->player.direction - 10 * (M_PI / 180);
+		if (game->player.direction < -(D_FOV / 2) * (M_PI / 180))
+		{
+			game->player.direction += 2 * M_PI;
+		}
 		printf("direct %f\n", game->player.direction * 180 / M_PI);
 		tmp(game);
 	}
 
 	if (keycode == 13)
 	{
-		game->player.pos_x = game->player.pos_x + 10 * cos(game->player.direction);
-		game->player.pos_y = game->player.pos_y + 10 * sin(game->player.direction);
 		printf("pos_x %d\n", game->player.pos_x);
 		printf("pos_y %d\n", game->player.pos_y);
 		tmp(game);
@@ -46,8 +76,7 @@ int key_event(int keycode, t_game *game)
 	}
 	if (keycode == 1)
 	{
-		game->player.pos_x = game->player.pos_x - 10 * cos(game->player.direction);
-		game->player.pos_y = game->player.pos_y - 10 * sin(game->player.direction);
+
 		printf("pos_x %d\n", game->player.pos_x);
 		printf("pos_y %d\n", game->player.pos_y);
 		tmp(game);
@@ -85,6 +114,7 @@ int find_wall_vertical(float hor, float ver, t_game *game)
 	}
 	if (game->map.map[(int)ver][(int)(hor + 0.5)] == '1' || game->map.map[(int)ver][(int)(hor - 0.5)] == '1')
 	{
+
 		return (1);
 	}
 	return (0);
@@ -112,7 +142,6 @@ int find_wall_horizontal(float hor, float ver, t_game *game)
 
 void tmp(t_game *game)
 {
-	printf("çaprıl\n");
 	game->player.fov = R_FOV;
 	float ray_counter = 0;
 	float hypo_tmp = 0;
@@ -131,7 +160,10 @@ void tmp(t_game *game)
 				if (find_wall_vertical(game->player.horizontal + game->player.pos_x, game->player.pos_y - tan(game->player.ray_absoulete) * game->player.horizontal, game) > 0)
 				{
 					if (find_wall_vertical(game->player.horizontal + game->player.pos_x, game->player.pos_y - tan(game->player.ray_absoulete) * game->player.horizontal, game) == 1)
+					{
+						game->img.color = 0x00FF0000;
 						hypo_tmp = hypot(game->player.horizontal, tan(game->player.ray_absoulete) * game->player.horizontal);
+					}
 					break ;
 				}
 				game->player.horizontal += 100;
@@ -142,7 +174,10 @@ void tmp(t_game *game)
 				{
 					
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(game->player.ray_absoulete) * game->player.vertical, game->player.vertical))
+					{
+						game->img.color = 0x000000FF;						
 						hypo_tmp = hypot(1 / tan(game->player.ray_absoulete) * game->player.vertical, game->player.vertical);
+					}
 					break ;
 				}
 				game->player.vertical += 100;
@@ -158,7 +193,10 @@ void tmp(t_game *game)
 				if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y - tan(M_PI - game->player.ray_absoulete) * game->player.horizontal, game) > 0)
 				{
 					if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y - tan(M_PI - game->player.ray_absoulete) * game->player.horizontal, game) == 1)
+					{
+						game->img.color = 0x0000FF00;
 							hypo_tmp = hypot(game->player.horizontal, tan(M_PI - game->player.ray_absoulete) * game->player.horizontal);
+					}
 					break ;
 				}
 				game->player.horizontal += 100;
@@ -168,7 +206,10 @@ void tmp(t_game *game)
 				if (find_wall_horizontal(game->player.pos_x - 1 / tan(M_PI - game->player.ray_absoulete) * game->player.vertical, game->player.pos_y - game->player.vertical, game))
 				{
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(M_PI - game->player.ray_absoulete) * game->player.vertical, game->player.vertical))
+					{
+						game->img.color = 0x000000FF;
 						hypo_tmp = hypot(1 / tan(M_PI - game->player.ray_absoulete) * game->player.vertical, game->player.vertical);
+					}
 					break ;
 				}
 				game->player.vertical += 100;
@@ -185,7 +226,10 @@ void tmp(t_game *game)
 				if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y + tan(game->player.ray_absoulete) * game->player.horizontal, game) > 0)
 				{
 					if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y + tan(game->player.ray_absoulete) * game->player.horizontal, game) == 1)
+					{
+						game->img.color = 0x0000FF00;
 						hypo_tmp = hypot(game->player.horizontal, tan(game->player.ray_absoulete) * game->player.horizontal);
+					}
 					break ;
 				}
 				game->player.horizontal += 100;
@@ -196,7 +240,10 @@ void tmp(t_game *game)
 				{
 					
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(game->player.ray_absoulete) * game->player.vertical, game->player.vertical))
+					{
+						game->img.color = 0x00FFFF00;
 						hypo_tmp = hypot(1 / tan(game->player.ray_absoulete) * game->player.vertical, game->player.vertical);
+					}
 					break ;
 				}
 				game->player.vertical += 100;
@@ -213,7 +260,10 @@ void tmp(t_game *game)
 				if (find_wall_vertical(game->player.pos_x + game->player.horizontal, game->player.pos_y + tan(game->player.ray_absoulete) * game->player.horizontal, game) > 0)
 				{
 					if (find_wall_vertical(game->player.pos_x + game->player.horizontal, game->player.pos_y + tan(game->player.ray_absoulete) * game->player.horizontal, game) == 1)
+					{
+						game->img.color = 0x00FF0000;
 						hypo_tmp = hypot(game->player.horizontal, tan(game->player.ray_absoulete) * game->player.horizontal);
+					}
 					break ;
 				}
 				game->player.horizontal += 100;
@@ -223,7 +273,10 @@ void tmp(t_game *game)
 				if (find_wall_horizontal(game->player.pos_x + 1 / tan(game->player.ray_absoulete) * game->player.vertical, game->player.pos_y + game->player.vertical, game))
 				{
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(game->player.ray_absoulete) * game->player.vertical, game->player.vertical))
+					{
+						game->img.color = 0x00FFFF00;
 						hypo_tmp = hypot(1 / tan(game->player.ray_absoulete) * game->player.vertical, game->player.vertical);
+					}
 					break ;
 				}
 				game->player.vertical += 100;
@@ -242,6 +295,8 @@ int main(int ac, char **av)
 	get_value(&game, av);
 	if (check_map(&game, ac)) //error_managment;
 		return (1);
+	
+	exit(1);
 	game.libx.mlx = mlx_init();
 	game.libx.win = mlx_new_window(game.libx.mlx, SCREEN_WID, SCREEN_LEN, "cub3d");
 

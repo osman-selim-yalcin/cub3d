@@ -49,6 +49,7 @@ typedef struct s_img
 	void	*south_img;
 	void	*east_img;
 	void	*west_img;
+	int			color;
 
 	void *img;
 	void *addr;
@@ -96,8 +97,8 @@ int	check_all_twos(char **map);
 
 //file_xpm_check.c
 int is_this_xpm(char *texture);
-int is_xpm_exist(char *texture);
-int get_xpm_files(t_game *game, char *texture);
+int is_xpm_exist(t_game *game,char *texture, int i);
+int get_xpm_files(t_game *game, char *texture, int i);
 
 //get_value.c
 void fill_map(t_game *game, char **av);

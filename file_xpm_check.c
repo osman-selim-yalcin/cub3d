@@ -12,7 +12,7 @@ int is_this_xpm(char *texture)
 	return (0);
 }
 
-int is_xpm_exist(char *texture)
+int is_xpm_exist(t_game *game, char *texture, int i)
 {
 	int fd;
 	char *tmp;
@@ -38,24 +38,31 @@ int is_xpm_exist(char *texture)
 		free(tmp);
 		return (1);
 	}
+	if (i == 1)
+		game->map.north_wall = ft_strdup(tmp);
+	else if (i == 3)
+		game->map.south_wall = ft_strdup(tmp);
+	else if (i == 2)
+		game->map.west_wall = ft_strdup(tmp);
+	else if (i == 4)
+		game->map.east_wall = ft_strdup(tmp);
 	free(tmp);
 	close(fd);
 	return (0);
 }
 
-int get_xpm_files(t_game *game, char *texture)
+int get_xpm_files(t_game *game, char *texture, int i)
 {
 	int a;
 
 	a = 0;
-	(void)game;
 	while (texture[a] == ' ')
 		a++;
 	while (texture[a] != ' ')
 		a++;
 	while (texture[a] == ' ')
 		a++;
-	if (is_xpm_exist(texture + a))
+	if (is_xpm_exist(game, texture + a, i))
 		return (1);
 	if (is_this_xpm(texture + a))
 		return (1);
