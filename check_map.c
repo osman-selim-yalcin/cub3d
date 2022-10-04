@@ -43,7 +43,6 @@ int map_element_check(t_game *game)
 	if (get_xpm_files(game, game->map.north_wall, 1) == 1 || get_xpm_files(game, game->map.south_wall, 3) == 1 || \
 		get_xpm_files(game, game->map.east_wall, 4) == 1 || get_xpm_files(game, game->map.west_wall, 2) == 1)
 		return (1);
-	printf("%d\n", game->map.gnl_count);
 	return (0);
 }
 

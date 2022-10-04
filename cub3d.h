@@ -37,9 +37,8 @@ typedef struct s_player
 	int	pos_y;
 	int horizontal;
 	int vertical;
-	float	fov;
-	float direction;
-	int area_fov;
+	int	fov;
+	int direction;
 	float ray_absoulete; 
 }		t_player;
 
@@ -123,12 +122,29 @@ size_t	ft_strlcpy(char *dst, char *src, size_t b);
 char	**ft_split(char *s, char c);
 int	create_trgb(int t, int r, int g, int b);
 
-//tmp
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+//find_wall.c
+int find_wall_vertical(float hor, float ver, t_game *game);
+int find_wall_horizontal(float hor, float ver, t_game *game);
+
+//key_event.c
+int key_event(int keycode, t_game *game);
+
+//pixel.c
 void pixelput(t_game *game, float hypo_tmp, float ray_counter);
+void put_floorceil(t_game *game);
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+
+//angle_utils.c
+int	rad_to_deg(float rad);
+float deg_to_rad(float degree);
+int	round_float(float num);
+
+//find_area.c
+int	direction_angle(t_game *game);
+int	ray_angle(t_game *game);
+
 void tmp(t_game *game);
 
-
 void print_map(char **map);
-
+int tmp_exit(void);
 #endif

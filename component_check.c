@@ -16,11 +16,11 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
 		{
 			if (line[i] == 'N')
-				game->player.direction = M_PI / 2;
+				game->player.direction = 90;
 			if (line[i] == 'S')
-				game->player.direction = 3 * M_PI / 2;
+				game->player.direction = 270;
 			if (line[i] == 'W')
-				game->player.direction = M_PI;
+				game->player.direction = 180;
 			if (line[i] == 'E')
 				game->player.direction = 0;//BAKALIM
 			game->player.pos_x = 100 * (i + 1) + 50;
