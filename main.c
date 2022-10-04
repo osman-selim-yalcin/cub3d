@@ -124,7 +124,6 @@ void tmp(t_game *game)
 		{
 			game->player.horizontal = 100 - game->player.pos_x % 100;
 			game->player.vertical = 100 - game->player.pos_y % 100;
-			float tmp = game->player.ray_absoulete;
 			game->player.ray_absoulete = 360 - game->player.ray_absoulete;
 			while (1)
 			{
@@ -152,7 +151,7 @@ void tmp(t_game *game)
 				}
 				game->player.vertical += 100;
 			}
-			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(tmp - game->player.direction)));
+			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(fabs(game->player.ray_absoulete - 360) - game->player.direction)));
 			// hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(game->player.ray_absoulete - game->player.direction)));
 			// printf("tmp: %f\n", hypo_tmp);
 			pixelput(game, hypo_tmp, ray_counter);
