@@ -10,10 +10,10 @@ void tmp(t_game *game)
 {
 	float ray_counter = 0;
 	float hypo_tmp = 0;
-	while (ray_counter < game->player.fov)
+	while (ray_counter < SCREEN_WID)
 	{
 		hypo_tmp = 0;
-		game->player.ray_absoulete = (game->player.direction - game->player.fov / 2) + (ray_counter);
+		game->player.ray_absoulete = (game->player.direction - game->player.fov / 2) + (ray_counter / SCREEN_WID * D_FOV);
 		if (game->player.ray_absoulete < 0)
 			game->player.ray_absoulete += 360;
 		else if (game->player.ray_absoulete >= 360)
@@ -154,7 +154,7 @@ void tmp(t_game *game)
 			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(fabs(game->player.ray_absoulete - 360) - game->player.direction)));
 			pixelput(game, hypo_tmp, ray_counter);
 		}
-		ray_counter += 0.1;
+		ray_counter += 1;
 	}
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
 }
