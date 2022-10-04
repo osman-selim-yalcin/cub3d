@@ -152,8 +152,6 @@ void tmp(t_game *game)
 				game->player.vertical += 100;
 			}
 			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(fabs(game->player.ray_absoulete - 360) - game->player.direction)));
-			// hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(game->player.ray_absoulete - game->player.direction)));
-			// printf("tmp: %f\n", hypo_tmp);
 			pixelput(game, hypo_tmp, ray_counter);
 		}
 		ray_counter += 0.1;
@@ -175,17 +173,9 @@ int main(int ac, char **av)
 
 	game.img.img = mlx_new_image(game.libx.mlx, SCREEN_WID, SCREEN_LEN);
 	game.img.addr = mlx_get_data_addr(game.img.img, &game.img.bits_per_pixel, &game.img.line_length, &game.img.endian);
-	// printf("%f\n", deg_to_rad(80.1));
-	// printf("%f\n", deg_to_rad(80.2));
-	// printf("%f\n", deg_to_rad(80.3));
-	// printf("%f\n", deg_to_rad(80.4));
-	// printf("%f\n", deg_to_rad(80.5));
-	// printf("%f\n", deg_to_rad(80.6));
-	// printf("%f\n", deg_to_rad(80.7));
-	// printf("%f\n", deg_to_rad(80.8));
-	// printf("%f\n", deg_to_rad(80.9));
-	// put_floorceil(&game);
-	// tmp(&game);
+
+	put_floorceil(&game);
+	tmp(&game);
 	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game);
 	mlx_hook(game.libx.win, 17, 0L, tmp_exit, &game);
 	mlx_loop(game.libx.mlx);
