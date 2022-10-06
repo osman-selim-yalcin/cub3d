@@ -30,23 +30,23 @@ int key_event(int keycode, t_game *game)
 	{
 		if (direction_angle(game) == 1)
 		{
-			game->player.pos_x = game->player.pos_x + round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		if (direction_angle(game) == 2)
 		{
-			game->player.pos_x = game->player.pos_x - round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		if (direction_angle(game) == 3)
 		{
-			game->player.pos_x = game->player.pos_x - round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		if (direction_angle(game) == 4)
 		{
-			game->player.pos_x = game->player.pos_x + round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		tmp(game);
 
@@ -55,23 +55,23 @@ int key_event(int keycode, t_game *game)
 	{
 		if (direction_angle(game) == 1)
 		{
-			game->player.pos_x = game->player.pos_x - round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		if (direction_angle(game) == 2)
 		{
-			game->player.pos_x = game->player.pos_x + round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		if (direction_angle(game) == 3)
 		{
-			game->player.pos_x = game->player.pos_x + round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		if (direction_angle(game) == 4)
 		{
-			game->player.pos_x = game->player.pos_x - round_float(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_float(10 * fabs(sin(deg_to_rad(game->player.direction))));
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
 		tmp(game);
 	}

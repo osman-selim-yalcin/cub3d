@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int find_wall_vertical(float hor, float ver, t_game *game)
+int find_wall_vertical(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
@@ -8,7 +8,7 @@ int find_wall_vertical(float hor, float ver, t_game *game)
 	{
 		return (2);
 	}
-	if (ver > 8 || hor > 11)
+	if (ver > game->map.length + 1 || hor > game->map.width + 1)
 	{
 		return (2);
 	}
@@ -20,7 +20,7 @@ int find_wall_vertical(float hor, float ver, t_game *game)
 	return (0);
 }
 
-int find_wall_horizontal(float hor, float ver, t_game *game)
+int find_wall_horizontal(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
@@ -28,8 +28,7 @@ int find_wall_horizontal(float hor, float ver, t_game *game)
 	{
 		return (2);
 	}
-
-	if (ver > 8 || hor > 11)
+	if (ver > game->map.length + 1 || hor > game->map.width + 1)
 	{
 		return (2);
 	}

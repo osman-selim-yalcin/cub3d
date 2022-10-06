@@ -8,12 +8,17 @@ int tmp_exit(void)
 
 void tmp(t_game *game)
 {
-	float ray_counter = 0;
-	float hypo_tmp = 0;
+	double ray_counter = 0;
+	double hypo_tmp = 0;
 	while (ray_counter < SCREEN_WID)
 	{
 		hypo_tmp = 0;
 		game->player.ray_absoulete = (game->player.direction - game->player.fov / 2) + (ray_counter / SCREEN_WID * D_FOV);
+		if (game->player.ray_absoulete == 90 || game->player.ray_absoulete == 0 || game->player.ray_absoulete == 180 || game->player.ray_absoulete == 270)
+		{
+			ray_counter++;
+			continue;
+		}
 		if (game->player.ray_absoulete < 0)
 			game->player.ray_absoulete += 360;
 		else if (game->player.ray_absoulete >= 360)
@@ -89,15 +94,14 @@ void tmp(t_game *game)
 		{
 			game->player.horizontal = game->player.pos_x % 100;
 			game->player.vertical = 100 - game->player.pos_y % 100;
-			game->player.ray_absoulete -= 180;
 			while (1)
 			{
-				if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y + tan(deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal, game) > 0)
+				if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y + tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.horizontal, game) > 0)
 				{
-					if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y + tan(deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal, game) == 1)
+					if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y + tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.horizontal, game) == 1)
 					{
 						game->img.color = 0x0000FF00;
-						hypo_tmp = hypot(game->player.horizontal, tan(deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal);
+						hypo_tmp = hypot(game->player.horizontal, tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.horizontal);
 					}
 					break;
 				}
@@ -105,34 +109,33 @@ void tmp(t_game *game)
 			}
 			while (1)
 			{
-				if (find_wall_horizontal(game->player.pos_x - 1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.pos_y + game->player.vertical, game))
+				if (find_wall_horizontal(game->player.pos_x - 1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.pos_y + game->player.vertical, game))
 				{
 
-					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical))
+					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.vertical))
 					{
 						game->img.color = 0x00FFFF00;
-						hypo_tmp = hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical);
+						hypo_tmp = hypot(1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.vertical);
 					}
 					break;
 				}
 				game->player.vertical += 100;
 			}
-			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(game->player.ray_absoulete + 180 - game->player.direction)));
+			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(game->player.ray_absoulete - game->player.direction)));
 			pixelput(game, hypo_tmp, ray_counter);
 		}
 		else if (ray_angle(game) == 4)
 		{
 			game->player.horizontal = 100 - game->player.pos_x % 100;
 			game->player.vertical = 100 - game->player.pos_y % 100;
-			game->player.ray_absoulete = 360 - game->player.ray_absoulete;
 			while (1)
 			{
-				if (find_wall_vertical(game->player.pos_x + game->player.horizontal, game->player.pos_y + tan(deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal, game) > 0)
+				if (find_wall_vertical(game->player.pos_x + game->player.horizontal, game->player.pos_y + tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.horizontal, game) > 0)
 				{
-					if (find_wall_vertical(game->player.pos_x + game->player.horizontal, game->player.pos_y + tan(deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal, game) == 1)
+					if (find_wall_vertical(game->player.pos_x + game->player.horizontal, game->player.pos_y + tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.horizontal, game) == 1)
 					{
 						game->img.color = 0x00FF0000;
-						hypo_tmp = hypot(game->player.horizontal, tan(deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal);
+						hypo_tmp = hypot(game->player.horizontal, tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.horizontal);
 					}
 					break;
 				}
@@ -140,18 +143,24 @@ void tmp(t_game *game)
 			}
 			while (1)
 			{
-				if (find_wall_horizontal(game->player.pos_x + 1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.pos_y + game->player.vertical, game))
+
+				if (find_wall_horizontal(game->player.pos_x + 1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.pos_y + game->player.vertical, game))
 				{
-					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical))
+					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.vertical))
 					{
-						game->img.color = 0x00FFFF00;
-						hypo_tmp = hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical);
+						game->img.color = 0x00FFFFFF;
+						hypo_tmp = hypot(1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.vertical);
 					}
 					break;
 				}
 				game->player.vertical += 100;
 			}
-			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(fabs(game->player.ray_absoulete - 360) - game->player.direction)));
+			if (ray_counter > 1800)
+			{
+				printf("fish eye içine girilen değer %f\n", deg_to_rad(game->player.ray_absoulete - game->player.direction));
+				printf("ilk hypo %f\n", hypo_tmp);
+			}
+			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(game->player.ray_absoulete - game->player.direction)));
 			pixelput(game, hypo_tmp, ray_counter);
 		}
 		ray_counter += 1;

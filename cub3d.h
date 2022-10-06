@@ -39,7 +39,7 @@ typedef struct s_player
 	int vertical;
 	int	fov;
 	int direction;
-	float ray_absoulete; 
+	double ray_absoulete; 
 }		t_player;
 
 typedef struct s_img
@@ -123,21 +123,21 @@ char	**ft_split(char *s, char c);
 int	create_trgb(int t, int r, int g, int b);
 
 //find_wall.c
-int find_wall_vertical(float hor, float ver, t_game *game);
-int find_wall_horizontal(float hor, float ver, t_game *game);
+int find_wall_vertical(double hor, double ver, t_game *game);
+int find_wall_horizontal(double hor, double ver, t_game *game);
 
 //key_event.c
 int key_event(int keycode, t_game *game);
 
 //pixel.c
-void pixelput(t_game *game, float hypo_tmp, float ray_counter);
+void pixelput(t_game *game, double hypo_tmp, double ray_counter);
 void put_floorceil(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 
 //angle_utils.c
-int	rad_to_deg(float rad);
-float deg_to_rad(float degree);
-int	round_float(float num);
+int	rad_to_deg(double rad);
+double deg_to_rad(double degree);
+int	round_double(double num);
 
 //find_area.c
 int	direction_angle(t_game *game);
