@@ -10,8 +10,8 @@
 # include "minilibx/mlx.h"
 # define SCREEN_LEN 1080
 # define SCREEN_WID 1920
-# define D_FOV 120
-# define R_FOV 2 * M_PI / 3
+# define D_FOV 60
+# define R_FOV M_PI / 3
 typedef struct s_map
 {
 	char	*north_wall;
@@ -147,4 +147,5 @@ void tmp(t_game *game);
 
 void print_map(char **map);
 int tmp_exit(void);
+double take_approximate(double a, double b);
 #endif

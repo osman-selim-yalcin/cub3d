@@ -14,11 +14,6 @@ void tmp(t_game *game)
 	{
 		hypo_tmp = 0;
 		game->player.ray_absoulete = (game->player.direction - game->player.fov / 2) + (ray_counter / SCREEN_WID * D_FOV);
-		if (game->player.ray_absoulete == 90 || game->player.ray_absoulete == 0 || game->player.ray_absoulete == 180 || game->player.ray_absoulete == 270)
-		{
-			ray_counter++;
-			continue;
-		}
 		if (game->player.ray_absoulete < 0)
 			game->player.ray_absoulete += 360;
 		else if (game->player.ray_absoulete >= 360)
@@ -27,6 +22,8 @@ void tmp(t_game *game)
 		{
 			game->player.horizontal = 100 - game->player.pos_x % 100;
 			game->player.vertical = game->player.pos_y % 100;
+			if (game->player.vertical == 0)
+				game->player.vertical = 100;
 			while (1)
 			{
 				if (find_wall_vertical(game->player.horizontal + game->player.pos_x, game->player.pos_y - tan(deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal, game) > 0)
@@ -61,6 +58,13 @@ void tmp(t_game *game)
 		{
 			game->player.horizontal = game->player.pos_x % 100;
 			game->player.vertical = game->player.pos_y % 100;
+			if (game->player.vertical == 0)
+				game->player.vertical = 100;
+			if (game->player.horizontal == 0)
+			{
+				game->player.horizontal = 100;
+			}
+			
 			while (1)
 			{
 				if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y - tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.horizontal, game) > 0)
@@ -94,6 +98,8 @@ void tmp(t_game *game)
 		{
 			game->player.horizontal = game->player.pos_x % 100;
 			game->player.vertical = 100 - game->player.pos_y % 100;
+			if (game->player.horizontal == 0)
+				game->player.horizontal = 100;
 			while (1)
 			{
 				if (find_wall_vertical(game->player.pos_x - game->player.horizontal, game->player.pos_y + tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.horizontal, game) > 0)
@@ -154,11 +160,6 @@ void tmp(t_game *game)
 					break;
 				}
 				game->player.vertical += 100;
-			}
-			if (ray_counter > 1800)
-			{
-				printf("fish eye içine girilen değer %f\n", deg_to_rad(game->player.ray_absoulete - game->player.direction));
-				printf("ilk hypo %f\n", hypo_tmp);
 			}
 			hypo_tmp = hypo_tmp * fabs(cos(deg_to_rad(game->player.ray_absoulete - game->player.direction)));
 			pixelput(game, hypo_tmp, ray_counter);

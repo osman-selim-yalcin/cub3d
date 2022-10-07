@@ -20,3 +20,8 @@ int	round_double(double num)
 	else
 		return ((int)(num + 1));
 }
+
+double take_approximate(double a, double b)
+{
+	return (a - b > -0.0001f && a - b < 0.0001f);
+}

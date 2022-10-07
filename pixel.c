@@ -5,28 +5,23 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	int a = 0;
 	int cnt = 0;
 
-	while ((double)a < ((15 / hypo_tmp) * SCREEN_LEN / 2) -  0.5)
+	while ((double)a < (sqrt(15 / hypo_tmp) * SCREEN_LEN / 2) && !take_approximate((double)a, (sqrt(15 / hypo_tmp) * SCREEN_LEN / 2)))
 		a++;
-	printf("a %d\n", a);
+	if (a % 2 == 1)
+		a++;	
 	int wall = a;
-	printf("duvar uzunluk %d, while %lf\n", wall, (10 / hypo_tmp) * SCREEN_LEN / 2);
 	int start = (SCREEN_LEN - a) / 2;
 	a = 0;
-	// printf("ray %f\n", ray_counter);
-	// printf("-------------------------------\n");
-	// if (ray_counter > 1800)
-	// {
-	// 	printf("ray %f\n", game->player.ray_absoulete);
-	// 	printf("x: %f, y: %d, color: %x\n", ray_counter, start + cnt, game->img.color);
-	// }
 	while (a < wall)
 	{
-		
-		// if (ray_counter == 1840)
-		// {
-		// 	printf("screen %f, start %d\n",  SCREEN_WID - 1 - (ray_counter), start + cnt);
-		// }
 		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, game->img.color);
+		if ((SCREEN_WID - 1 - (ray_counter) > 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID) || (start + cnt > 0 && start + cnt < SCREEN_LEN))
+				;
+		else
+		{
+			printf("start + cnt %d\n", start + cnt);
+			sleep(100);
+		}
 		//TEXTURE
 		//resize
 
@@ -38,11 +33,6 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 		++cnt;
 		a += 1;
 	}
-	if (ray_counter > 1600)
-	{
-		printf("hypo tmp %f, ray counter %f,  cnt %d\n", hypo_tmp, ray_counter ,cnt);
-	}
-
 }
 
 void put_floorceil(t_game *game)
