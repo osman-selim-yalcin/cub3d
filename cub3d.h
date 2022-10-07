@@ -12,6 +12,36 @@
 # define SCREEN_WID 1920
 # define D_FOV 60
 # define R_FOV M_PI / 3
+
+typedef struct s_minimap
+{
+	void	*win;
+	void	*img;
+	int		endian;
+	void *addr;
+	int	line_length;
+	int	bits_per_pixel;
+	//variables
+	int		r;
+	int		mx;
+	int		my;
+	int		mp;
+	int		dof;
+	float	rx;
+	float	ry;
+	float	ra;
+	float	xo;
+	float	yo;
+	float	px;
+	float	py;
+	float	pa;
+	float	pdx;
+	float	pdy;
+	int		mapx;
+	int		mapy;
+	int		mapsize;
+} 	t_minimap;
+
 typedef struct s_map
 {
 	char	*north_wall;
@@ -50,6 +80,7 @@ typedef struct s_img
 	void	*west_img;
 	int			color;
 
+	int		color_wall;
 	void *img;
 	void *addr;
 	int	line_length;
@@ -69,6 +100,7 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 	t_img		img;
+	t_minimap	minimap;
 }			t_game;
 
 //check_map.c
@@ -133,6 +165,7 @@ int key_event(int keycode, t_game *game);
 void pixelput(t_game *game, double hypo_tmp, double ray_counter);
 void put_floorceil(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
 
 //angle_utils.c
 int	rad_to_deg(double rad);
@@ -142,6 +175,8 @@ int	round_double(double num);
 //find_area.c
 int	direction_angle(t_game *game);
 int	ray_angle(t_game *game);
+//minimap.c
+void display(t_game *game);
 
 void tmp(t_game *game);
 

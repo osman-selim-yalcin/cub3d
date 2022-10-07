@@ -65,3 +65,11 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 	dst = game->img.addr + (y * game->img.line_length + x * (game->img.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+
+void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = minimap->addr + (y * minimap->line_length + x * (minimap->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
