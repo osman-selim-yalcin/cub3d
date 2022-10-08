@@ -215,39 +215,13 @@ int main(int ac, char **av)
 {
 	t_game game;
 
-	game.player.fov = D_FOV;
-	get_value(&game, av);
+	fill_struct_map(&game, av);
 	if (check_map(&game, ac)) // error_managment;
 		return (1);
-	game.minimap.px = game.player.pos_x / 100 * 20;
-	game.minimap.py = game.player.pos_y / 100 * 20;
-	game.minimap.pa = fabs(deg_to_rad(game.player.direction));
-	game.minimap.pa -= M_PI;
-	if (game.minimap.pa < 0)
-	{
-		game.minimap.pa += 2 * M_PI;
-	}
-	if (game.minimap.pa > 2 * M_PI)
-	{
-		game.minimap.pa -= 2 * M_PI;
-	}
-	game.minimap.pdx = cos(game.minimap.pa) * 2;
-	game.minimap.pdy = sin(game.minimap.pa) * 2;
-	game.minimap.mapx = game.map.width;
-	game.minimap.mapy = game.map.length;
-	game.minimap.mapsize = game.map.width * game.map.length;
+	get_value(&game);
 	//color initli olsun
 	//260!!!!!!!!!!
 	//minimap yürüme sıkıntı (matı bi gözden geçir)
-	game.libx.mlx = mlx_init();
-	game.libx.win = mlx_new_window(game.libx.mlx, SCREEN_WID, SCREEN_LEN, "cub3d");
-
-	game.img.img = mlx_new_image(game.libx.mlx, SCREEN_WID, SCREEN_LEN);
-	game.img.addr = mlx_get_data_addr(game.img.img, &game.img.bits_per_pixel, &game.img.line_length, &game.img.endian);
-
-	game.minimap.img = mlx_new_image(game.libx.mlx, SCREEN_WID, SCREEN_LEN);
-	game.minimap.addr = mlx_get_data_addr(game.img.img, &game.minimap.bits_per_pixel, &game.minimap.line_length, &game.minimap.endian);
-
 	put_floorceil(&game);
 	tmp(&game);
 	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game);

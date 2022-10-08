@@ -75,17 +75,41 @@ typedef struct s_player
 typedef struct s_img
 {
 	void	*north_img;
-	void	*south_img;
-	void	*east_img;
-	void	*west_img;
-	int			color;
+	void	*north_addr;
+	int		north_bits_per_pixel;
+	int		north_line_length;
+	int		north_endian;
+	int		north_wall_index;
 
-	int		color_wall;
+	void	*south_img;
+	void	*south_addr;
+	int		south_bits_per_pixel;
+	int		south_line_length;
+	int		south_endian;
+	int		south_wall_index;
+	
+	void	*east_img;
+	void	*east_addr;
+	int		east_bits_per_pixel;
+	int		east_line_length;
+	int		east_endian;
+	int		east_wall_index;
+
+	void	*west_img;
+	void	*west_addr;
+	int		west_bits_per_pixel;
+	int		west_line_length;
+	int		west_endian;
+	int		west_wall_index;
+
 	void *img;
 	void *addr;
 	int	line_length;
 	int bits_per_pixel;
 	int endian;
+
+	int			color;
+	int		color_wall;
 }			t_img;
 
 typedef struct s_libx
@@ -132,8 +156,10 @@ int is_xpm_exist(t_game *game,char *texture, int i);
 int get_xpm_files(t_game *game, char *texture, int i);
 
 //get_value.c
-void fill_map(t_game *game, char **av);
-void get_value(t_game *game, char **av);
+void fill_struct_map(t_game *game, char **av);
+void get_value(t_game *game);
+void fill_struct_minimap(t_game *game);
+void fill_struct_libx_and_img(t_game *game);
 
 //utilities_1/2.c functions
 char	*newk(char *k);
@@ -175,11 +201,12 @@ int	round_double(double num);
 //find_area.c
 int	direction_angle(t_game *game);
 int	ray_angle(t_game *game);
+
 //minimap.c
 void display(t_game *game);
 
-void tmp(t_game *game);
 
+void tmp(t_game *game);
 void print_map(char **map);
 int tmp_exit(void);
 double take_approximate(double a, double b);
