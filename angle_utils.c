@@ -23,5 +23,5 @@ int	round_double(double num)
 
 double take_approximate(double a, double b)
 {
-	return (a - b > -0.01f && a - b < 0.01f);
+	return (a - b > -0.0001f && a - b < 0.0001f);
 }

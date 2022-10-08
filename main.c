@@ -225,16 +225,25 @@ int main(int ac, char **av)
 	get_value(&game, av);
 	if (check_map(&game, ac)) // error_managment;
 		return (1);
-	game.minimap.px = game.player.pos_x / 100 * 16;
-	game.minimap.py = game.player.pos_y / 100 * 16;
-	printf("%d\n", game.player.direction);
-	game.minimap.pa = deg_to_rad(game.player.direction);
-	game.minimap.pdx = cos(game.minimap.pa) * 5;
-	game.minimap.pdy = sin(game.minimap.pa) * 5;
+	game.minimap.px = game.player.pos_x / 100 * 20;
+	game.minimap.py = game.player.pos_y / 100 * 20;
+	game.minimap.pa = fabs(deg_to_rad(game.player.direction));
+	game.minimap.pa -= M_PI;
+	if (game.minimap.pa < 0)
+	{
+		game.minimap.pa += 2 * M_PI;
+	}
+	if (game.minimap.pa > 2 * M_PI)
+	{
+		game.minimap.pa -= 2 * M_PI;
+	}
+	game.minimap.pdx = cos(game.minimap.pa) * 2;
+	game.minimap.pdy = sin(game.minimap.pa) * 2;
 	game.minimap.mapx = game.map.width;
 	game.minimap.mapy = game.map.length;
 	game.minimap.mapsize = game.map.width * game.map.length;
 	//color initli olsun
+	//260!!!!!!!!!!
 	game.libx.mlx = mlx_init();
 	game.libx.win = mlx_new_window(game.libx.mlx, SCREEN_WID, SCREEN_LEN, "cub3d");
 

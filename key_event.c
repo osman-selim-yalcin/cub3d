@@ -15,13 +15,13 @@ int key_event(int keycode, t_game *game)
 		{
 			game->player.direction -= 360;
 		}
-		game->minimap.pa -= 0.1;
+		game->minimap.pa -= 2 * M_PI / 36;
 		if (game->minimap.pa < 0)
 		{
 			game->minimap.pa += 2 * M_PI;
 		}
-		game->minimap.pdx = cos(game->minimap.pa) * 5;
-		game->minimap.pdy = sin(game->minimap.pa) * 5;
+		game->minimap.pdx = cos(game->minimap.pa) * 2;
+		game->minimap.pdy = sin(game->minimap.pa) * 2;
 		tmp(game);
 	}
 	if (keycode == 2)
@@ -31,13 +31,13 @@ int key_event(int keycode, t_game *game)
 		{
 			game->player.direction += 360;
 		}
-		game->minimap.pa += 0.1;
+		game->minimap.pa += 2 * M_PI / 36;
 		if (game->minimap.pa > 2 * M_PI)
 		{
 			game->minimap.pa -= 2 * M_PI;
 		}
-		game->minimap.pdx = cos(game->minimap.pa) * 5;
-		game->minimap.pdy = sin(game->minimap.pa) * 5;
+		game->minimap.pdx = cos(game->minimap.pa) * 2;
+		game->minimap.pdy = sin(game->minimap.pa) * 2;
 		tmp(game);
 	}
 	printf("direc %d\n", game->player.direction);
@@ -63,6 +63,7 @@ int key_event(int keycode, t_game *game)
 			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
 			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
+		printf("game.mimap.py %f, game.minimap.pdy %f\n", game->minimap.py, game->minimap.pdy);
 		game->minimap.px += game->minimap.pdx;
 		game->minimap.py += game->minimap.pdy;
 		tmp(game);
