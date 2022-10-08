@@ -42,16 +42,15 @@ void tmp(t_game *game)
 			{
 				if (find_wall_horizontal(game->player.pos_x + 1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.pos_y - game->player.vertical, game))
 				{
-
+					if (take_approximate(hypo_tmp, hypot(1 / tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical)))
+					{
+						game->img.color_wall = 2;
+						break ;
+					}
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical))
 					{
-						if (!take_approximate(hypo_tmp, hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical)))
-						{
-							game->img.color = 0x000000FF;
-							game->img.color_wall = 0;
-						}
-						else
-							printf("hypo_tmp %f, %f\n", hypo_tmp, hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical));
+						game->img.color = 0x000000FF;
+						game->img.color_wall = 0;
 						hypo_tmp = hypot(1 / tan(deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical);
 					}
 					break;
@@ -93,15 +92,15 @@ void tmp(t_game *game)
 			{
 				if (find_wall_horizontal(game->player.pos_x - 1 / tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.pos_y - game->player.vertical, game))
 				{
+					if (take_approximate(hypo_tmp, hypot(1 / tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical)))
+					{
+						game->img.color_wall = 2;
+						break ;
+					}
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical))
 					{
-						if (!take_approximate(hypo_tmp, hypot(1 / tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical)))
-						{
-							game->img.color_wall = 0;
-							game->img.color = 0x000000FF;
-						}
-						else
-							printf("köşedeyim %f, %f", hypo_tmp, hypot(1 / tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical));
+						game->img.color_wall = 0;
+						game->img.color = 0x000000FF;
 						hypo_tmp = hypot(1 / tan(M_PI - deg_to_rad(game->player.ray_absoulete)) * game->player.vertical, game->player.vertical);
 					}
 					break;
@@ -139,18 +138,15 @@ void tmp(t_game *game)
 			{
 				if (find_wall_horizontal(game->player.pos_x - 1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.pos_y + game->player.vertical, game))
 				{
-
+					if (take_approximate(hypo_tmp, hypot(1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.vertical)))
+					{
+						game->img.color_wall = 2;
+						break ;
+					}
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.vertical))
 					{
-						if (!take_approximate(hypo_tmp, hypot(1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.vertical)))
-						{
-							game->img.color_wall = 0;
-							game->img.color = 0x00FFFF00;
-						}
-						else
-						{
-							printf("abs %lf raycounter %f köşedeyim %f,  %f\n", game->player.ray_absoulete,ray_counter,hypo_tmp, hypot(1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.vertical));
-						}
+						game->img.color_wall = 0;
+						game->img.color = 0x00FFFF00;
 						hypo_tmp = hypot(1 / tan(deg_to_rad(game->player.ray_absoulete - 180)) * game->player.vertical, game->player.vertical);
 					}
 					break;
@@ -187,17 +183,15 @@ void tmp(t_game *game)
 
 				if (find_wall_horizontal(game->player.pos_x + 1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.pos_y + game->player.vertical, game))
 				{
+					if (take_approximate(hypo_tmp, hypot(1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.vertical)))
+					{
+						game->img.color_wall = 2;
+						break ;
+					}
 					if (hypo_tmp == 0 || hypo_tmp > hypot(1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.vertical))
 					{
-						if (!take_approximate(hypo_tmp, hypot(1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.vertical)))
-						{
-							game->img.color_wall = 0;
-							game->img.color = 0x00FFFFFF;
-						}
-						else
-						{
-							printf("raycounter %f köşedeyim %f,  %f\n", ray_counter,hypo_tmp, hypot(1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.vertical));
-						}
+						game->img.color_wall = 0;
+						game->img.color = 0x00FFFFFF;
 						hypo_tmp = hypot(1 / tan(deg_to_rad(360 - game->player.ray_absoulete)) * game->player.vertical, game->player.vertical);
 					}
 					break;
@@ -244,6 +238,7 @@ int main(int ac, char **av)
 	game.minimap.mapsize = game.map.width * game.map.length;
 	//color initli olsun
 	//260!!!!!!!!!!
+	//minimap yürüme sıkıntı (matı bi gözden geçir)
 	game.libx.mlx = mlx_init();
 	game.libx.win = mlx_new_window(game.libx.mlx, SCREEN_WID, SCREEN_LEN, "cub3d");
 

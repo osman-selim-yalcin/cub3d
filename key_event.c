@@ -63,7 +63,6 @@ int key_event(int keycode, t_game *game)
 			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
 			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 		}
-		printf("game.mimap.py %f, game.minimap.pdy %f\n", game->minimap.py, game->minimap.pdy);
 		game->minimap.px += game->minimap.pdx;
 		game->minimap.py += game->minimap.pdy;
 		tmp(game);
