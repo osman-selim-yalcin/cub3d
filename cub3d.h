@@ -69,7 +69,7 @@ typedef struct s_player
 	int vertical;
 	int	fov;
 	int direction;
-	double ray_abs; 
+	double ray_abs;
 }		t_player;
 
 typedef struct s_img
@@ -79,28 +79,24 @@ typedef struct s_img
 	int		north_bits_per_pixel;
 	int		north_line_length;
 	int		north_endian;
-	int		north_wall_index;
 
 	void	*south_img;
 	void	*south_addr;
 	int		south_bits_per_pixel;
 	int		south_line_length;
 	int		south_endian;
-	int		south_wall_index;
 	
 	void	*east_img;
 	void	*east_addr;
 	int		east_bits_per_pixel;
 	int		east_line_length;
 	int		east_endian;
-	int		east_wall_index;
 
 	void	*west_img;
 	void	*west_addr;
 	int		west_bits_per_pixel;
 	int		west_line_length;
 	int		west_endian;
-	int		west_wall_index;
 
 	void *img;
 	void *addr;
@@ -108,7 +104,8 @@ typedef struct s_img
 	int bits_per_pixel;
 	int endian;
 
-	unsigned int color;
+	unsigned int which_wall;
+	unsigned int wall_x;
 }			t_img;
 
 typedef struct s_libx
@@ -226,6 +223,8 @@ void draw_map(t_game *game);
 void draw_player(t_game *game);
 void draw_direction(t_game *game);
 
+//texture.c
+unsigned int take_texture(t_game *game, int x, int y, int which_wall);
 
 void start(t_game *game);
 void print_map(char **map);

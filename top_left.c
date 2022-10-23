@@ -4,7 +4,7 @@ int find_wall_vertical_two(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
-	hor--; //soldaki duvara bakması lazım;
+	hor--;
 	if (ver <= 0 || ver > game->map.length)
  	{
 		return (2);
@@ -55,8 +55,9 @@ void top_left(t_game *game, double ray_counter)
 		{
 			if (find_wall_vertical_two(game->player.pos_x - hor, game->player.pos_y - y, game) == 1)
 			{
+				game->img.wall_x = 64 * ((int)(game->player.pos_y - y) % 100) / 100;
+				game->img.which_wall = 4;
 				hypo = hypot(y,hor);
-				game->img.color = 0x99FF0000;
 			}
 			break;
 		}
@@ -71,7 +72,8 @@ void top_left(t_game *game, double ray_counter)
 	}
 	if (hypo > hypot(y, ver) || hypo == 0)
 	{
-		game->img.color = 0x99FF00FF;
+		game->img.wall_x = 64 * ((int)(game->player.pos_x - y) % 100) / 100;
+		game->img.which_wall = 3;
 		hypo = hypot(y,ver);
 	}
 	hypo = hypo * fabs(cos(deg_to_rad(game->player.ray_abs - game->player.direction)));

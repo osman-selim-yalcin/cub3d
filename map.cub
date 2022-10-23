@@ -1,7 +1,7 @@
-     NO ./11.xpm
-SO        ./bg_test.xpm
-WE    ./005.xpm
-EA ./26.xpm
+NO images/64x64.xpm
+SO images/face.xpm
+WE images/620x620.xpm
+EA images/26.xpm
 
 C 26,59,183
 F 26,59,30

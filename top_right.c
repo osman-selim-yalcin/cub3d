@@ -52,7 +52,8 @@ void top_right(t_game *game, double ray_counter)
 		{
 			if (find_wall_vertical_one(hor + game->player.pos_x, game->player.pos_y - y, game) == 1)
 			{
-				game->img.color = 0x9900FF00;
+				game->img.wall_x = 64 * ((int)(game->player.pos_y - y) % 100) / 100;
+				game->img.which_wall = 2;
 				hypo = hypot(y,hor);
 			}
 			break;
@@ -70,8 +71,9 @@ void top_right(t_game *game, double ray_counter)
 	}
 	if ((hypo > hypot(y, ver) || hypo == 0) && (game->player.ray_abs != 0))
 	{
+		game->img.wall_x = 64 * ((int)(game->player.pos_x + y) % 100) / 100;
 		hypo = hypot(y,ver);
-		game->img.color = 0x99FF00FF;
+		game->img.which_wall = 3;
 	}
 	hypo = hypo * fabs(cos(deg_to_rad(game->player.ray_abs - game->player.direction)));
 	pixelput(game, hypo, ray_counter);
