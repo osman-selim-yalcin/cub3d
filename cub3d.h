@@ -123,6 +123,7 @@ typedef struct s_settings
 	int		minimap_scale;
 	float	step_size;
 	float 	player_size;
+	float	ray_len;//tmp
 }	t_settings;
 
 typedef struct s_game
