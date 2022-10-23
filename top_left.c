@@ -50,26 +50,30 @@ void top_left(t_game *game, double ray_counter)
 	{
 		if (game->player.ray_abs == 90)
 			break;
-		y = tan(deg_to_rad(180 - game->player.ray_abs)) * hor;
+		y = fabs(tan(deg_to_rad(game->player.ray_abs))) * hor;
 		if (find_wall_vertical_two(game->player.pos_x - hor, game->player.pos_y - y, game))
 		{
 			if (find_wall_vertical_two(game->player.pos_x - hor, game->player.pos_y - y, game) == 1)
+			{
 				hypo = hypot(y,hor);
+				game->img.color = 0x99FF0000;
+			}
 			break;
 		}
 		hor += 100;
 	}
 	while (1) //south texture
 	{
-		y = (1 / tan(deg_to_rad(180 - game->player.ray_abs))) * ver;
+		y = (1 / fabs(tan(deg_to_rad(game->player.ray_abs)))) * ver;
 		if (find_wall_horizontal_two(game->player.pos_x - y, game->player.pos_y - ver, game))
 			break;
 		ver += 100;
 	}
 	if (hypo > hypot(y, ver) || hypo == 0)
 	{
+		game->img.color = 0x99FF00FF;
 		hypo = hypot(y,ver);
 	}
-	game->img.color = 0x99FF000;
+	hypo = hypo * fabs(cos(deg_to_rad(game->player.ray_abs - game->player.direction)));
 	pixelput(game, hypo, ray_counter);
 }

@@ -36,12 +36,52 @@ int key_event(int keycode, t_game *game)
 	}
 	if (keycode == 13)
 	{
+		if (direction_angle(game) == 1)
+		{
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
+		if (direction_angle(game) == 2)
+		{
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
+		if (direction_angle(game) == 3)
+		{
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
+		if (direction_angle(game) == 4)
+		{
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
 		game->minimap.px += game->minimap.pdx;
 		game->minimap.py += game->minimap.pdy;
 
 	}
 	if (keycode == 1)
 	{
+		if (direction_angle(game) == 1)
+		{
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
+		if (direction_angle(game) == 2)
+		{
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
+		if (direction_angle(game) == 3)
+		{
+			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
+		if (direction_angle(game) == 4)
+		{
+			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
+			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
+		}
 		game->minimap.px -= game->minimap.pdx;
 		game->minimap.py -= game->minimap.pdy;
 	}

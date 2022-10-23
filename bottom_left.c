@@ -48,11 +48,14 @@ void bottom_left(t_game *game, double ray_counter)
 	double hypo = 0;
 	while (1) //east texture
 	{
-		y = tan(deg_to_rad(game->player.ray_abs - 180)) * hor;
+		y = fabs(tan(deg_to_rad(game->player.ray_abs))) * hor;
 		if (find_wall_vertical_three(game->player.pos_x - hor, game->player.pos_y + y, game))
 		{
 			if (find_wall_vertical_three(game->player.pos_x - hor, game->player.pos_y + y, game) == 1)
+			{
+				game->img.color = 0x99FF0000;
 				hypo = hypot(y, hor);
+			}
 			break;
 		}
 		hor += 100;
@@ -61,15 +64,16 @@ void bottom_left(t_game *game, double ray_counter)
 	{
 		if (game->player.ray_abs == 180)
 			break;
-		y = (1 / tan(deg_to_rad(game->player.ray_abs - 180))) * ver;
+		y = (1 / fabs(tan(deg_to_rad(game->player.ray_abs)))) * ver;
 		if (find_wall_horizontal_three(game->player.pos_x - y, game->player.pos_y + ver, game))
 			break;
 		ver += 100;
 	}
-	if (hypo > hypot(y, ver) || hypo == 0)
+	if ((hypo > hypot(y, ver) || hypo == 0) && (game->player.ray_abs != 180))
 	{
+		game->img.color = 0x9900FFF0;
 		hypo = hypot(y,ver);
 	}
-	game->img.color = 0x9000FF00;
+	hypo = hypo * fabs(cos(deg_to_rad(game->player.ray_abs - game->player.direction)));
 	pixelput(game, hypo, ray_counter);
 }

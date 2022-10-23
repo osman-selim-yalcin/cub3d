@@ -44,28 +44,34 @@ void bottom_right(t_game *game, double ray_counter)
 	double ver = 100 - game->player.pos_y % 100;
 	double y;
 	double hypo = 0;
-	while (1) //east texture //270 handle
+	while (1) //west texture //270 handle
 	{
-		y = tan(deg_to_rad(game->player.ray_abs - 270)) * hor;
+		if (game->player.ray_abs == 270)
+			break;
+		y = fabs(tan(deg_to_rad(game->player.ray_abs))) * hor;
 		if (find_wall_vertical_four(game->player.pos_x + hor, game->player.pos_y + y, game))
 		{
 			if (find_wall_vertical_four(game->player.pos_x + hor, game->player.pos_y + y, game) == 1)
+			{
+				game->img.color = 0x9900FF00;
 				hypo = hypot(y, hor);
+			}
 			break;
 		}
 		hor += 100;
 	}
 	while (1) // north texture
 	{
-		y = (1 /tan(deg_to_rad(game->player.ray_abs - 270))) * ver;
+		y = (1 / fabs(tan(deg_to_rad(game->player.ray_abs)))) * ver;
 		if (find_wall_horizontal_four(game->player.pos_x + y, game->player.pos_y + ver, game))
 			break;
 		ver += 100;
 	}
 	if (hypo > hypot(y, ver) || hypo == 0)
 	{
+		game->img.color = 0x9900FFF0;
 		hypo = hypot(y,ver);
 	}
-	game->img.color = 0x90FF00FF;
+	hypo = hypo * fabs(cos(deg_to_rad(game->player.ray_abs - game->player.direction)));
 	pixelput(game, hypo, ray_counter);
 }
