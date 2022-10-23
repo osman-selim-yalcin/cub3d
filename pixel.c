@@ -15,15 +15,19 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	int start = (SCREEN_LEN - a) / 2;
 	a = 0;
 
-	int y = 0;
+	int t;
+	if (game->img.which_wall == 1)
+		t = game->img.north_y;
+	if (game->img.which_wall == 2)
+		t = a * game->img.west_y;
+	if (game->img.which_wall == 3)
+		t = a * game->img.south_y;
+	if (game->img.which_wall == 4)
+		t = game->img.east_y;
 	while (a < wall)
 	{
-		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->img.wall_x, a * 64 / wall, game->img.which_wall));
-		y++;
-		if (y >= 64)
-		{
-			y = 0;
-		}
+		game->img.wall_y = a * t / wall;
+		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->img.wall_x, game->img.wall_y, game->img.which_wall));
 		++cnt;
 		a += 1;
 	}

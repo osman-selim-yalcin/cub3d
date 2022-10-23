@@ -79,24 +79,32 @@ typedef struct s_img
 	int		north_bits_per_pixel;
 	int		north_line_length;
 	int		north_endian;
+	int		north_x;
+	int		north_y;
 
 	void	*south_img;
 	void	*south_addr;
 	int		south_bits_per_pixel;
 	int		south_line_length;
 	int		south_endian;
-	
+	int		south_x;
+	int		south_y;
+
 	void	*east_img;
 	void	*east_addr;
 	int		east_bits_per_pixel;
 	int		east_line_length;
 	int		east_endian;
+	int		east_x;
+	int		east_y;
 
 	void	*west_img;
 	void	*west_addr;
 	int		west_bits_per_pixel;
 	int		west_line_length;
 	int		west_endian;
+	int		west_x;
+	int		west_y;
 
 	void *img;
 	void *addr;
@@ -106,6 +114,7 @@ typedef struct s_img
 
 	unsigned int which_wall;
 	unsigned int wall_x;
+	unsigned int wall_y;
 }			t_img;
 
 typedef struct s_libx

@@ -55,7 +55,7 @@ void top_left(t_game *game, double ray_counter)
 		{
 			if (find_wall_vertical_two(game->player.pos_x - hor, game->player.pos_y - y, game) == 1)
 			{
-				game->img.wall_x = 64 * ((int)(game->player.pos_y - y) % 100) / 100;
+				game->img.wall_x = game->img.east_x * ((int)(game->player.pos_y - y) % 100) / 100;
 				game->img.which_wall = 4;
 				hypo = hypot(y,hor);
 			}
@@ -72,7 +72,7 @@ void top_left(t_game *game, double ray_counter)
 	}
 	if (hypo > hypot(y, ver) || hypo == 0)
 	{
-		game->img.wall_x = 64 * ((int)(game->player.pos_x - y) % 100) / 100;
+		game->img.wall_x = game->img.south_x * ((int)(game->player.pos_x - y) % 100) / 100;
 		game->img.which_wall = 3;
 		hypo = hypot(y,ver);
 	}

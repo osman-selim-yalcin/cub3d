@@ -1,7 +1,7 @@
-NO images/64x64.xpm
-SO images/face.xpm
-WE images/620x620.xpm
-EA images/26.xpm
+NO images/wall_ea.xpm
+SO images/wall_no.xpm
+WE images/wall_so.xpm
+EA images/wall_we.xpm
 
 C 26,59,183
 F 26,59,30

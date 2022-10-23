@@ -1,11 +1,9 @@
 #include "cub3d.h"
 
-
-int find_wall_vertical_three(double hor, double ver, t_game *game)
+int find_wall_vertical_four(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
-	hor--;
 	if (ver <= 0 || ver > game->map.length)
  	{
 		return (2);
@@ -21,7 +19,7 @@ int find_wall_vertical_three(double hor, double ver, t_game *game)
 	return (0);
 }
 
-int find_wall_horizontal_three(double hor, double ver, t_game *game)
+int find_wall_horizontal_four(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
@@ -40,21 +38,23 @@ int find_wall_horizontal_three(double hor, double ver, t_game *game)
 	return (0);
 }
 
-void bottom_left(t_game *game, double ray_counter)
+void bottom_right(t_game *game, double ray_counter)
 {
-	double hor = game->player.pos_x % 100;
+	double hor = 100 - game->player.pos_x % 100;
 	double ver = 100 - game->player.pos_y % 100;
 	double y;
 	double hypo = 0;
-	while (1) //east texture
+	while (1) //west texture //270 handle
 	{
+		if (game->player.ray_abs == 270)
+			break;
 		y = fabs(tan(deg_to_rad(game->player.ray_abs))) * hor;
-		if (find_wall_vertical_three(game->player.pos_x - hor, game->player.pos_y + y, game))
+		if (find_wall_vertical_four(game->player.pos_x + hor, game->player.pos_y + y, game))
 		{
-			if (find_wall_vertical_three(game->player.pos_x - hor, game->player.pos_y + y, game) == 1)
+			if (find_wall_vertical_four(game->player.pos_x + hor, game->player.pos_y + y, game) == 1)
 			{
-				game->img.wall_x = 64 * ((int)(game->player.pos_y + y) % 100) / 100;
-				game->img.which_wall = 4;
+				game->img.wall_x = game->img.west_x * ((int)(game->player.pos_y + y) % 100) / 100;
+				game->img.which_wall = 2;
 				hypo = hypot(y, hor);
 			}
 			break;
@@ -63,16 +63,14 @@ void bottom_left(t_game *game, double ray_counter)
 	}
 	while (1) // north texture
 	{
-		if (game->player.ray_abs == 180)
-			break;
 		y = (1 / fabs(tan(deg_to_rad(game->player.ray_abs)))) * ver;
-		if (find_wall_horizontal_three(game->player.pos_x - y, game->player.pos_y + ver, game))
+		if (find_wall_horizontal_four(game->player.pos_x + y, game->player.pos_y + ver, game))
 			break;
 		ver += 100;
 	}
-	if ((hypo > hypot(y, ver) || hypo == 0) && (game->player.ray_abs != 180))
+	if (hypo > hypot(y, ver) || hypo == 0)
 	{
-		game->img.wall_x = 64 * ((int)(game->player.pos_x - y) % 100) / 100;
+		game->img.wall_x = game->img.north_x * ((int)(game->player.pos_x + y) % 100) / 100;
 		game->img.which_wall = 1;
 		hypo = hypot(y,ver);
 	}
