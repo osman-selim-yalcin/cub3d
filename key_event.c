@@ -10,11 +10,6 @@ int key_event(int keycode, t_game *game)
 	put_floorceil(game);
 	if (keycode == 0)
 	{
-		game->player.direction = game->player.direction + 10;
-		if (game->player.direction >= 360)
-		{
-			game->player.direction -= 360;
-		}
 		game->minimap.pa -= 2 * M_PI / 36;
 		if (game->minimap.pa < 0)
 		{
@@ -22,15 +17,9 @@ int key_event(int keycode, t_game *game)
 		}
 		game->minimap.pdx = cos(game->minimap.pa) * 2;
 		game->minimap.pdy = sin(game->minimap.pa) * 2;
-		tmp(game);
 	}
 	if (keycode == 2)
 	{
-		game->player.direction = game->player.direction - 10;
-		if (game->player.direction < 0)
-		{
-			game->player.direction += 360;
-		}
 		game->minimap.pa += 2 * M_PI / 36;
 		if (game->minimap.pa > 2 * M_PI)
 		{
@@ -38,63 +27,20 @@ int key_event(int keycode, t_game *game)
 		}
 		game->minimap.pdx = cos(game->minimap.pa) * 2;
 		game->minimap.pdy = sin(game->minimap.pa) * 2;
-		tmp(game);
 	}
-	printf("direc %d\n", game->player.direction);
 	if (keycode == 13)
 	{
-		if (direction_angle(game) == 1)
-		{
-			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
-		if (direction_angle(game) == 2)
-		{
-			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
-		if (direction_angle(game) == 3)
-		{
-			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
-		if (direction_angle(game) == 4)
-		{
-			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
 		game->minimap.px += game->minimap.pdx;
 		game->minimap.py += game->minimap.pdy;
-		tmp(game);
 
 	}
 	if (keycode == 1)
 	{
-		if (direction_angle(game) == 1)
-		{
-			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
-		if (direction_angle(game) == 2)
-		{
-			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
-		if (direction_angle(game) == 3)
-		{
-			game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
-		if (direction_angle(game) == 4)
-		{
-			game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
-			game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
-		}
 		game->minimap.px -= game->minimap.pdx;
 		game->minimap.py -= game->minimap.pdy;
-		tmp(game);
 	}
 	if (keycode == 53)
 		tmp_exit();
+	tmp(game);
 	return(1);
 }

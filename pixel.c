@@ -2,37 +2,10 @@
 
 void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 {
-	int a = 0;
-	int cnt = 0;
-
-	while ((double)a < (sqrt(15 / hypo_tmp) * SCREEN_LEN / 2) && !take_approximate((double)a, (sqrt(15 / hypo_tmp) * SCREEN_LEN / 2)))
-		a++;
-	if (a % 2 == 1)
-		a++;	
-	int wall = a;
-	int start = (SCREEN_LEN - a) / 2;
-	a = 0;
-	while (a < wall)
-	{
-		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, game->img.color);
-		if ((SCREEN_WID - 1 - (ray_counter) > 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID) || (start + cnt > 0 && start + cnt < SCREEN_LEN))
-				;
-		else
-		{
-			printf("start + cnt %d\n", start + cnt);
-			sleep(100);
-		}
-		//TEXTURE
-		//resize
-
-		// collision
-		// walk
-		// minimap
-		// enemy
-		// gun
-		++cnt;
-		a += 1;
-	}
+	(void)game;
+	(void)hypo_tmp;
+	(void)ray_counter;
+	printf("pixel put\n");
 }
 
 void put_floorceil(t_game *game)

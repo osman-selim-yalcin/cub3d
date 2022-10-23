@@ -188,8 +188,8 @@ int find_wall_horizontal(double hor, double ver, t_game *game);
 int key_event(int keycode, t_game *game);
 
 //pixel.c
-void pixelput(t_game *game, double hypo_tmp, double ray_counter);
-void put_floorceil(t_game *game);
+void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
+void 	put_floorceil(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
 
@@ -204,6 +204,10 @@ int	ray_angle(t_game *game);
 
 //minimap.c
 void display(t_game *game);
+void draw_64(int x, int y, t_game *game);
+void draw_map(t_game *game);
+void draw_player(t_game *game);
+void draw_direction(t_game *game);
 
 
 void tmp(t_game *game);

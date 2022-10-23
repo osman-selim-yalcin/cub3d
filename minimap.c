@@ -63,54 +63,7 @@ void draw_player(t_game *game)
 	}
 }
 
-// void draw_ray3d(t_game *game)
-// {
-// 	game->minimap.ra = game->minimap.pa;
-// 	int r = 0;
-// 	while (r < 1) //check_horizon
-// 	{
-// 		float aTan = -1/tan(game->minimap.ra);
-// 		if (game->minimap.ra > M_PI)
-// 		{
-// 			game->minimap.ry = (((int)game->minimap.py >> 6) << 6) - 0.0001;
-// 			game->minimap.rx = (game->minimap.py - game->minimap.ry) * aTan + game->minimap.px;
-// 			game->minimap.yo = -64;
-// 			game->minimap.xo = -game->minimap.yo * aTan;
-// 		}
-// 		if (game->minimap.ra < M_PI)
-// 		{
-// 			game->minimap.ry = (((int)game->minimap.py >> 6) << 6) + 64;
-// 			game->minimap.rx = (game->minimap.py - game->minimap.ry) * aTan + game->minimap.px;
-// 			game->minimap.yo = 64;
-// 			game->minimap.xo = -game->minimap.yo * aTan;
-// 		}
-// 		if (game->minimap.ra == 0 || game->minimap.ra == M_PI)
-// 		{
-// 			game->minimap.rx = game->minimap.px;
-// 			game->minimap.ry = game->minimap.py;
-// 			game->minimap.dof = 8;
-// 		}
-// 		while (game->minimap.dof < 8)
-// 		{
-// 			game->minimap.mx = (int)(game->minimap.rx) >> 6;
-// 			game->minimap.my = (int)(game->minimap.ry) >> 6;
-// 			game->minimap.mp = game->minimap.my * game->minimap.mapx +game->minimap.mx;
-// 			if (game->minimap.mp > 0 && game->minimap.mp < game->minimap.mapx * game->minimap.mapy && game->map.map[game->minimap.my][game->minimap.mx] == '1')
-// 			{
-// 				game->minimap.dof = 8;
-// 			}
-// 			else
-// 			{
-// 				game->minimap.rx += game->minimap.xo;
-// 				game->minimap.ry += game->minimap.yo;
-// 				game->minimap.dof += 1;
-// 			}
-// 		}
-// 		r++;
-// 	}
-// }
-
-void draw_pipi(t_game *game)
+void draw_direction(t_game *game)
 {
 	float offset = 0;
 
@@ -119,13 +72,11 @@ void draw_pipi(t_game *game)
 		my_mlx_pixel_put_minimap(&game->minimap, game->minimap.px + 9 + game->minimap.pdx * offset , game->minimap.py + 9 + game->minimap.pdy * offset, 0x0000F0FF);
 		offset += 0.1;
 	}
-	
 }
 
 void display(t_game *game)
 {
 	draw_map(game);
 	draw_player(game);
-	// draw_ray3d(game);
-	draw_pipi(game);
+	draw_direction(game);
 }
