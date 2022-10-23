@@ -41,6 +41,6 @@ int key_event(int keycode, t_game *game)
 	}
 	if (keycode == 53)
 		tmp_exit();
-	tmp(game);
+	start(game);
 	return(1);
 }

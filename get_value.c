@@ -64,7 +64,6 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.east_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.east_wall, &x, &y);
 	game->img.east_addr = mlx_get_data_addr(game->img.east_img, &game->img.east_bits_per_pixel, &game->img.east_line_length, &game->img.east_endian);
 
-	game->img.color = 0;
 }
 
 void get_value(t_game *game)

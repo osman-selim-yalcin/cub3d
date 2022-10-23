@@ -15,13 +15,13 @@ int	direction_angle(t_game *game)
 
 int	ray_angle(t_game *game)
 {
-	if (game->player.ray_absoulete >= 0 && game->player.ray_absoulete < 90)
+	if (game->player.ray_abs >= 0 && game->player.ray_abs < 90)
 		return (1);
-	if (game->player.ray_absoulete >= 90 && game->player.ray_absoulete < 180)
+	if (game->player.ray_abs >= 90 && game->player.ray_abs < 180)
 		return (2);
-	if (game->player.ray_absoulete >= 180 && game->player.ray_absoulete < 270)
+	if (game->player.ray_abs >= 180 && game->player.ray_abs < 270)
 		return (3);
-	if (game->player.ray_absoulete >= 270 && game->player.ray_absoulete < 360)
+	if (game->player.ray_abs >= 270 && game->player.ray_abs < 360)
 		return (4);
 	return (5);
 }

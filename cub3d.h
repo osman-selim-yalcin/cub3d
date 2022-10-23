@@ -69,7 +69,7 @@ typedef struct s_player
 	int vertical;
 	int	fov;
 	int direction;
-	double ray_absoulete; 
+	double ray_abs; 
 }		t_player;
 
 typedef struct s_img
@@ -108,8 +108,6 @@ typedef struct s_img
 	int bits_per_pixel;
 	int endian;
 
-	int			color;
-	int		color_wall;
 }			t_img;
 
 typedef struct s_libx
@@ -180,9 +178,20 @@ size_t	ft_strlcpy(char *dst, char *src, size_t b);
 char	**ft_split(char *s, char c);
 int	create_trgb(int t, int r, int g, int b);
 
-//find_wall.c
-int find_wall_vertical(double hor, double ver, t_game *game);
-int find_wall_horizontal(double hor, double ver, t_game *game);
+//top_right.c
+int find_wall_vertical_one(double hor, double ver, t_game *game);
+int find_wall_horizontal_one(double hor, double ver, t_game *game);
+void top_right(t_game *game, double ray_counter);
+
+//top_left.c
+int find_wall_vertical_two(double hor, double ver, t_game *game);
+int find_wall_horizontal_two(double hor, double ver, t_game *game);
+void top_left(t_game *game, double ray_counter);
+
+
+//bottom_left.c
+
+//bottom_right.c
 
 //key_event.c
 int key_event(int keycode, t_game *game);
@@ -197,6 +206,7 @@ void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
 int	rad_to_deg(double rad);
 double deg_to_rad(double degree);
 int	round_double(double num);
+double take_approximate(double a, double b);
 
 //find_area.c
 int	direction_angle(t_game *game);
@@ -210,8 +220,7 @@ void draw_player(t_game *game);
 void draw_direction(t_game *game);
 
 
-void tmp(t_game *game);
+void start(t_game *game);
 void print_map(char **map);
 int tmp_exit(void);
-double take_approximate(double a, double b);
 #endif
