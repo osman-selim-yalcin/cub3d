@@ -6,7 +6,7 @@
 /*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/23 13:45:39 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/10/23 16:32:12 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void start(t_game *game)
 		}
 		else if (ray_angle(game) == 3)
 		{
+			bottom_left(game,ray_counter);
 		}
 		else if (ray_angle(game) == 4)
 		{
+			bottom_right(game, ray_counter);
 		}
 		else
 		{
@@ -73,7 +75,6 @@ int main(int ac, char **av)
 	// printf("%s\n", game.map.map[8]);
 	// printf("%s\n", game.map.map[9]);
 	//tam köşeyi kandırabilirsin rayabs +=1;
-	game.player.direction = 75;
 	put_floorceil(&game);
 	start(&game);
 	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game);

@@ -108,6 +108,7 @@ typedef struct s_img
 	int bits_per_pixel;
 	int endian;
 
+	unsigned int color;
 }			t_img;
 
 typedef struct s_libx
@@ -188,10 +189,16 @@ int find_wall_vertical_two(double hor, double ver, t_game *game);
 int find_wall_horizontal_two(double hor, double ver, t_game *game);
 void top_left(t_game *game, double ray_counter);
 
-
 //bottom_left.c
+void bottom_left(t_game *game, double ray_counter);
+int find_wall_vertical_three(double hor, double ver, t_game *game);
+int find_wall_horizontal_three(double hor, double ver, t_game *game);
 
 //bottom_right.c
+int find_wall_vertical_four(double hor, double ver, t_game *game);
+int find_wall_horizontal_four(double hor, double ver, t_game *game);
+void bottom_right(t_game *game, double ray_counter);
+
 
 //key_event.c
 int key_event(int keycode, t_game *game);

@@ -14,7 +14,7 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	a = 0;
 	while (a < wall)
 	{
-		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, 0xffFF0000);
+		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, game->img.color);
 		if ((SCREEN_WID - 1 - (ray_counter) > 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID) || (start + cnt > 0 && start + cnt < SCREEN_LEN))
 				;
 		else

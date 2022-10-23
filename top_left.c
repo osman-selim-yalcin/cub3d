@@ -4,6 +4,7 @@ int find_wall_vertical_two(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
+	hor--; //soldaki duvara bakması lazım;
 	if (ver <= 0 || ver > game->map.length)
  	{
 		return (2);
@@ -23,6 +24,7 @@ int find_wall_horizontal_two(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
+	ver--;
 	if (hor <= 0 || hor > game->map.width)
 	{
 		return (2);
@@ -43,28 +45,31 @@ void top_left(t_game *game, double ray_counter)
 	double hor = game->player.pos_x % 100;
 	double ver = game->player.pos_y % 100;
 	double y;
-	double hypo;
-	while (1)
+	double hypo = 0;
+	while (1)//east texture  //117 çok büyük eksi çıkıyo haritada N gir ve 117 açıya bak eğer gerekirse
 	{
-		y = tan(deg_to_rad(game->player.ray_abs)) * hor;
-		if(find_wall_vertical_one(hor + game->player.pos_x, game->player.pos_y - y, game))
+		if (game->player.ray_abs == 90)
 			break;
+		y = tan(deg_to_rad(180 - game->player.ray_abs)) * hor;
+		if (find_wall_vertical_two(game->player.pos_x - hor, game->player.pos_y - y, game))
+		{
+			if (find_wall_vertical_two(game->player.pos_x - hor, game->player.pos_y - y, game) == 1)
+				hypo = hypot(y,hor);
+			break;
+		}
 		hor += 100;
 	}
-	hypo = hypot(y,hor);
-	while (1)
+	while (1) //south texture
 	{
-		if (tan(deg_to_rad(game->player.ray_abs)) == 0)
-			break;
-		else		
-			y = (1 / tan(deg_to_rad(game->player.ray_abs))) * ver;
-		if (find_wall_horizontal_one(game->player.pos_x + y, game->player.pos_y - ver, game))
+		y = (1 / tan(deg_to_rad(180 - game->player.ray_abs))) * ver;
+		if (find_wall_horizontal_two(game->player.pos_x - y, game->player.pos_y - ver, game))
 			break;
 		ver += 100;
 	}
-	if (hypo > hypot(y, ver))
+	if (hypo > hypot(y, ver) || hypo == 0)
 	{
 		hypo = hypot(y,ver);
 	}
+	game->img.color = 0x99FF000;
 	pixelput(game, hypo, ray_counter);
 }

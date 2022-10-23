@@ -10,6 +10,9 @@ int key_event(int keycode, t_game *game)
 	put_floorceil(game);
 	if (keycode == 0)
 	{
+		game->player.direction += 5;
+		if (game->player.direction >= 360)
+			game->player.direction -= 360;
 		game->minimap.pa -= 2 * M_PI / 36;
 		if (game->minimap.pa < 0)
 		{
@@ -20,6 +23,9 @@ int key_event(int keycode, t_game *game)
 	}
 	if (keycode == 2)
 	{
+		game->player.direction -= 5;
+		if (game->player.direction < 0)
+			game->player.direction += 360;
 		game->minimap.pa += 2 * M_PI / 36;
 		if (game->minimap.pa > 2 * M_PI)
 		{
