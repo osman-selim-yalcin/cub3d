@@ -63,8 +63,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int	pos_x;
-	int	pos_y;
+	float	pos_x;
+	float	pos_y;
 	int horizontal;
 	int vertical;
 	int	fov;

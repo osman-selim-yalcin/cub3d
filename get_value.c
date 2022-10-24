@@ -69,7 +69,7 @@ void fill_struct_libx_and_img(t_game *game)
 
 void	game_settings(t_game *game)
 {
-	game->settings.minimap_scale = 100;
+	game->settings.minimap_scale = 20;
 	game->settings.step_size = game->settings.minimap_scale / 10;
 	game->settings.player_size = game->settings.minimap_scale / 4;
 	game->settings.ray_len = 2 * game->settings.minimap_scale / 5;
@@ -78,7 +78,7 @@ void	game_settings(t_game *game)
 void	get_value(t_game *game)
 {
 	fill_struct_libx_and_img(game);
-	fill_struct_minimap(game);
 	game_settings(game);
+	fill_struct_minimap(game);
 }
 
