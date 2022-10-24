@@ -6,7 +6,7 @@ int find_wall_vertical_three(double hor, double ver, t_game *game)
 	hor /= 100;
 	ver /= 100;
 	hor--;
-	if (ver <= 0 || ver > game->map.length)
+	if (ver <= 0 || ver > game->map.length || hor <= 0 || hor > game->map.width)
  	{
 		return (2);
 	}
@@ -25,7 +25,7 @@ int find_wall_horizontal_three(double hor, double ver, t_game *game)
 {
 	hor /= 100;
 	ver /= 100;
-	if (hor <= 0 || hor > game->map.width)
+	if (hor <= 0 || hor > game->map.width || ver <= 0 || ver > game->map.length)
 	{
 		return (2);
 	}
@@ -53,7 +53,7 @@ void bottom_left(t_game *game, double ray_counter)
 		{
 			if (find_wall_vertical_three(game->player.pos_x - hor, game->player.pos_y + y, game) == 1)
 			{
-				game->img.wall_x = game->img.east_x * ((int)(game->player.pos_y + y) % 100) / 100;
+				game->img.wall_x = game->img.east_x * ((int)((game->player.pos_y + y) * 100) % 10000) / 10000;
 				game->img.which_wall = 4;
 				hypo = hypot(y, hor);
 			}
@@ -72,7 +72,7 @@ void bottom_left(t_game *game, double ray_counter)
 	}
 	if ((hypo > hypot(y, ver) || hypo == 0) && (game->player.ray_abs != 180))
 	{
-		game->img.wall_x = game->img.north_x * ((int)(game->player.pos_x - y) % 100) / 100;
+		game->img.wall_x = game->img.north_x * ((int)((game->player.pos_x - y) * 100) % 10000) / 10000;
 		game->img.which_wall = 1;
 		hypo = hypot(y,ver);
 	}

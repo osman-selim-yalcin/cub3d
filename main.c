@@ -6,7 +6,7 @@
 /*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/24 16:20:16 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:56:53 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void start(t_game *game)
 		}
 		ray_counter += 1;
 	}
-	display(game); //minimap
+	display(game); //minimapB
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
 }
 

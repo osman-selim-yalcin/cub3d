@@ -61,8 +61,6 @@ void draw_player(t_game *game)
 		y = 0;
 		while (y < game->settings.player_size)
 		{
-			// my_mlx_pixel_put(game, 50 + x, 50 + y, 0x00FF0000);
-			printf("x: %f, y: %f\n", game->minimap.pos_x + x, game->minimap.pos_y + y);
 			my_mlx_pixel_put(game, game->minimap.pos_x + game->settings.minimap_scale / 4 + x, game->minimap.pos_y + game->settings.minimap_scale / 4 + y, 0x00FF0000);
 			++y;
 		}
