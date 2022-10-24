@@ -12,6 +12,7 @@
 # define SCREEN_WID 1920
 # define D_FOV 60
 # define R_FOV M_PI / 3
+# define SENS 1
 
 typedef struct s_minimap
 {
@@ -205,9 +206,19 @@ int find_wall_vertical_four(double hor, double ver, t_game *game);
 int find_wall_horizontal_four(double hor, double ver, t_game *game);
 void bottom_right(t_game *game, double ray_counter);
 
-
 //key_event.c
 int key_event(int keycode, t_game *game);
+void key_e(t_game *game);
+
+//keys.c
+void key_a(t_game *game);
+void key_d(t_game *game);
+void key_w(t_game *game);
+void key_s(t_game *game);
+
+//mouse_move.c
+int mouse_move(int x, int y, t_game *game);
+int hook_event(t_game *game);
 
 //pixel.c
 void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
@@ -224,6 +235,7 @@ double take_approximate(double a, double b);
 //find_area.c
 int	direction_angle(t_game *game);
 int	ray_angle(t_game *game);
+int	degree_angle(int degree);
 
 //minimap.c
 void display(t_game *game);

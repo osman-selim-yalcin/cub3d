@@ -6,7 +6,7 @@
 /*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/24 14:05:39 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:42:27 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void start(t_game *game)
 		}
 		ray_counter += 1;
 	}
-	display(game);
+	// display(game); //minimap
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
 }
 
@@ -75,9 +75,10 @@ int main(int ac, char **av)
 	// printf("%s\n", game.map.map[8]);
 	// printf("%s\n", game.map.map[9]);
 	//tam köşeyi kandırabilirsin rayabs +=1;
-	put_floorceil(&game);
-	start(&game);
-	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game);
+	mlx_mouse_hide();
+	mlx_loop_hook(game.libx.mlx, hook_event, &game);
+	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game); //0L ile farkı?
+	mlx_hook(game.libx.win, 6, 0L, mouse_move, &game);
 	mlx_hook(game.libx.win, 17, 0L, tmp_exit, &game);
 	mlx_loop(game.libx.mlx);
 	return (0);

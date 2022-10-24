@@ -1,5 +1,18 @@
 #include "cub3d.h"
 
+int	degree_angle(int degree)
+{
+	if (degree >= 0 && degree < 90)
+		return (1);
+	if (degree >= 90 && degree < 180)
+		return (2);
+	if (degree >= 180 && degree < 270)
+		return (3);
+	if (degree >= 270 && degree < 360)
+		return (4);
+	return (0);
+}
+
 int	direction_angle(t_game *game)
 {
 	if (game->player.direction >= 0 && game->player.direction < 90)
