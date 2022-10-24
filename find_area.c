@@ -2,6 +2,10 @@
 
 int	degree_angle(int degree)
 {
+	if (degree >= 360)
+		degree -= 360;
+	else if (degree < 0)
+		degree += 360;
 	if (degree >= 0 && degree < 90)
 		return (1);
 	if (degree >= 90 && degree < 180)

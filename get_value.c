@@ -63,6 +63,7 @@ void fill_struct_libx_and_img(t_game *game)
 
 	game->img.wall_y = 0;
 	game->img.wall_x = 0;
+	game->img.which_wall = 0;
 }
 
 void get_value(t_game *game)

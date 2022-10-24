@@ -4,21 +4,40 @@ void key_e(t_game *game)
 {
 	int left;
 	int right;
+	int posx_100;
+	int posy_100;
 
 	left = game->player.direction + D_FOV;
 	right = game->player.direction + D_FOV;
+	posx_100 = game->player.pos_x / 100;
+	posy_100 = game->player.pos_y / 100;
 	if (degree_angle(left) == 1 || degree_angle(right) == 1)
 	{
-		
+		if (game->map.map[posy_100 - 1][posx_100] == '1' || game->map.map[posy_100][posx_100 + 1] == '1' || game->map.map[posy_100 - 1][posx_100 + 1] == '1')
+		{
+			printf("wall\n");
+		}
 	}
 	if (degree_angle(left) == 2 || degree_angle(right) == 2)
 	{
+		if (game->map.map[posy_100 - 1][posx_100] == '1' || game->map.map[posy_100][posx_100 - 1] == '1' || game->map.map[posy_100 - 1][posx_100 - 1] == '1')
+		{
+			printf("wall 2\n");
+		}
 	}
 	if (degree_angle(left) == 3 || degree_angle(right) == 3)
 	{
+		if (game->map.map[posy_100 + 1][posx_100] == '1' || game->map.map[posy_100][posx_100 - 1] == '1' || game->map.map[posy_100 + 1][posx_100 - 1] == '1')
+		{
+			printf("wall 3\n");
+		}
 	}
 	if (degree_angle(right) == 4 || degree_angle(right) == 4)
 	{
+		if (game->map.map[posy_100 + 1][posx_100] == '1' || game->map.map[posy_100][posx_100 + 1] == '1' || game->map.map[posy_100 + 1][posx_100 + 1] == '1')
+		{
+			printf("wall 4\n");
+		}
 	}
 }
 
