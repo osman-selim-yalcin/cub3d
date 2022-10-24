@@ -40,7 +40,7 @@ void draw_map(t_game *game)
 {
 	int x = 1;
 	int y = 1;
-	while (x < game->minimap.mapx - 1)
+	while (x < game->minimap.mapx)
 	{
 		y = 1;
 		while (y < game->minimap.mapy + 1)
@@ -74,7 +74,7 @@ void draw_ray(t_game *game, float ray_len)
 
 	while (offset < ray_len)
 	{
-		my_mlx_pixel_put(game, game->minimap.pos_x + game->settings.minimap_scale / 4 + game->settings.player_size / 2 + game->minimap.step_offset_x * offset, game->minimap.pos_y + game->settings.minimap_scale / 4 + game->settings.player_size / 2 + game->minimap.step_offset_y * offset, 0x00FF539E);
+		my_mlx_pixel_put(game, game->minimap.pos_x + game->settings.minimap_scale / 4 + game->settings.player_size / 2 + cos(game->minimap.pa) * game->settings.minimap_scale / 10 * offset, game->minimap.pos_y + game->settings.minimap_scale / 4 + game->settings.player_size / 2 + sin(game->minimap.pa) * game->settings.minimap_scale / 10 * -offset, 0x00FF539E);
 		offset += 0.2;
 	}
 }

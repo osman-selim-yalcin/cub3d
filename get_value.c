@@ -23,22 +23,15 @@ void fill_struct_minimap(t_game *game)
 	game->minimap.pos_x = game->player.pos_x / 100 * game->settings.minimap_scale;
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
 	game->minimap.pa = (deg_to_rad(game->player.direction));
-	// game->minimap.pa -= M_PI;
-	if (game->minimap.pa < 0)
-	{
-		game->minimap.pa += 2 * M_PI;
-	}
-	if (game->minimap.pa > 2 * M_PI)
-	{
-		game->minimap.pa -= 2 * M_PI;
-	}
+
+
 	game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
 	game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
+	
+	
 	game->minimap.mapx = game->map.width;
 	game->minimap.mapy = game->map.length;
 	game->minimap.mapsize = game->map.width * game->map.length;
-	game->minimap.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
-	game->minimap.addr = mlx_get_data_addr(game->img.img, &game->minimap.bits_per_pixel, &game->minimap.line_length, &game->minimap.endian);
 }
 
 void fill_struct_libx_and_img(t_game *game)

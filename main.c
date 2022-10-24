@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/24 17:56:53 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:24:11 by bmat             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,6 @@ int main(int ac, char **av)
 	if (check_map(&game, ac))
 		return (1);
 	get_value(&game);
-	// printf("game.map.length, %d\n game.map.width %d\n", game.map.length, game.map.width);
-	// printf("game.player posx %d, posy %d\n\n\n", game.player.pos_x, game.player.pos_y);
-	// printf("%s\n", game.map.map[0]);
-	// printf("%s\n", game.map.map[1]);
-	// printf("%s\n", game.map.map[2]);
-	// printf("%s\n", game.map.map[3]);
-	// printf("%s\n", game.map.map[4]);
-	// printf("%s\n", game.map.map[5]);
-	// printf("%s\n", game.map.map[6]);
-	// printf("%s\n", game.map.map[7]);
-	// printf("%s\n", game.map.map[8]);
-	// printf("%s\n", game.map.map[9]);
 	//tam köşeyi kandırabilirsin rayabs +=1;
 	mlx_mouse_hide();
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);
