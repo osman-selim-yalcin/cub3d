@@ -6,7 +6,7 @@
 /*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/23 18:40:44 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:05:39 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int main(int ac, char **av)
 	if (check_map(&game, ac))
 		return (1);
 	get_value(&game);
-	printf("game.map.length, %d\n game.map.width %d\n", game.map.length, game.map.width);
-	printf("game.player posx %d, posy %d\n\n\n", game.player.pos_x, game.player.pos_y);
+	// printf("game.map.length, %d\n game.map.width %d\n", game.map.length, game.map.width);
+	// printf("game.player posx %d, posy %d\n\n\n", game.player.pos_x, game.player.pos_y);
 	// printf("%s\n", game.map.map[0]);
 	// printf("%s\n", game.map.map[1]);
 	// printf("%s\n", game.map.map[2]);
