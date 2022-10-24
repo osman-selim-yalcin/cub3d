@@ -33,11 +33,11 @@ typedef struct s_minimap
 	float	ra;
 	float	xo;
 	float	yo;
-	float	px;
-	float	py;
-	float	pa;
-	float	pdx;
-	float	pdy;
+	float	pos_x;
+	float	pos_y;
+	float	pa;	
+	float	step_offset_x;
+	float	step_offset_y;
 	int		mapx;
 	int		mapy;
 	int		mapsize;
@@ -64,8 +64,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int	pos_x;
-	int	pos_y;
+	float	pos_x;
+	float	pos_y;
 	int horizontal;
 	int vertical;
 	int	fov;
@@ -124,6 +124,14 @@ typedef struct s_libx
 	void	*win;
 }			t_libx;
 
+typedef struct s_settings
+{
+	int		minimap_scale;
+	float	step_size;
+	float 	player_size;
+	float	ray_len;//tmp
+}	t_settings;
+
 typedef struct s_game
 {
 	t_libx		libx;
@@ -131,6 +139,7 @@ typedef struct s_game
 	t_map		map;
 	t_img		img;
 	t_minimap	minimap;
+	t_settings	settings;
 }			t_game;
 
 //check_map.c
@@ -224,7 +233,6 @@ int hook_event(t_game *game);
 void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
 void 	put_floorceil(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	my_mlx_pixel_put_minimap(t_minimap *minimap, int x, int y, int color);
 
 //angle_utils.c
 int	rad_to_deg(double rad);
@@ -242,7 +250,7 @@ void display(t_game *game);
 void draw_64(int x, int y, t_game *game);
 void draw_map(t_game *game);
 void draw_player(t_game *game);
-void draw_direction(t_game *game);
+void draw_ray(t_game *game, float ray_len);
 
 //texture.c
 unsigned int take_texture(t_game *game, int x, int y, int which_wall);

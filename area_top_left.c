@@ -42,8 +42,8 @@ int find_wall_horizontal_two(double hor, double ver, t_game *game)
 
 void top_left(t_game *game, double ray_counter)
 {
-	double hor = game->player.pos_x % 100;
-	double ver = game->player.pos_y % 100;
+	double hor = (int)game->player.pos_x % 100;
+	double ver = (int)game->player.pos_y % 100;
 	double y;
 	double hypo = 0;
 	while (1)//east texture  //117 çok büyük eksi çıkıyo haritada N gir ve 117 açıya bak eğer gerekirse

@@ -41,6 +41,13 @@ void key_e(t_game *game)
 	}
 }
 
+void	synchronize_settings(t_game *game)
+{
+	game->settings.step_size = game->settings.minimap_scale / 10;
+	game->settings.player_size = game->settings.minimap_scale / 4;
+	game->settings.ray_len = 2 * game->settings.minimap_scale / 5;
+}
+
 int key_event(int keycode, t_game *game)
 {
 	if (keycode == 123) // left
@@ -53,8 +60,8 @@ int key_event(int keycode, t_game *game)
 		{
 			game->minimap.pa += 2 * M_PI;
 		}
-		game->minimap.pdx = cos(game->minimap.pa) * 2;
-		game->minimap.pdy = sin(game->minimap.pa) * 2;
+		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
+		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
 	}
 	if (keycode == 124) // right
 	{
@@ -66,8 +73,8 @@ int key_event(int keycode, t_game *game)
 		{
 			game->minimap.pa -= 2 * M_PI;
 		}
-		game->minimap.pdx = cos(game->minimap.pa) * 2;
-		game->minimap.pdy = sin(game->minimap.pa) * 2;
+		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
+		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
 	}
 	if (keycode == 0) //5 yaptım çok hızlı gibiydi
 		key_a(game);
@@ -81,5 +88,15 @@ int key_event(int keycode, t_game *game)
 		tmp_exit();
 	if (keycode == 14)
 		key_e(game);
+	if (keycode == 46) //m
+	{
+		if (game->settings.minimap_scale == 20)
+			game->settings.minimap_scale = 120;
+		else
+			game->settings.minimap_scale = 20;
+		synchronize_settings(game);
+	}
+	if (keycode == 53)
+		tmp_exit();
 	return(0);
 }

@@ -42,8 +42,8 @@ int find_wall_horizontal_three(double hor, double ver, t_game *game)
 
 void bottom_left(t_game *game, double ray_counter)
 {
-	double hor = game->player.pos_x % 100;
-	double ver = 100 - game->player.pos_y % 100;
+	double hor = (int)game->player.pos_x % 100;
+	double ver = 100 - (int)game->player.pos_y % 100;
 	double y;
 	double hypo = 0;
 	while (1) //east texture

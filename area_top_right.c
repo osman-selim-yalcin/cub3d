@@ -41,8 +41,8 @@ int find_wall_horizontal_one(double hor, double ver, t_game *game)
 
 void top_right(t_game *game, double ray_counter)
 {
-	double hor = 100 - game->player.pos_x % 100;
-	double ver = game->player.pos_y % 100;
+	double hor = 100 - (int)game->player.pos_x % 100;
+	double ver = (int)game->player.pos_y % 100;
 	double y;
 	double hypo = 0;
 	while (1) //west texture

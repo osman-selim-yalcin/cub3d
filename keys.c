@@ -82,8 +82,8 @@ void key_w(t_game *game)
 		game->player.pos_x = game->player.pos_x + round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
 		game->player.pos_y = game->player.pos_y + round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 	}
-	game->minimap.px += game->minimap.pdx;
-	game->minimap.py += game->minimap.pdy;
+	game->minimap.pos_x += game->minimap.step_offset_x;
+	game->minimap.pos_y += game->minimap.step_offset_y;
 }
 
 void key_s(t_game *game)
@@ -108,6 +108,6 @@ void key_s(t_game *game)
 		game->player.pos_x = game->player.pos_x - round_double(10 * fabs(cos(deg_to_rad(game->player.direction))));
 		game->player.pos_y = game->player.pos_y - round_double(10 * fabs(sin(deg_to_rad(game->player.direction))));
 	}
-	game->minimap.px -= game->minimap.pdx;
-	game->minimap.py -= game->minimap.pdy;
+	game->minimap.pos_x -= game->minimap.step_offset_x;
+	game->minimap.pos_y -= game->minimap.step_offset_y;
 }
