@@ -46,13 +46,15 @@ void	synchronize_settings(t_game *game)
 	game->settings.step_size = game->settings.minimap_scale / 10;
 	game->settings.player_size = game->settings.minimap_scale / 4;
 	game->settings.ray_len = 2 * game->settings.minimap_scale / 5;
+	game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
+	game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
 }
 
 int key_event(int keycode, t_game *game)
 {
 	if (keycode == 123) // left
 	{
-		game->player.direction += 5;
+		game->player.direction += 10;
 		if (game->player.direction >= 360)
 			game->player.direction -= 360;
 		game->minimap.pa -= 2 * M_PI / 36;
@@ -65,7 +67,7 @@ int key_event(int keycode, t_game *game)
 	}
 	if (keycode == 124) // right
 	{
-		game->player.direction -= 5;
+		game->player.direction -= 10;
 		if (game->player.direction < 0)
 			game->player.direction += 360;
 		game->minimap.pa += 2 * M_PI / 36;

@@ -22,8 +22,8 @@ void fill_struct_minimap(t_game *game)
 {
 	game->minimap.pos_x = game->player.pos_x / 100 * game->settings.minimap_scale;
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
-	game->minimap.pa = fabs(deg_to_rad(game->player.direction));
-	game->minimap.pa -= M_PI;
+	game->minimap.pa = (deg_to_rad(game->player.direction));
+	// game->minimap.pa -= M_PI;
 	if (game->minimap.pa < 0)
 	{
 		game->minimap.pa += 2 * M_PI;
@@ -32,8 +32,8 @@ void fill_struct_minimap(t_game *game)
 	{
 		game->minimap.pa -= 2 * M_PI;
 	}
-	game->minimap.step_offset_x = cos(game->minimap.pa) * 2;
-	game->minimap.step_offset_y = sin(game->minimap.pa) * 2;
+	game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
+	game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
 	game->minimap.mapx = game->map.width;
 	game->minimap.mapy = game->map.length;
 	game->minimap.mapsize = game->map.width * game->map.length;
