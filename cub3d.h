@@ -196,23 +196,23 @@ char	**ft_split(char *s, char c);
 int	create_trgb(int t, int r, int g, int b);
 
 //top_right.c
-int find_wall_vertical_one(double hor, double ver, t_game *game);
-int find_wall_horizontal_one(double hor, double ver, t_game *game);
+int find_wall_vertical_one(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_horizontal_one(double hor, double ver, t_game *game, double ray_counter);
 void top_right(t_game *game, double ray_counter);
 
 //top_left.c
-int find_wall_vertical_two(double hor, double ver, t_game *game);
-int find_wall_horizontal_two(double hor, double ver, t_game *game);
+int find_wall_vertical_two(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_horizontal_two(double hor, double ver, t_game *game, double ray_counter);
 void top_left(t_game *game, double ray_counter);
 
 //bottom_left.c
 void bottom_left(t_game *game, double ray_counter);
-int find_wall_vertical_three(double hor, double ver, t_game *game);
-int find_wall_horizontal_three(double hor, double ver, t_game *game);
+int find_wall_vertical_three(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_horizontal_three(double hor, double ver, t_game *game, double ray_counter);
 
 //bottom_right.c
-int find_wall_vertical_four(double hor, double ver, t_game *game);
-int find_wall_horizontal_four(double hor, double ver, t_game *game);
+int find_wall_vertical_four(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_horizontal_four(double hor, double ver, t_game *game, double ray_counter);
 void bottom_right(t_game *game, double ray_counter);
 
 //key_event.c

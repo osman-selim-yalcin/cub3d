@@ -13,9 +13,9 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 		a++;
 	int wall = a;
 	int start = (SCREEN_LEN - a) / 2;
-	a = 0;
-
 	int t;
+
+	a = 0;
 	if (game->img.which_wall == 1)
 		t = game->img.north_y;
 	if (game->img.which_wall == 2)

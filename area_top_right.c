@@ -1,9 +1,16 @@
 #include "cub3d.h"
 
-int find_wall_vertical_one(double hor, double ver, t_game *game)
+int find_wall_vertical_one(double hor, double ver, t_game *game, double ray_counter)
 {
 	hor /= 100;
 	ver /= 100;
+	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
+	{
+		if (ray_counter == 1920)
+			top_right(game, ray_counter - 1);
+		else
+			top_right(game, ray_counter + 1);
+	}
 	if (hor <= 0 || hor > game->map.width || ver <= 0 || ver > game->map.length)
  	{
 		return (2);
@@ -19,10 +26,17 @@ int find_wall_vertical_one(double hor, double ver, t_game *game)
 	return (0);
 }
 
-int find_wall_horizontal_one(double hor, double ver, t_game *game)
+int find_wall_horizontal_one(double hor, double ver, t_game *game, double ray_counter)
 {
 	hor /= 100;
 	ver /= 100;
+	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
+	{
+		if (ray_counter == 1920)
+			top_right(game, ray_counter - 1);
+		else
+			top_right(game, ray_counter + 1);
+	}
 	ver--;
 	if (hor <= 0 || hor > game->map.width || ver <= 0 || ver > game->map.length)
 	{
@@ -45,12 +59,13 @@ void top_right(t_game *game, double ray_counter)
 	double ver = (int)game->player.pos_y % 100;
 	double y;
 	double hypo = 0;
+
 	while (1) //west texture
 	{ 
 		y = tan(deg_to_rad(game->player.ray_abs)) * hor;
-		if(find_wall_vertical_one(hor + game->player.pos_x, game->player.pos_y - y, game))
+		if(find_wall_vertical_one(hor + game->player.pos_x, game->player.pos_y - y, game, ray_counter))
 		{
-			if (find_wall_vertical_one(hor + game->player.pos_x, game->player.pos_y - y, game) == 1)
+			if (find_wall_vertical_one(hor + game->player.pos_x, game->player.pos_y - y, game, ray_counter) == 1)
 			{
 				game->img.wall_x = game->img.west_x * ((int)((game->player.pos_y - y) * 100) % 10000) / 10000;
 				game->img.which_wall = 2;
@@ -65,7 +80,7 @@ void top_right(t_game *game, double ray_counter)
 		if (game->player.ray_abs == 0)
 			break;
 		y = (1 / tan(deg_to_rad(game->player.ray_abs))) * ver;
-		if (find_wall_horizontal_one(game->player.pos_x + y, game->player.pos_y - ver, game))
+		if (find_wall_horizontal_one(game->player.pos_x + y, game->player.pos_y - ver, game, ray_counter))
 			break;
 		ver += 100;
 	}
