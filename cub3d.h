@@ -231,8 +231,8 @@ int hook_event(t_game *game);
 
 //pixel.c
 void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
-void 	put_floorceil(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void	put_floorceil(t_game *game, int x, int wall, int start);
 
 //angle_utils.c
 int	rad_to_deg(double rad);
