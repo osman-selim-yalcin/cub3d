@@ -8,9 +8,7 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	if (hypo_tmp == 0)
 		return ;
 	while ((double)a < (150 / hypo_tmp) * (SCREEN_LEN / 2))
-	{
 		a++;
-	}
 	if (a % 2 == 1)
 		a++;
 	int wall = a;
@@ -29,7 +27,7 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	while (a < wall)
 	{
 		game->img.wall_y = a * t / wall;
-		if ((start + cnt < 1080 && start + cnt >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < 1920))
+		if ((start + cnt < SCREEN_LEN && start + cnt >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID))
 			my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->img.wall_x, game->img.wall_y, game->img.which_wall));
 		++cnt;
 		a += 1;
