@@ -6,7 +6,7 @@
 /*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/26 19:23:49 by bmat             ###   ########.fr       */
+/*   Updated: 2022/10/26 19:45:30 by bmat             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int main(int ac, char **av)
 	get_value(&game);
 	//tam köşeyi kandırabilirsin rayabs +=1;
 	print_map(game.map.map);
-	printf("map len:%d\n", game.map.length);
 	mlx_mouse_hide();
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);
 	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game); //0L ile farkı?

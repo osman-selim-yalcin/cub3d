@@ -97,7 +97,7 @@ int key_event(int keycode, t_game *game)
 	if (keycode == 46) //m
 	{
 		if (game->settings.minimap_scale == 20)
-			game->settings.minimap_scale = 100;
+			game->settings.minimap_scale = 80;
 		else
 			game->settings.minimap_scale = 20;
 		synchronize_settings(game);
