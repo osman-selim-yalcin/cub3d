@@ -20,7 +20,7 @@ void fill_struct_map(t_game *game, char **av)
 
 void fill_struct_minimap(t_game *game)
 {
-	game->minimap.pos_x = game->player.pos_x / 100 * game->settings.minimap_scale;
+	game->minimap.pos_x = (game->player.pos_x - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
 	game->minimap.pa = (deg_to_rad(game->player.direction));
 
@@ -31,7 +31,6 @@ void fill_struct_minimap(t_game *game)
 	
 	game->minimap.mapx = game->map.width;
 	game->minimap.mapy = game->map.length;
-	game->minimap.mapsize = game->map.width * game->map.length;
 }
 
 void fill_struct_libx_and_img(t_game *game)
@@ -67,10 +66,32 @@ void	game_settings(t_game *game)
 	game->settings.ray_len = 2 * game->settings.minimap_scale / 5;
 }
 
+void	find_first_empty_columns(t_game *game)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (1)
+	{
+		i = 0;
+		while (i < game->map.length + 2 && game->map.map[i][j] == '2')
+			++i;
+		if (i < game->map.length + 2)
+		{
+			game->minimap.empty_column = j - 1;
+			return ;
+		}
+		++j;
+	}
+
+}
+
 void	get_value(t_game *game)
 {
 	fill_struct_libx_and_img(game);
 	game_settings(game);
+	find_first_empty_columns(game);
 	fill_struct_minimap(game);
 }
 

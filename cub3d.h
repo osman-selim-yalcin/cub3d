@@ -16,23 +16,7 @@
 
 typedef struct s_minimap
 {
-	void	*win;
-	void	*img;
-	int		endian;
-	void *addr;
-	int	line_length;
-	int	bits_per_pixel;
 	//variables
-	int		r;
-	int		mx;
-	int		my;
-	int		mp;
-	int		dof;
-	float	rx;
-	float	ry;
-	float	ra;
-	float	xo;
-	float	yo;
 	float	pos_x;
 	float	pos_y;
 	float	pa;	
@@ -40,7 +24,7 @@ typedef struct s_minimap
 	float	step_offset_y;
 	int		mapx;
 	int		mapy;
-	int		mapsize;
+	int		empty_column;
 } 	t_minimap;
 
 typedef struct s_map
@@ -246,7 +230,7 @@ int	ray_angle(t_game *game);
 int	degree_angle(int degree);
 
 //minimap.c
-void display(t_game *game);
+void display_minimap(t_game *game);
 void draw_64(int x, int y, t_game *game);
 void draw_map(t_game *game);
 void draw_player(t_game *game);
@@ -258,4 +242,7 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall);
 void start(t_game *game);
 void print_map(char **map);
 int tmp_exit(void);
+
+//fps_sprite.c
+void	draw_weapon(t_game *game);
 #endif

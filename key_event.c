@@ -48,9 +48,9 @@ void	synchronize_settings(t_game *game)
 	game->settings.ray_len = 2 * game->settings.minimap_scale / 5;
 	game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
 	game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
-	game->minimap.pos_x = game->player.pos_x / 100 * game->settings.minimap_scale;
+	game->minimap.pos_x = (game->player.pos_x - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
-	
+
 }
 
 int key_event(int keycode, t_game *game)
@@ -97,7 +97,7 @@ int key_event(int keycode, t_game *game)
 	if (keycode == 46) //m
 	{
 		if (game->settings.minimap_scale == 20)
-			game->settings.minimap_scale = 60;
+			game->settings.minimap_scale = 100;
 		else
 			game->settings.minimap_scale = 20;
 		synchronize_settings(game);
