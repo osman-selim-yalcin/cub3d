@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/24 20:24:11 by bmat             ###   ########.fr       */
+/*   Updated: 2022/10/26 13:08:37 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void start(t_game *game)
 		}
 		ray_counter += 1;
 	}
-	display(game); //minimapB
-	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
 }
 
 int main(int ac, char **av)
