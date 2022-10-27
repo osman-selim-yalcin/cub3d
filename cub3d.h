@@ -239,7 +239,13 @@ void draw_ray(t_game *game, float ray_len);
 //texture.c
 unsigned int take_texture(t_game *game, int x, int y, int which_wall);
 
+//enemy.c
+void start_enemy(t_game *game);
+
+//main.c
 void start(t_game *game);
+
+//tmp
 void print_map(char **map);
 int tmp_exit(void);
 
