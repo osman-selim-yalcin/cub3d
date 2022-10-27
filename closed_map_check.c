@@ -27,6 +27,8 @@ void	set_length_width(t_game *game)
 	}
 	game->map.length = i;
 	game->map.width = max;
+	game->map.total_row = i + 2;
+	game->map.total_column = max + 2;
 }
 
 char	**open_up_space(t_game *game)

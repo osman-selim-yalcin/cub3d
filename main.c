@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/10/27 11:28:01 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:23:54 by bmat             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ int main(int ac, char **av)
 
 	fill_struct_map(&game, av);
 	if (check_map(&game, ac))
+	{
 		return (1);
+	}
 	get_value(&game);
 	print_map(game.map.map);
-
 
 
 	mlx_mouse_hide();

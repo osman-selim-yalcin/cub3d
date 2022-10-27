@@ -33,8 +33,6 @@ void key_a(t_game *game)
 	{
 		game->player.pos_y = offset;
 	}
-	// game->player.pos_x = game->player.pos_x + round_double(5 * (cos(deg_to_rad(game->player.direction))));
-	// game->player.pos_y = game->player.pos_y - round_double(5 * (sin(deg_to_rad(game->player.direction))));
 
 	game->minimap.pos_x = (game->player.pos_x - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;

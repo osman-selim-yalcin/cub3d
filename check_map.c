@@ -155,10 +155,14 @@ int check_map(t_game *game, int ac)
 		printf("Number of player is not 1\n");
 		return (1);
 	}
-	// put_frame_to_map(game);
 	if (put_frame_to_map(game))
 	{
 		printf("Map is not surrounded by walls\n");
+		return (1);
+	}
+	if (check_partition(game))
+	{
+		printf("Map contains multiple parts that player cannot reach\n");
 		return (1);
 	}
 	return (0);

@@ -11,8 +11,8 @@ void draw_64(int x, int y, t_game *game)
 			y2 = 0;
 			while (y2 < game->settings.minimap_scale)
 			{
-				if (x2 < game->settings.minimap_scale / 20 || x2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 20) || \
-					y2 < game->settings.minimap_scale / 20 || y2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 20))//grid frame
+				if (x2 < game->settings.minimap_scale / 10 || x2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10) || \
+					y2 < game->settings.minimap_scale / 10 || y2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10))//grid frame
 					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2, y * game->settings.minimap_scale + y2, 0x00FF6B00);
 				else//wall
 					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2, y * game->settings.minimap_scale + y2, 0x00FFFF00);

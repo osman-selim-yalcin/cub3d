@@ -96,11 +96,13 @@ int key_event(int keycode, t_game *game)
 		key_e(game);
 	if (keycode == 46) //m
 	{
-		if (game->settings.minimap_scale == 20)
-			game->settings.minimap_scale = 80;
+		if (game->settings.minimap_scale == game->minimap.full_scale)
+			game->settings.minimap_scale /= 5;
 		else
-			game->settings.minimap_scale = 20;
+			game->settings.minimap_scale = game->minimap.full_scale;
 		synchronize_settings(game);
+		printf("minimap scale: %d\n", game->settings.minimap_scale);
+		printf("game->minimap.full_scale: %d\n", game->minimap.full_scale);
 	}
 	if (keycode == 53)
 		tmp_exit();
