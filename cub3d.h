@@ -91,6 +91,15 @@ typedef struct s_img
 	int		west_x;
 	int		west_y;
 
+	void 	*enemy_img;
+	void 	*enemy_addr;
+	int		enemy_bits_per_pixel;
+	int		enemy_line_length;
+	int		enemy_endian;
+	int		enemy_x;
+	int		enemy_y;
+
+
 	void *img;
 	void *addr;
 	int	line_length;
@@ -108,6 +117,22 @@ typedef struct s_libx
 	void	*win;
 }			t_libx;
 
+typedef struct s_enemy
+{
+	int posx;
+	int posy;
+	double start;
+	double finish;
+	double distance;
+	double enemy_hypo;
+	unsigned int e_wall_x;
+	unsigned int e_wall_y;
+	unsigned int width;
+	unsigned int total_ray;
+	float count;
+}	t_enemy;
+
+
 typedef struct s_settings
 {
 	int		minimap_scale;
@@ -124,6 +149,7 @@ typedef struct s_game
 	t_img		img;
 	t_minimap	minimap;
 	t_settings	settings;
+	t_enemy		enemy;
 }			t_game;
 
 //check_map.c
@@ -240,7 +266,7 @@ void draw_ray(t_game *game, float ray_len);
 unsigned int take_texture(t_game *game, int x, int y, int which_wall);
 
 //enemy.c
-void start_enemy(t_game *game);
+void get_enemy(t_game *game);
 
 //main.c
 void start(t_game *game);

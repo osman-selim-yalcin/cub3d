@@ -53,6 +53,9 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.east_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.east_wall, &game->img.east_x, &game->img.east_y);
 	game->img.east_addr = mlx_get_data_addr(game->img.east_img, &game->img.east_bits_per_pixel, &game->img.east_line_length, &game->img.east_endian);
 
+	game->img.enemy_img = mlx_xpm_file_to_image(game->libx.mlx, "images/adam.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_addr = mlx_get_data_addr(game->img.enemy_img, &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
+
 	game->img.wall_y = 0;
 	game->img.wall_x = 0;
 	game->img.which_wall = 0;
@@ -87,11 +90,19 @@ void	find_first_empty_columns(t_game *game)
 
 }
 
+void fill_struct_enemy(t_game *game)
+{
+	game->enemy.posx = game->player.pos_x - 110;
+	game->enemy.posy = game->player.pos_y - 100;
+}
+
+
 void	get_value(t_game *game)
 {
 	fill_struct_libx_and_img(game);
 	game_settings(game);
 	find_first_empty_columns(game);
 	fill_struct_minimap(game);
+	fill_struct_enemy(game);
 }
 

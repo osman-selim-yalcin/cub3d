@@ -15,9 +15,13 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall)
 	{
 		dst = game->img.south_addr + (y * game->img.south_line_length + x * (game->img.south_bits_per_pixel / 8));
 	}
-	else //east
+	else if (which_wall == 4)//east
 	{
 		dst = game->img.east_addr + (y * game->img.east_line_length + x * (game->img.east_bits_per_pixel / 8));
+	}
+	else  //enemy
+	{
+		dst = game->img.enemy_addr + (y * game->img.enemy_line_length + x * (game->img.enemy_bits_per_pixel / 8));
 	}
 	return (*(unsigned int*)dst);
 }
