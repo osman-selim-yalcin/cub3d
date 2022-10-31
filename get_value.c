@@ -106,27 +106,28 @@ void	find_last_empty_columns(t_game *game)
 
 void	set_scale_factor(t_game *game)
 {
-	printf("scale: %f\n", (float)SCREEN_WID / game->map.width);
-	if ((game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2) / game->map.length < SCREEN_WID / SCREEN_LEN)//len-vertical wider
+	if ((float)(game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2) / game->map.length < (float)SCREEN_WID / SCREEN_LEN)//len-vertical wider
 	{
 		printf("ver wider\n");
-		game->minimap.full_scale = ((float)SCREEN_LEN / game->map.length) - 1;
+		printf("game->map.length = %d\n", game->map.length);
+		game->minimap.full_scale = ((float)SCREEN_LEN / (game->map.length + 1)) - 1;
 	}
 	else
 	{
 		printf("hor wider\n");
-		game->minimap.full_scale = SCREEN_WID / (game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2);
+		game->minimap.full_scale = (float)SCREEN_WID / (game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2 + 1);
 	}
-	printf("scale: %d\n", game->minimap.full_scale);
+	game->minimap.shift_x = 0;
+	game->minimap.shift_y = 0;
 }
 
 void	get_value(t_game *game)
 {
+	find_first_empty_columns(game);
+	find_last_empty_columns(game);
 	set_scale_factor(game);
 	fill_struct_libx_and_img(game);
 	game_settings(game);
-	find_first_empty_columns(game);
-	find_last_empty_columns(game);
 	fill_struct_minimap(game);
 	printf("game->minimap.full_scale: %d\n", game->minimap.full_scale);
 	printf("game->minimap.minimap_scale: %d\n", game->settings.minimap_scale);

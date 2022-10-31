@@ -27,6 +27,8 @@ typedef struct s_minimap
 	int		empty_column;
 	int		empty_column2;
 	int		full_scale;
+	int		shift_x;
+	int		shift_y;
 } 	t_minimap;
 
 typedef struct s_map
