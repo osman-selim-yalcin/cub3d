@@ -10,6 +10,8 @@ int	rad_to_deg(double rad)
 
 double deg_to_rad(double degree)
 {
+	if (degree < 0)
+		degree += 360;
 	return (degree * M_PI / 180);
 }
 

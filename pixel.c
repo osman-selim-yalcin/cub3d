@@ -44,7 +44,7 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), wall, start);
 
 
-	if (game->player.ray_abs > game->enemy.start && game->player.ray_abs < game->enemy.finish)
+	if ((game->player.ray_abs > game->enemy.start && game->player.ray_abs < game->enemy.finish) || (game->player.ray_abs < game->enemy.start && game->player.ray_abs > game->enemy.finish))
 	{
 		if (game->enemy.distance < hypo_tmp)
 		{
