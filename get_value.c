@@ -63,7 +63,7 @@ void fill_struct_libx_and_img(t_game *game)
 
 void	game_settings(t_game *game)
 {
-	game->settings.minimap_scale = 20;
+	game->settings.minimap_scale = game->minimap.full_scale / 5;
 	game->settings.step_size = game->settings.minimap_scale / 10;
 	game->settings.player_size = game->settings.minimap_scale / 4;
 	game->settings.ray_len = 2 * game->settings.minimap_scale / 5;
@@ -87,7 +87,38 @@ void	find_first_empty_columns(t_game *game)
 		}
 		++j;
 	}
+}
 
+void	find_last_empty_columns(t_game *game)
+{
+	int	i;
+	int	j;
+
+	game->minimap.empty_column2 = 1;
+	j = game->map.total_column - 1;
+	while (1)
+	{
+		i = 0;
+		while (i < game->map.total_row && game->map.map[i][j - game->minimap.empty_column2] == '2')
+			++i;
+		if (i < game->map.total_row)
+			return ;
+		++game->minimap.empty_column2;
+	}
+}
+
+void	set_scale_factor(t_game *game)
+{
+	if ((float)(game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2) / game->map.length < (float)SCREEN_WID / SCREEN_LEN)//len-vertical wider
+	{
+		game->minimap.full_scale = ((float)SCREEN_LEN / (game->map.length + 1)) - 1;
+	}
+	else
+	{
+		game->minimap.full_scale = (float)SCREEN_WID / (game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2 + 1);
+	}
+	game->minimap.shift_x = 0;
+	game->minimap.shift_y = 0;
 }
 
 void fill_struct_enemy(t_game *game)
@@ -99,9 +130,11 @@ void fill_struct_enemy(t_game *game)
 
 void	get_value(t_game *game)
 {
+	find_first_empty_columns(game);
+	find_last_empty_columns(game);
+	set_scale_factor(game);
 	fill_struct_libx_and_img(game);
 	game_settings(game);
-	find_first_empty_columns(game);
 	fill_struct_minimap(game);
 	fill_struct_enemy(game);
 }

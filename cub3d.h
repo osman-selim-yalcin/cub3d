@@ -25,6 +25,10 @@ typedef struct s_minimap
 	int		mapx;
 	int		mapy;
 	int		empty_column;
+	int		empty_column2;
+	int		full_scale;
+	int		shift_x;
+	int		shift_y;
 } 	t_minimap;
 
 typedef struct s_map
@@ -43,6 +47,8 @@ typedef struct s_map
 	char	*map_path;
 	int		gnl_count;
 	int		started_reading;
+	int		total_row;
+	int		total_column;
 	int		player_count;
 }		t_map;
 
@@ -50,6 +56,8 @@ typedef struct s_player
 {
 	float	pos_x;
 	float	pos_y;
+	int		row;
+	int		column;
 	int horizontal;
 	int vertical;
 	int	fov;
@@ -277,4 +285,12 @@ int tmp_exit(void);
 
 //fps_sprite.c
 void	draw_weapon(t_game *game);
+
+//map_find_utils.c
+int	is_top_num_tmp(char **map, int row, int column);
+int	is_left_num_tmp(char **map, int row, int column);
+int	is_right_num_tmp(char **map, int row, int column);
+int	is_bottom_num_tmp(char **map, int row, int column);
+
+int	check_partition(t_game *game);
 #endif

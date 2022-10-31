@@ -11,11 +11,11 @@ void draw_64(int x, int y, t_game *game)
 			y2 = 0;
 			while (y2 < game->settings.minimap_scale)
 			{
-				if (x2 < game->settings.minimap_scale / 20 || x2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 20) || \
-					y2 < game->settings.minimap_scale / 20 || y2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 20))//grid frame
-					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2, y * game->settings.minimap_scale + y2, 0x00FF6B00);
+				if (x2 < game->settings.minimap_scale / 10 || x2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10) || \
+					y2 < game->settings.minimap_scale / 10 || y2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10))//grid frame
+					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x00FF6B00);
 				else//wall
-					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2, y * game->settings.minimap_scale + y2, 0x00FFFF00);
+					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x00FFFF00);
 				y2++;
 			}
 			x2++;
@@ -28,7 +28,7 @@ void draw_64(int x, int y, t_game *game)
 			y2 = 0;
 			while (y2 < game->settings.minimap_scale)
 			{
-				my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2, y * game->settings.minimap_scale + y2, 0x00000000);
+				my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x00000000);
 				y2++;
 			}
 			x2++;
@@ -39,7 +39,7 @@ void draw_64(int x, int y, t_game *game)
 void draw_map(t_game *game)
 {
 	int x = 1;
-	int y = 1;
+	int y;
 	while (x < game->minimap.mapx)
 	{
 		y = 1;
@@ -61,7 +61,7 @@ void draw_player(t_game *game)
 		y = 0;
 		while (y < game->settings.player_size)
 		{
-			my_mlx_pixel_put(game, game->minimap.pos_x + x - game->settings.player_size / 2, game->minimap.pos_y + y - game->settings.player_size / 2, 0x00FF0000);
+			my_mlx_pixel_put(game, game->minimap.pos_x + x - game->settings.player_size / 2 + game->minimap.shift_x, game->minimap.pos_y + y - game->settings.player_size / 2 + game->minimap.shift_y, 0x00FF0000);
 			++y;
 		}
 		++x;
@@ -74,7 +74,7 @@ void draw_ray(t_game *game, float ray_len)
 
 	while (offset < ray_len)
 	{
-		my_mlx_pixel_put(game, game->minimap.pos_x + cos(game->minimap.pa) * game->settings.minimap_scale / 10 * offset, game->minimap.pos_y + sin(game->minimap.pa) * game->settings.minimap_scale / 10 * -offset, 0x00FF539E);
+		my_mlx_pixel_put(game, game->minimap.pos_x + cos(game->minimap.pa) * game->settings.minimap_scale / 10 * offset + game->minimap.shift_x, game->minimap.pos_y + sin(game->minimap.pa) * game->settings.minimap_scale / 10 * -offset + game->minimap.shift_y, 0x00FF539E);
 		offset += 0.2;
 	}
 }
