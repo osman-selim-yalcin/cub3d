@@ -6,7 +6,11 @@
 /*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2022/10/31 20:39:08 by bmat             ###   ########.fr       */
+=======
+/*   Updated: 2022/11/01 12:36:29 by osyalcin         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +65,7 @@ int main(int ac, char **av)
 		return (1);
 	}
 	get_value(&game);
-	print_map(game.map.map);
+	
 
 	mlx_mouse_hide();
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);

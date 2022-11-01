@@ -44,12 +44,12 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), wall, start);
 
 
-	if ((game->player.ray_abs > game->enemy.start && game->player.ray_abs < game->enemy.finish) || (game->player.ray_abs < game->enemy.start && game->player.ray_abs > game->enemy.finish))
+	if (ray_counter > game->enemy.pixel - (game->enemy.width / 2) && ray_counter < game->enemy.pixel + (game->enemy.width / 2))
 	{
+		game->enemy.count += 1;
 		if (game->enemy.distance < hypo_tmp)
 		{
 			game->enemy.e_wall_x = game->img.enemy_x * game->enemy.count / game->enemy.width;
-			game->enemy.count += (float)game->enemy.width / (float)game->enemy.total_ray;
 			a = 0;
 			cnt = 0;
 			while ((double)a < (150 / game->enemy.distance) * (SCREEN_LEN / 2))

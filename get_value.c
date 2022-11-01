@@ -123,8 +123,8 @@ void	set_scale_factor(t_game *game)
 
 void fill_struct_enemy(t_game *game)
 {
-	game->enemy.posx = game->player.pos_x + 110;
-	game->enemy.posy = game->player.pos_y + 100;
+	game->enemy.posx = game->player.pos_x - 200;
+	game->enemy.posy = game->player.pos_y + 300;
 }
 
 

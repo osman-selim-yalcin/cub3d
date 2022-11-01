@@ -11,7 +11,7 @@
 # define SCREEN_LEN 1080
 # define SCREEN_WID 1920
 # define D_FOV 60
-# define R_FOV M_PI / 3
+# define R_FOV (M_PI / 3)
 # define SENS 1
 
 typedef struct s_minimap
@@ -62,7 +62,9 @@ typedef struct s_player
 	int vertical;
 	int	fov;
 	int direction;
-	double ray_abs;
+	double	ray_abs;
+	double	ray_start;
+	double	ray_finish;	
 }		t_player;
 
 typedef struct s_img
@@ -130,13 +132,14 @@ typedef struct s_enemy
 	int posx;
 	int posy;
 	double start;
+	double middle;
 	double finish;
 	double distance;
 	double enemy_hypo;
 	unsigned int e_wall_x;
 	unsigned int e_wall_y;
-	unsigned int width;
-	unsigned int total_ray;
+	int width;
+	int pixel;
 	float count;
 }	t_enemy;
 
