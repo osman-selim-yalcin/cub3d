@@ -141,6 +141,8 @@ typedef struct s_enemy
 	int width;
 	int pixel;
 	float count;
+	short int alive;
+	struct s_enemy	*next;
 }	t_enemy;
 
 
@@ -160,7 +162,7 @@ typedef struct s_game
 	t_img		img;
 	t_minimap	minimap;
 	t_settings	settings;
-	t_enemy		enemy;
+	t_enemy		*enemy;
 }			t_game;
 
 //check_map.c
