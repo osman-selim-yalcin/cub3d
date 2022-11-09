@@ -87,6 +87,19 @@ void get_enemy(t_game *game)
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp_enemy;
+
+	while (tmp_enemy)
+	{
+		tmp_enemy->id = tmp_enemy->head->enemy_count;
+		while (game->enemy)
+		{
+			if (tmp_enemy->distance > game->enemy->distance)
+				tmp_enemy->id--;
+			game->enemy = game->enemy->next;			
+		}
+		game->enemy = tmp_enemy->head;
+		tmp_enemy = tmp_enemy->next;
+	}
 }
 
 void enemy_walk(t_game *game)

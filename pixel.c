@@ -1,24 +1,24 @@
 #include "cub3d.h"
 
-int cmp_height(t_game *game, int ray_counter)
-{
-	t_enemy *tmp_enemy;
-	tmp_enemy = game->enemy->head;
-	while (tmp_enemy)
-	{
-		if (tmp_enemy == game->enemy)
-		{
-			if (!tmp_enemy->next)
-				break;
-			tmp_enemy = tmp_enemy->next;
-		}
-		if (ray_counter > tmp_enemy->pixel - (tmp_enemy->width / 2) && ray_counter < tmp_enemy->pixel + (tmp_enemy->width / 2))
-			if (game->enemy->distance > tmp_enemy->distance)
-				return (0);
-		tmp_enemy = tmp_enemy->next;
-	}
-	return (1);
-}
+// int cmp_height(t_game *game, int ray_counter)
+// {
+// 	t_enemy *tmp_enemy;
+// 	tmp_enemy = game->enemy->head;
+// 	while (tmp_enemy)
+// 	{
+// 		if (tmp_enemy == game->enemy)
+// 		{
+// 			if (!tmp_enemy->next)
+// 				break;
+// 			tmp_enemy = tmp_enemy->next;
+// 		}
+// 		if (ray_counter > tmp_enemy->pixel - (tmp_enemy->width / 2) && ray_counter < tmp_enemy->pixel + (tmp_enemy->width / 2))
+// 			if (game->enemy->distance > tmp_enemy->distance)
+// 				return (0);
+// 		tmp_enemy = tmp_enemy->next;
+// 	}
+// 	return (1);
+// }
 
 void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 {
@@ -63,16 +63,20 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	}
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), wall, start);
 
+	int o;
 	t_enemy *tmp_enemy;
 	tmp_enemy = game->enemy;
-	while (game->enemy)
+	o = 1;
+	while (o < tmp_enemy->head->enemy_count + 1)
 	{
+		while (game->enemy->id != o && game->enemy->next)
+			game->enemy = game->enemy->next;
 		if (game->enemy->alive)
 		{
 			if (ray_counter > game->enemy->pixel - (game->enemy->width / 2) && ray_counter < game->enemy->pixel + (game->enemy->width / 2))
 			{
 				game->enemy->forx_count += 1;
-				if (game->enemy->distance < hypo_tmp && cmp_height(game, ray_counter))
+				if (game->enemy->distance < hypo_tmp) //&& cmp_height(game, ray_counter)
 				{
 					game->enemy->e_wall_x = game->img.enemy_x * game->enemy->forx_count / game->enemy->width;
 					a = 0;
@@ -96,7 +100,8 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 				}
 			}
 		}
-		game->enemy = game->enemy->next;
+		o++;
+		game->enemy = tmp_enemy;
 	}
 	game->enemy = tmp_enemy;
 }

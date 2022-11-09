@@ -143,6 +143,8 @@ typedef struct s_enemy
 	short int alive;
 	struct s_enemy	*next;
 	struct s_enemy	*head;
+	int enemy_count;
+	int id;
 }	t_enemy;
 
 
