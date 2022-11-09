@@ -21,7 +21,7 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall)
 	}
 	else  //enemy
 	{
-		dst = game->img.enemy_addr + (y * game->img.enemy_line_length + x * (game->img.enemy_bits_per_pixel / 8));
+		dst = game->img.enemy_addr[game->enemy_idle_state] + (y * game->img.enemy_line_length + x * (game->img.enemy_bits_per_pixel / 8));
 	}
 	return (*(unsigned int*)dst);
 }

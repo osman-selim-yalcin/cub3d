@@ -100,8 +100,8 @@ typedef struct s_img
 	int		west_x;
 	int		west_y;
 
-	void 	*enemy_img;
-	void 	*enemy_addr;
+	void 	*enemy_img[7];
+	void 	*enemy_addr[7];
 	int		enemy_bits_per_pixel;
 	int		enemy_line_length;
 	int		enemy_endian;
@@ -165,6 +165,7 @@ typedef struct s_game
 	t_minimap	minimap;
 	t_settings	settings;
 	t_enemy		*enemy;
+	short int	enemy_idle_state;
 }			t_game;
 
 //check_map.c

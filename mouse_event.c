@@ -20,6 +20,16 @@ int mouse_move(int x, int y, t_game *game)
 	return (0);
 }
 
+void	set_idle_state(t_game *game)
+{
+	static int	counter;
+
+	game->enemy_idle_state = counter / 3;
+	++counter;
+	if (counter == 21)
+		counter = 0;
+}
+
 int hook_event(t_game *game)
 {
 	mlx_clear_window(game->libx.mlx, game->libx.win);
@@ -31,5 +41,6 @@ int hook_event(t_game *game)
 	start(game);
 	display_minimap(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
+	set_idle_state(game);
 	return (0);
 }

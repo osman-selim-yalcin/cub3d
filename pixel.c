@@ -91,7 +91,11 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 						if ((start + cnt < SCREEN_LEN && start + cnt >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID))
 						{
 							game->enemy->e_wall_y = cnt * game->img.enemy_y / a;
-							my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5));
+							if (take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5) != (unsigned int)-16777216)
+							{
+								my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5));
+							}
+							
 						}
 						if (start + cnt >= SCREEN_LEN)
 							break;
