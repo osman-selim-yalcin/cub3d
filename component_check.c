@@ -15,7 +15,6 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 	}
 	else
 	{
-		printf("lala\n");
 		tmp_enemy = game->enemy;
 		while (tmp_enemy->next != NULL)
 		{
@@ -27,7 +26,6 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 		tmp_enemy->next->alive = 1;
 		tmp_enemy->next->head = game->enemy;
 		tmp_enemy->next->next = NULL;
-		printf("deneme\n");
 	}
 }
 
