@@ -8,7 +8,10 @@ int player_collision(t_game *game, float x, float y)
 	while (game->enemy)
 	{
 		if (hypot(game->enemy->posx - x, game->enemy->posy - y) < 80)
+		{
+			game->enemy = tmp_enemy;
 			return (0);
+		}
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp_enemy;

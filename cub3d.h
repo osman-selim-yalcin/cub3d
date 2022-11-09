@@ -140,6 +140,7 @@ typedef struct s_enemy
 	float forx_count;
 	short int alive;
 	struct s_enemy	*next;
+	struct s_enemy	*head;
 }	t_enemy;
 
 

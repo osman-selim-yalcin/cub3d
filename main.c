@@ -6,7 +6,7 @@
 /*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/11/09 13:57:10 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:54:07 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int main(int ac, char **av)
 	if (check_map(&game, ac))
 		return (1);
 	get_value(&game);
-	
 
 	mlx_mouse_hide();
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);

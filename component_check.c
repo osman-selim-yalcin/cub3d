@@ -11,6 +11,7 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 		game->enemy->posy = 100 * (coor_y + 1) + 50;
 		game->enemy->alive = 1;
 		game->enemy->next = NULL;
+		game->enemy->head = game->enemy;
 	}
 	else
 	{
@@ -24,6 +25,7 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 		tmp_enemy->next->posx = 100 * (coor_x + 1) + 50;
 		tmp_enemy->next->posy = 100 * (coor_y + 1) + 50;
 		tmp_enemy->next->alive = 1;
+		tmp_enemy->next->head = game->enemy;
 		tmp_enemy->next->next = NULL;
 	}
 }

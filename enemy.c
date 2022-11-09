@@ -2,6 +2,21 @@
 
 int enemy_collision(t_game *game, float x, float y)
 {
+	t_enemy *tmp_enemy;
+
+	tmp_enemy = game->enemy->head;
+	while (tmp_enemy)
+	{
+		if (tmp_enemy == game->enemy)
+		{
+			if (!tmp_enemy->next)
+				break;
+			tmp_enemy = tmp_enemy->next;
+		}
+		if (hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 20)
+			return (0);
+		tmp_enemy = tmp_enemy->next;
+	}
 	if (hypot(x - game->player.pos_x, y - game->player.pos_y) < 80)
 	{
 		return (0);
