@@ -8,6 +8,7 @@ int find_wall_vertical_three(double hor, double ver, t_game *game, double ray_co
 	hor--;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+		printf("lala 3\n");
 		if (ray_counter == 1920)
 			bottom_left(game, ray_counter - 1);
 		else
@@ -34,6 +35,7 @@ int find_wall_horizontal_three(double hor, double ver, t_game *game, double ray_
 	ver /= 100;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+			printf("lala 3\n");
 		if (ray_counter == 1920)
 			bottom_left(game, ray_counter - 1);
 		else

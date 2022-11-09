@@ -7,10 +7,11 @@ int find_wall_vertical_two(double hor, double ver, t_game *game, double ray_coun
 	hor--;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+		printf("lala 2\n");
 		if (ray_counter == 1920)
-			top_left(game, ray_counter - 1);
+			top_right(game, ray_counter - 1);
 		else
-			top_left(game, ray_counter + 1);
+			top_right(game, ray_counter + 1);
 	}
 	if (hor <= 0 || hor > game->map.width || ver <= 0 || ver > game->map.length)
  	{
@@ -34,6 +35,7 @@ int find_wall_horizontal_two(double hor, double ver, t_game *game, double ray_co
 	ver--;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+		printf("lala 2\n");
 		if (ray_counter == 1920)
 			top_left(game, ray_counter - 1);
 		else
@@ -60,7 +62,7 @@ void top_left(t_game *game, double ray_counter)
 	double ver = (int)game->player.pos_y % 100;
 	double y;
 	double hypo = 0;
-	while (1)//east texture  //117 çok büyük eksi çıkıyo haritada N gir ve 117 açıya bak eğer gerekirse
+	while (1)//east texture
 	{
 		if (game->player.ray_abs == 90)
 			break;

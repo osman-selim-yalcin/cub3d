@@ -64,7 +64,6 @@ typedef struct s_player
 	int direction;
 	double	ray_abs;
 	double	ray_start;
-	double	ray_finish;	
 }		t_player;
 
 typedef struct s_img
@@ -133,14 +132,13 @@ typedef struct s_enemy
 	int posy;
 	double start;
 	double middle;
-	double finish;
 	double distance;
-	double enemy_hypo;
 	unsigned int e_wall_x;
 	unsigned int e_wall_y;
 	int width;
 	int pixel;
-	float count;
+	float forx_count;
+	int alive;
 }	t_enemy;
 
 
@@ -245,6 +243,7 @@ void key_a(t_game *game);
 void key_d(t_game *game);
 void key_w(t_game *game);
 void key_s(t_game *game);
+int player_collision(t_game *game, float x, float y);
 
 //mouse_move.c
 int mouse_move(int x, int y, t_game *game);
@@ -278,6 +277,8 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall);
 
 //enemy.c
 void get_enemy(t_game *game);
+void enemy_walk(t_game *game);
+int enemy_collision(t_game *game, float x, float y);
 
 //main.c
 void start(t_game *game);

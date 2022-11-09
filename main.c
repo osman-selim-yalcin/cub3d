@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2022/10/31 20:39:08 by bmat             ###   ########.fr       */
-=======
-/*   Updated: 2022/11/01 12:36:29 by osyalcin         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2022/11/09 12:19:52 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +21,8 @@ int tmp_exit(void)
 void start(t_game *game)
 {
 	double ray_counter = 0;
+	if (0 > game->enemy.pixel - game->enemy.width / 2 && 0 < game->enemy.pixel + game->enemy.width / 2)
+		game->enemy.forx_count -= game->enemy.pixel - game->enemy.width / 2;
 	while (ray_counter < SCREEN_WID)
 	{
 		game->player.ray_abs = (game->player.direction - game->player.fov / 2) + (ray_counter / SCREEN_WID * D_FOV);
@@ -61,9 +59,7 @@ int main(int ac, char **av)
 	t_game game;
 	fill_struct_map(&game, av);
 	if (check_map(&game, ac))
-	{
 		return (1);
-	}
 	get_value(&game);
 	
 

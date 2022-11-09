@@ -1,8 +1,7 @@
-NO images/face.xpm
-SO images/11.xpm
-WE images/111.xpm
-EA images/weapon/weapon1.xpm
-
+NO images/wall_ea.xpm
+SO images/wall_no.xpm
+WE images/wall_so.xpm
+EA images/wall_we.xpm
 C 26,59,183
 F 26,59,30
 

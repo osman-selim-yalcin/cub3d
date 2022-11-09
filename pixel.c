@@ -46,10 +46,10 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 
 	if (ray_counter > game->enemy.pixel - (game->enemy.width / 2) && ray_counter < game->enemy.pixel + (game->enemy.width / 2))
 	{
-		game->enemy.count += 1;
+		game->enemy.forx_count += 1;
 		if (game->enemy.distance < hypo_tmp)
 		{
-			game->enemy.e_wall_x = game->img.enemy_x * game->enemy.count / game->enemy.width;
+			game->enemy.e_wall_x = game->img.enemy_x * game->enemy.forx_count / game->enemy.width;
 			a = 0;
 			cnt = 0;
 			while ((double)a < (150 / game->enemy.distance) * (SCREEN_LEN / 2))

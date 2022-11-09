@@ -6,6 +6,7 @@ int find_wall_vertical_four(double hor, double ver, t_game *game, double ray_cou
 	ver /= 100;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+		printf("lala 4\n");
 		if (ray_counter == 1920)
 			bottom_right(game, ray_counter - 1);
 		else
@@ -32,6 +33,7 @@ int find_wall_horizontal_four(double hor, double ver, t_game *game, double ray_c
 	ver /= 100;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+				printf("lala 4\n");
 		if (ray_counter == 1920)
 			bottom_right(game, ray_counter - 1);
 		else

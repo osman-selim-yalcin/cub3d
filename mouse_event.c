@@ -27,13 +27,9 @@ int hook_event(t_game *game)
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 	get_enemy(game);
-	if (0 > game->enemy.pixel - game->enemy.width / 2 && 0 < game->enemy.pixel + game->enemy.width / 2)
-	{
-		game->enemy.count -= game->enemy.pixel - game->enemy.width / 2;
-	}
+	enemy_walk(game);
 	start(game);
 	display_minimap(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
-	game->enemy.count = 0;
 	return (0);
 }

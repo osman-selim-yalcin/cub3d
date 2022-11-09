@@ -125,6 +125,7 @@ void fill_struct_enemy(t_game *game)
 {
 	game->enemy.posx = game->player.pos_x - 200;
 	game->enemy.posy = game->player.pos_y + 300;
+	game->enemy.alive = 1;
 }
 
 

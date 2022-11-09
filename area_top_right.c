@@ -6,6 +6,7 @@ int find_wall_vertical_one(double hor, double ver, t_game *game, double ray_coun
 	ver /= 100;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+				printf("lala 1\n");
 		if (ray_counter == 1920)
 			top_right(game, ray_counter - 1);
 		else
@@ -32,6 +33,7 @@ int find_wall_horizontal_one(double hor, double ver, t_game *game, double ray_co
 	ver /= 100;
 	if ((int)ver % 100 == 0 && (int)hor % 100 == 0)
 	{
+		printf("lala 1\n");
 		if (ray_counter == 1920)
 			top_right(game, ray_counter - 1);
 		else
