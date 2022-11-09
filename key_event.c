@@ -41,6 +41,24 @@ void key_e(t_game *game)
 	}
 }
 
+void	set_enemy_mini_position(t_game *game)
+{
+	t_enemy *current_enemy;
+
+	current_enemy = game->enemy;
+	while (current_enemy != NULL)
+	{
+		if (current_enemy->alive == 0)
+		{
+			current_enemy = current_enemy->next;
+			continue ;
+		}
+		current_enemy->mini_x = (current_enemy->posx - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
+		current_enemy->mini_y = current_enemy->posy / 100 * game->settings.minimap_scale;
+		current_enemy = current_enemy->next;
+	}
+}
+
 void	synchronize_settings(t_game *game)
 {
 	game->settings.step_size = game->settings.minimap_scale / 10;
@@ -50,7 +68,6 @@ void	synchronize_settings(t_game *game)
 	game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
 	game->minimap.pos_x = (game->player.pos_x - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
-
 }
 
 int key_event(int keycode, t_game *game)

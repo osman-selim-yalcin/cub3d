@@ -19,7 +19,7 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 		tmp_enemy = game->enemy;
 		while (tmp_enemy->next != NULL)
 		{
-			tmp_enemy = game->enemy->next;
+			tmp_enemy = tmp_enemy->next;
 		}
 		tmp_enemy->next = malloc(sizeof(t_enemy));
 		tmp_enemy->next->posx = 100 * (coor_x + 1) + 50;
@@ -27,6 +27,7 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 		tmp_enemy->next->alive = 1;
 		tmp_enemy->next->head = game->enemy;
 		tmp_enemy->next->next = NULL;
+		printf("deneme\n");
 	}
 }
 

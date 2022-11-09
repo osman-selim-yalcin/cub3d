@@ -102,12 +102,12 @@ void enemy_walk(t_game *game)
 			game->enemy->middle += M_PI;
 			if (game->enemy->middle > 2 * M_PI)
 				game->enemy->middle -= 2 * M_PI;
-			offset = game->enemy->posx + round_double(5 * (cos(game->enemy->middle)));
+			offset = game->enemy->posx + round_double(2 * (cos(game->enemy->middle)));
 			if (enemy_collision(game, offset,game->enemy->posy))
 			{
 				game->enemy->posx = offset;
 			}
-			offset = game->enemy->posy - round_double(5 * (sin(game->enemy->middle)));
+			offset = game->enemy->posy - round_double(2 * (sin(game->enemy->middle)));
 			if (enemy_collision(game, game->enemy->posx, offset))
 			{
 				game->enemy->posy = offset;

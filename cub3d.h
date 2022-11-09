@@ -128,8 +128,10 @@ typedef struct s_libx
 
 typedef struct s_enemy
 {
-	int posx;
-	int posy;
+	float posx;
+	float posy;
+	float	mini_x;
+	float	mini_y;
 	double start;
 	double middle;
 	double distance;
@@ -239,6 +241,7 @@ void bottom_right(t_game *game, double ray_counter);
 //key_event.c
 int key_event(int keycode, t_game *game);
 void key_e(t_game *game);
+void	set_enemy_mini_position(t_game *game);
 
 //keys.c
 void key_a(t_game *game);
