@@ -43,33 +43,40 @@ void pixelput(t_game *game, double hypo_tmp, double ray_counter)
 	}
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), wall, start);
 
+	t_enemy *tmp_enemy;
 
-	if (ray_counter > game->enemy.pixel - (game->enemy.width / 2) && ray_counter < game->enemy.pixel + (game->enemy.width / 2))
+	tmp_enemy = game->enemy;
+	while (game->enemy)
 	{
-		game->enemy.forx_count += 1;
-		if (game->enemy.distance < hypo_tmp)
+		if (ray_counter > game->enemy->pixel - (game->enemy->width / 2) && ray_counter < game->enemy->pixel + (game->enemy->width / 2))
 		{
-			game->enemy.e_wall_x = game->img.enemy_x * game->enemy.forx_count / game->enemy.width;
-			a = 0;
-			cnt = 0;
-			while ((double)a < (150 / game->enemy.distance) * (SCREEN_LEN / 2))
-				a++;
-			if (a % 2 == 1)
-				a++;
-			start = (SCREEN_LEN - a) / 2;
-			while (cnt < a)
+			game->enemy->forx_count += 1;
+			if (game->enemy->distance < hypo_tmp)
 			{
-				if ((start + cnt < SCREEN_LEN && start + cnt >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID))
+				game->enemy->e_wall_x = game->img.enemy_x * game->enemy->forx_count / game->enemy->width;
+				a = 0;
+				cnt = 0;
+				while ((double)a < (150 / game->enemy->distance) * (SCREEN_LEN / 2))
+					a++;
+				if (a % 2 == 1)
+					a++;
+				start = (SCREEN_LEN - a) / 2;
+				while (cnt < a)
 				{
-					game->enemy.e_wall_y = cnt * game->img.enemy_y / a;
-					my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->enemy.e_wall_x, game->enemy.e_wall_y, 5));
+					if ((start + cnt < SCREEN_LEN && start + cnt >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID))
+					{
+						game->enemy->e_wall_y = cnt * game->img.enemy_y / a;
+						my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5));
+					}
+					if (start + cnt >= SCREEN_LEN)
+						break;
+					cnt++;
 				}
-				if (start + cnt >= SCREEN_LEN)
-					break;
-				cnt++;
 			}
 		}
+		game->enemy = game->enemy->next;
 	}
+	game->enemy = tmp_enemy;
 }
 
 void put_floorceil(t_game *game, int x, int wall, int start)

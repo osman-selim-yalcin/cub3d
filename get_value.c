@@ -121,14 +121,6 @@ void	set_scale_factor(t_game *game)
 	game->minimap.shift_y = 0;
 }
 
-void fill_struct_enemy(t_game *game)
-{
-	game->enemy.posx = game->player.pos_x - 200;
-	game->enemy.posy = game->player.pos_y + 300;
-	game->enemy.alive = 1;
-}
-
-
 void	get_value(t_game *game)
 {
 	find_first_empty_columns(game);
@@ -137,6 +129,5 @@ void	get_value(t_game *game)
 	fill_struct_libx_and_img(game);
 	game_settings(game);
 	fill_struct_minimap(game);
-	fill_struct_enemy(game);
 }
 
