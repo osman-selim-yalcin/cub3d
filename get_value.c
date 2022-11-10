@@ -73,6 +73,9 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.ceil_img = mlx_xpm_file_to_image(game->libx.mlx, "images/0.xpm", &game->img.ceilx, &game->img.ceily);
 	game->img.ceil_addr = mlx_get_data_addr(game->img.ceil_img, &game->img.ceil_bits_per_pixel, &game->img.ceil_line_length, &game->img.ceil_endian);
 
+	game->img.door_img = mlx_xpm_file_to_image(game->libx.mlx, "images/door.xpm", &game->img.door_x, &game->img.door_y);
+	game->img.door_addr = mlx_get_data_addr(game->img.door_img, &game->img.door_bits_per_pixel, &game->img.door_line_length, &game->img.door_endian);
+
 	game->img.wall_y = 0;
 	game->img.wall_x = 0;
 	game->img.ceil_index_x = 0;

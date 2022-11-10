@@ -125,6 +125,16 @@ typedef struct s_img
 	int ceil_index_x;
 	int ceil_index_y;
 
+	void	*door_img;
+	void	*door_addr;
+	int		door_bits_per_pixel;
+	int		door_line_length;
+	int		door_endian;
+	int		door_x;
+	int		door_y;
+	int door_index_x;
+	int door_index_y;
+
 	unsigned int which_wall;
 	unsigned int wall_x;
 	unsigned int wall_y;
@@ -261,6 +271,9 @@ void enemy_walk(t_game *game);
 int enemy_collision(t_game *game, float x, float y);
 void enemy_print(t_game *game, int ray_counter, int hypo_tmp);
 
+//event_door_key.c
+void key_e(t_game *game);
+
 //event_hook.c
 int hook_event(t_game *game);
 void	set_idle_state(t_game *game);
@@ -274,7 +287,6 @@ void key_s(t_game *game);
 
 //event_keys.c
 int key_event(int keycode, t_game *game);
-void key_e(t_game *game);
 void	synchronize_settings(t_game *game);
 
 //event_kill.c

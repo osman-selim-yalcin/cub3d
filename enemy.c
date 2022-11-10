@@ -21,11 +21,11 @@ int enemy_collision(t_game *game, float x, float y)
 	{
 		return (0);
 	}
-	if (game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != '1')
+	if (game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != 'C')
 	{
-		if (game->map.map[(int)(y + 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x + 20)/ 100] != '1')
+		if (game->map.map[(int)(y + 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y + 20)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y + 20)/ 100][(int)(x + 20)/ 100] != 'C')
 		{
-			if (game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != '1')
+			if (game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != 'C')
 			{
 				return (1);
 			}
@@ -87,7 +87,6 @@ void get_enemy(t_game *game)
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp_enemy;
-
 	while (tmp_enemy)
 	{
 		tmp_enemy->id = tmp_enemy->head->enemy_count;
@@ -141,7 +140,7 @@ void enemy_print(t_game *game, int ray_counter, int hypo_tmp)
 	
 	tmp_enemy = game->enemy;
 	o = 1;
-	while (o < tmp_enemy->head->enemy_count + 1)
+	while (tmp_enemy && o < tmp_enemy->head->enemy_count + 1)
 	{
 		while (game->enemy->id != o && game->enemy->next)
 			game->enemy = game->enemy->next;

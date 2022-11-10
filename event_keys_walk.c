@@ -15,11 +15,11 @@ int player_collision(t_game *game, float x, float y)
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp_enemy;
-	if (game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != '1')
+	if (game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != 'C')
 	{
-		if (game->map.map[(int)(y + 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x + 20)/ 100] != '1')
+		if (game->map.map[(int)(y + 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y + 20)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y + 20)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y + 20)/ 100][(int)(x + 20)/ 100] != 'C')
 		{
-			if (game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != '1')
+			if (game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != 'C')
 			{
 				return (1);
 			}

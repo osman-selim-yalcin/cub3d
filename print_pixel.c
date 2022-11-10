@@ -28,6 +28,8 @@ void pixelput(t_game *game, double hypo, double ray_counter)
 		t = game->img.south_y;
 	if (game->img.which_wall == 4)
 		t = game->img.east_y;
+	if (game->img.which_wall == 7)
+		t = game->img.door_y;
 	if (start < 0)
 	{
 		cnt = -start;

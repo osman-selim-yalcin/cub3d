@@ -24,6 +24,10 @@ int find_wall_vertical_four(double hor, double ver, t_game *game, double ray_cou
 	{
 		return (1);
 	}
+	if (game->map.map[(int)(ver)][(int)(hor)] == 'C')
+	{
+		return (3);
+	}
 	return (0);
 }
 
@@ -51,6 +55,10 @@ int find_wall_horizontal_four(double hor, double ver, t_game *game, double ray_c
 	{
 		return (1);
 	}
+	if (game->map.map[(int)(ver)][(int)(hor)] == 'C')
+	{
+		return (3);
+	}
 	return (0);
 }
 
@@ -73,6 +81,12 @@ void bottom_right(t_game *game, double ray_counter)
 				game->img.which_wall = 2;
 				hypo = hypot(y, hor);
 			}
+			if (find_wall_vertical_four(game->player.pos_x + hor, game->player.pos_y + y, game, ray_counter) == 3)
+			{
+				game->img.wall_x = game->img.door_x * ((int)((game->player.pos_y + y) * 100) % 10000) / 10000;
+				game->img.which_wall = 7;
+				hypo = hypot(y, hor);
+			}
 			break;
 		}
 		hor += 100;
@@ -86,8 +100,16 @@ void bottom_right(t_game *game, double ray_counter)
 	}
 	if (hypo > hypot(y, ver) || hypo == 0)
 	{
-		game->img.wall_x = game->img.north_x * ((int)((game->player.pos_x + y) * 100) % 10000) / 10000;
-		game->img.which_wall = 1;
+		if (find_wall_horizontal_four(game->player.pos_x + y, game->player.pos_y + ver, game, ray_counter) == 3)
+		{
+			game->img.wall_x = game->img.door_x * ((int)((game->player.pos_x + y) * 100) % 10000) / 10000;
+			game->img.which_wall = 7;
+		}
+		else
+		{
+			game->img.wall_x = game->img.north_x * ((int)((game->player.pos_x + y) * 100) % 10000) / 10000;
+			game->img.which_wall = 1;
+		}
 		hypo = hypot(y,ver);
 	}
 	hypo = hypo * fabs(cos(deg_to_rad(game->player.ray_abs - game->player.direction)));
