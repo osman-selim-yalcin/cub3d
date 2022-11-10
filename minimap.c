@@ -110,6 +110,24 @@ void draw_ray(t_game *game, float ray_len)
 	}
 }
 
+void	set_enemy_mini_position(t_game *game)
+{
+	t_enemy *current_enemy;
+
+	current_enemy = game->enemy;
+	while (current_enemy != NULL)
+	{
+		if (current_enemy->alive == 0)
+		{
+			current_enemy = current_enemy->next;
+			continue ;
+		}
+		current_enemy->mini_x = (current_enemy->posx - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
+		current_enemy->mini_y = current_enemy->posy / 100 * game->settings.minimap_scale;
+		current_enemy = current_enemy->next;
+	}
+}
+
 void display_minimap(t_game *game)
 {
 	set_enemy_mini_position(game);

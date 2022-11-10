@@ -28,7 +28,6 @@ int player_collision(t_game *game, float x, float y)
 	return (0);
 }
 
-
 void key_a(t_game *game)
 {
 	game->player.direction += 90;

@@ -1,17 +1,5 @@
 #include "cub3d.h"
 
-// int is_this_xpm(char *texture)
-// {
-// 	int a;
-
-// 	a = 0;
-// 	while (texture[a] != '\0' && texture[a] != ' ' && texture[a] != '\n')
-// 		a++;
-// 	if (texture[a - 1] == 'p' && texture[a - 2] == 'm' && texture[a - 3] == 'x' && texture[a - 4] == '.')
-// 		return (1);
-// 	return (0);
-// }
-
 int is_xpm_exist(t_game *game, char *texture, int i)
 {
 	int fd;
@@ -64,7 +52,5 @@ int get_xpm_files(t_game *game, char *texture, int i)
 		a++;
 	if (is_xpm_exist(game, texture + a, i))
 		return (1);
-	// if (is_this_xpm(texture + a))
-		// return (1);
 	return (0);
 }
