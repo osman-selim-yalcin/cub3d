@@ -69,8 +69,14 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.enemy_img[6] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle7.xpm",  &game->img.enemy_x, &game->img.enemy_y);
 	game->img.enemy_addr[6] = mlx_get_data_addr(game->img.enemy_img[6], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
 
+
+	game->img.ceil_img = mlx_xpm_file_to_image(game->libx.mlx, "images/0.xpm", &game->img.ceilx, &game->img.ceily);
+	game->img.ceil_addr = mlx_get_data_addr(game->img.ceil_img, &game->img.ceil_bits_per_pixel, &game->img.ceil_line_length, &game->img.ceil_endian);
+
 	game->img.wall_y = 0;
 	game->img.wall_x = 0;
+	game->img.ceil_index_x = 0;
+	game->img.ceil_index_y = 0;
 	game->img.which_wall = 0;
 }
 

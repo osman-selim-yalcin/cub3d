@@ -115,6 +115,16 @@ typedef struct s_img
 	int bits_per_pixel;
 	int endian;
 
+	void *ceil_img;
+	void *ceil_addr;
+	int		ceil_bits_per_pixel;
+	int		ceil_line_length;
+	int		ceil_endian;
+	int ceilx;
+	int ceily;
+	int ceil_index_x;
+	int ceil_index_y;
+
 	unsigned int which_wall;
 	unsigned int wall_x;
 	unsigned int wall_y;
