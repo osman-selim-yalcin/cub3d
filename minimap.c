@@ -90,7 +90,7 @@ void	draw_enemies(t_game *game)
 			y = 0;
 			while (y < game->settings.player_size)
 			{
-				my_mlx_pixel_put(game, current_enemy->mini_x + x - game->settings.player_size / 2 + game->minimap.shift_x, current_enemy->mini_y + y - game->settings.player_size / 2 + game->minimap.shift_y, 0x000000FF);
+				my_mlx_pixel_put(game, current_enemy->mini_x + x - game->settings.player_size / 2 + game->minimap.shift_x, current_enemy->mini_y + y - game->settings.player_size / 2 + game->minimap.shift_y, 0x03B6FC);
 				++y;
 			}
 			++x;
