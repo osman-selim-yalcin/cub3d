@@ -253,6 +253,10 @@ void key_w(t_game *game);
 void key_s(t_game *game);
 int player_collision(t_game *game, float x, float y);
 
+//kill_event.c
+void	kill_all(t_game *game);
+void	revive_all(t_game *game);
+
 //mouse_move.c
 int mouse_move(int x, int y, t_game *game);
 int hook_event(t_game *game);
