@@ -14,12 +14,12 @@ int enemy_collision(t_game *game, float x, float y)
 			tmp_enemy = tmp_enemy->next;
 		}
 		if (hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 20)
-			return (0);
+			return (1);
 		tmp_enemy = tmp_enemy->next;
 	}
 	if (hypot(x - game->player.pos_x, y - game->player.pos_y) < 80)
 	{
-		return (0);
+		return (2);
 	}
 	if (game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != 'C')
 	{
@@ -27,13 +27,51 @@ int enemy_collision(t_game *game, float x, float y)
 		{
 			if (game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y - 20)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y - 20)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y - 20)/ 100][(int)(x + 20)/ 100] != 'C')
 			{
-				return (1);
+				return (0);
 			}
 		}
 	}
-	return (0);
+	return (1);
 }
 
+void enemy_walk(t_game *game)
+{
+	t_enemy *tmp_enemy;
+	int x_collision;
+	int	y_collision;
+	float offset;
+
+	tmp_enemy = game->enemy;
+	while (game->enemy)
+	{
+		if (game->enemy->alive)
+		{
+			game->enemy->middle += M_PI;
+			if (game->enemy->middle > 2 * M_PI)
+				game->enemy->middle -= 2 * M_PI;
+			x_collision = enemy_collision(game, game->enemy->posx + round_double(5 * (cos(game->enemy->middle))), game->enemy->posy);
+			y_collision = enemy_collision(game, game->enemy->posx, game->enemy->posy - round_double(5 * (sin(game->enemy->middle))));
+			if ((x_collision == 2 || y_collision == 2) && game->enemy->attack_state == -1)
+			{
+				game->enemy->attack_state = 0;
+				game->enemy = game->enemy->next;
+				continue ;
+			}
+			offset = game->enemy->posx + round_double(5 * (cos(game->enemy->middle)));
+			if (!enemy_collision(game, offset,game->enemy->posy))
+			{
+				game->enemy->posx = offset;
+			}
+			offset = game->enemy->posy - round_double(5 * (sin(game->enemy->middle)));
+			if (!enemy_collision(game, game->enemy->posx, offset))
+			{
+				game->enemy->posy = offset;
+			}
+		}
+		game->enemy = game->enemy->next;
+	}
+	game->enemy = tmp_enemy;
+}
 
 void get_enemy(t_game *game)
 {
@@ -101,35 +139,6 @@ void get_enemy(t_game *game)
 	}
 }
 
-void enemy_walk(t_game *game)
-{
-	t_enemy *tmp_enemy;
-
-	tmp_enemy = game->enemy;
-	while (game->enemy)
-	{
-		if (game->enemy->alive)
-		{
-			float offset;
-			game->enemy->middle += M_PI;
-			if (game->enemy->middle > 2 * M_PI)
-				game->enemy->middle -= 2 * M_PI;
-			offset = game->enemy->posx + round_double(5 * (cos(game->enemy->middle)));
-			if (enemy_collision(game, offset,game->enemy->posy))
-			{
-				game->enemy->posx = offset;
-			}
-			offset = game->enemy->posy - round_double(5 * (sin(game->enemy->middle)));
-			if (enemy_collision(game, game->enemy->posx, offset))
-			{
-				game->enemy->posy = offset;
-			}
-		}
-		game->enemy = game->enemy->next;
-	}
-	game->enemy = tmp_enemy;
-}
-
 void enemy_print(t_game *game, int ray_counter, int hypo_tmp)
 {
 	int cnt;
@@ -164,7 +173,7 @@ void enemy_print(t_game *game, int ray_counter, int hypo_tmp)
 						if ((start + cnt < SCREEN_LEN && start + cnt >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID))
 						{
 							game->enemy->e_wall_y = cnt * game->img.enemy_y / a;
-							if (take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5) != (unsigned int)-16777216)
+							if (take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5) != (unsigned int)-16777216) // can be optimized
 							{
 								my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5));
 							}

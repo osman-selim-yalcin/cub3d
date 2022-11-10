@@ -100,11 +100,13 @@ typedef struct s_img
 	int		west_x;
 	int		west_y;
 
-	void 	*enemy_img[7];
-	void 	*enemy_addr[7];
-	int		enemy_bits_per_pixel;
-	int		enemy_line_length;
-	int		enemy_endian;
+	void 	*enemy_idle_img[7];
+	void 	*enemy_idle_addr[7];
+	void	*enemy_attack_img[4];
+	void	*enemy_attack_addr[4];
+	int		enemy_bits_per_pixel[2];
+	int		enemy_line_length[2];
+	int		enemy_endian[2];
 	int		enemy_x;
 	int		enemy_y;
 
@@ -165,6 +167,9 @@ typedef struct s_enemy
 	struct s_enemy	*head;
 	int enemy_count;
 	int id;
+	short int	attack_state;
+	short int	frame_counter;
+	int			sleep;
 }	t_enemy;
 
 

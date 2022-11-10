@@ -54,20 +54,30 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.east_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.east_wall, &game->img.east_x, &game->img.east_y);
 	game->img.east_addr = mlx_get_data_addr(game->img.east_img, &game->img.east_bits_per_pixel, &game->img.east_line_length, &game->img.east_endian);
 
-	game->img.enemy_img[0] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle1.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_addr[0] = mlx_get_data_addr(game->img.enemy_img[0], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
-	game->img.enemy_img[1] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle2.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_addr[1] = mlx_get_data_addr(game->img.enemy_img[1], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
-	game->img.enemy_img[2] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle3.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_addr[2] = mlx_get_data_addr(game->img.enemy_img[2], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
-	game->img.enemy_img[3] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle4.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_addr[3] = mlx_get_data_addr(game->img.enemy_img[3], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
-	game->img.enemy_img[4] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle5.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_addr[4] = mlx_get_data_addr(game->img.enemy_img[4], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
-	game->img.enemy_img[5] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle6.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_addr[5] = mlx_get_data_addr(game->img.enemy_img[5], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
-	game->img.enemy_img[6] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle7.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_addr[6] = mlx_get_data_addr(game->img.enemy_img[6], &game->img.enemy_bits_per_pixel, &game->img.enemy_line_length, &game->img.enemy_endian);
+	game->img.enemy_idle_img[0] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle1.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_idle_addr[0] = mlx_get_data_addr(game->img.enemy_idle_img[0], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_img[1] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle2.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_idle_addr[1] = mlx_get_data_addr(game->img.enemy_idle_img[1], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_img[2] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle3.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_idle_addr[2] = mlx_get_data_addr(game->img.enemy_idle_img[2], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_img[3] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle4.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_idle_addr[3] = mlx_get_data_addr(game->img.enemy_idle_img[3], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_img[4] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle5.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_idle_addr[4] = mlx_get_data_addr(game->img.enemy_idle_img[4], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_img[5] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle6.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_idle_addr[5] = mlx_get_data_addr(game->img.enemy_idle_img[5], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_img[6] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle7.xpm",  &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_idle_addr[6] = mlx_get_data_addr(game->img.enemy_idle_img[6], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	
+	
+	game->img.enemy_attack_img[0] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/shriek/shriek1.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_attack_addr[0] = mlx_get_data_addr(game->img.enemy_attack_img[0], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_attack_img[1] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/shriek/shriek2.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_attack_addr[1] = mlx_get_data_addr(game->img.enemy_attack_img[1], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_attack_img[2] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/shriek/shriek3.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_attack_addr[2] = mlx_get_data_addr(game->img.enemy_attack_img[2], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_attack_img[3] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/shriek/shriek4.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_attack_addr[3] = mlx_get_data_addr(game->img.enemy_attack_img[3], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
 
 
 	game->img.ceil_img = mlx_xpm_file_to_image(game->libx.mlx, "images/0.xpm", &game->img.ceilx, &game->img.ceily);

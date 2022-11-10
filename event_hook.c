@@ -2,12 +2,36 @@
 
 void	set_idle_state(t_game *game)
 {
-	static int	counter;
+	static int	idle_counter;
 
-	game->enemy_idle_state = counter / 3;
-	++counter;
-	if (counter == 21)
-		counter = 0;
+	game->enemy_idle_state = idle_counter / 3;
+	++idle_counter;
+	if (idle_counter == 21)
+		idle_counter = 0;
+	
+
+	t_enemy *tmp;
+	tmp = game->enemy;
+	while (game->enemy)
+	{
+		if (game->enemy->attack_state != -1)
+		{
+			++game->enemy->frame_counter;
+			if (game->enemy->frame_counter <= 7)
+				game->enemy->attack_state = game->enemy->frame_counter / 4;
+			else if (game->enemy->frame_counter > 7 && game->enemy->frame_counter < 40)
+			{
+				game->enemy->attack_state = 2 + game->enemy->frame_counter % 2;
+			}
+			else
+			{
+				game->enemy->attack_state = -1;
+				game->enemy->frame_counter = 0;
+			}
+		}
+		game->enemy = game->enemy->next;
+	}
+	game->enemy = tmp;
 }
 
 int hook_event(t_game *game)
