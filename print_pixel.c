@@ -54,9 +54,11 @@ void put_floorceil(t_game *game, int x, int wall, int start)
 	int y;
 
 	y = 0;
+	game->img.ceil_index_x = game->img.ceilx * game->player.ray_abs / 360;	
 	while (y < start)
 	{
-		my_mlx_pixel_put(game, x, y, game->map.ceilling_rgb);
+		game->img.ceil_index_y = game->img.ceily *  y / (SCREEN_LEN);
+		my_mlx_pixel_put(game, x, y, take_texture(game, game->img.ceil_index_x, game->img.ceil_index_y, 6));
 		y++;
 	}
 	while (y + wall < SCREEN_LEN)

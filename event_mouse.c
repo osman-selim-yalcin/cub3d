@@ -24,7 +24,6 @@ int	temporary_killer(int code, int x, int y, t_game *game) // to be changed
 {
 	(void)x;
 	(void)y;
-	printf("code %d\n", code);
 	if (code == 1)
 	{
 		kill_all(game);
@@ -33,5 +32,6 @@ int	temporary_killer(int code, int x, int y, t_game *game) // to be changed
 	{
 		revive_all(game);
 	}
+	printf("code %d\n", code);
 	return (0);
 }

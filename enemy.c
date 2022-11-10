@@ -78,8 +78,8 @@ void get_enemy(t_game *game)
 				k += 0.00001;
 
 			game->enemy->pixel = (float)SCREEN_WID * (k * (180 / M_PI)) / D_FOV;
-			while (game->enemy->pixel > SCREEN_WID * 5)
-				game->enemy->pixel -= SCREEN_WID * 6;
+			while (game->enemy->pixel > SCREEN_WID * (360 / D_FOV - 1))
+				game->enemy->pixel -= SCREEN_WID * (360 / D_FOV);
 
 			game->enemy->middle = middle;
 			game->enemy->forx_count = 0;

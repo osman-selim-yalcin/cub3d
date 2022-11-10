@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	draw_weapon(t_game *game)
+void	draw_weapon(t_game *game) //burak bu ne aga
 {
 	int		i;
 	int		j;

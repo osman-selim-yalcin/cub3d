@@ -19,7 +19,15 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall)
 	{
 		dst = game->img.east_addr + (y * game->img.east_line_length + x * (game->img.east_bits_per_pixel / 8));
 	}
-	else  //enemy
+	else if (which_wall == 5) //enemy
+	{
+		dst = game->img.enemy_addr[game->enemy_idle_state] + (y * game->img.enemy_line_length + x * (game->img.enemy_bits_per_pixel / 8));
+	}
+	else if (which_wall == 6) // ceil
+	{
+		dst = game->img.ceil_addr + (y * game->img.ceil_line_length + x * (game->img.ceil_bits_per_pixel / 8));	
+	}
+	else
 	{
 		dst = game->img.enemy_addr[game->enemy_idle_state] + (y * game->img.enemy_line_length + x * (game->img.enemy_bits_per_pixel / 8));
 	}
