@@ -12,7 +12,7 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 		game->enemy->alive = 1;
 		game->enemy->next = NULL;
 		game->enemy->head = game->enemy;
-		game->enemy->enemy_count = 1;
+		game->enemy_count = 1;
 		game->enemy->attack_state = -1;
 		game->enemy->frame_counter = 0;
 	}
@@ -29,7 +29,7 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 		tmp_enemy->next->alive = 1;
 		tmp_enemy->next->head = game->enemy;
 		tmp_enemy->next->next = NULL;
-		++game->enemy->head->enemy_count;
+		++game->enemy_count;
 		tmp_enemy->next->attack_state = -1;
 		tmp_enemy->next->frame_counter = 0;
 	}

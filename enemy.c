@@ -127,7 +127,7 @@ void get_enemy(t_game *game)
 	game->enemy = tmp_enemy;
 	while (tmp_enemy)
 	{
-		tmp_enemy->id = tmp_enemy->head->enemy_count;
+		tmp_enemy->id = game->enemy_count;
 		while (game->enemy)
 		{
 			if (tmp_enemy->distance > game->enemy->distance)
@@ -142,16 +142,16 @@ void get_enemy(t_game *game)
 void enemy_print(t_game *game, int ray_counter, int hypo_tmp)
 {
 	int cnt;
-	int o;
+	int which_enemy;
 	int a;
 	int start;
 	t_enemy *tmp_enemy;
 	
 	tmp_enemy = game->enemy;
-	o = 1;
-	while (tmp_enemy && o < tmp_enemy->head->enemy_count + 1)
+	which_enemy = 1;
+	while (tmp_enemy && which_enemy < game->enemy_count + 1)
 	{
-		while (game->enemy->id != o && game->enemy->next)
+		while (game->enemy->id != which_enemy && game->enemy->next)
 			game->enemy = game->enemy->next;
 		if (game->enemy->alive)
 		{
@@ -168,16 +168,16 @@ void enemy_print(t_game *game, int ray_counter, int hypo_tmp)
 					if (a % 2 == 1)
 						a++;
 					start = (SCREEN_LEN - a) / 2;
+					start += game->mouse_horizontal;
+					if (start < 0)
+						cnt = -start;
 					while (cnt < a)
 					{
 						if ((start + cnt < SCREEN_LEN && start + cnt >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID))
 						{
 							game->enemy->e_wall_y = cnt * game->img.enemy_y / a;
 							if (take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5) != (unsigned int)-16777216) // can be optimized
-							{
 								my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + cnt, take_texture(game, game->enemy->e_wall_x, game->enemy->e_wall_y, 5));
-							}
-							
 						}
 						if (start + cnt >= SCREEN_LEN)
 							break;
@@ -186,7 +186,7 @@ void enemy_print(t_game *game, int ray_counter, int hypo_tmp)
 				}
 			}
 		}
-		o++;
+		which_enemy++;
 		game->enemy = tmp_enemy;
 	}
 	game->enemy = tmp_enemy;

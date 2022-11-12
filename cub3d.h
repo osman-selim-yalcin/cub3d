@@ -165,7 +165,6 @@ typedef struct s_enemy
 	short int alive;
 	struct s_enemy	*next;
 	struct s_enemy	*head;
-	int enemy_count;
 	int id;
 	short int	attack_state;
 	short int	frame_counter;
@@ -191,6 +190,8 @@ typedef struct s_game
 	t_settings	settings;
 	t_enemy		*enemy;
 	short int	enemy_idle_state;
+	short int	enemy_count;
+	int		mouse_horizontal;
 }			t_game;
 
 //area__start.c

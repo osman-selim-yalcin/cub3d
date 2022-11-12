@@ -2,7 +2,11 @@
 
 int mouse_move(int x, int y, t_game *game)
 {
-	(void)y;
+	int b;
+	b = (y - 540) / 3;
+	if ((game->mouse_horizontal + b > -(SCREEN_LEN / 2)) && (game->mouse_horizontal + b < SCREEN_LEN / 2))
+		game->mouse_horizontal += b;
+
 	int a = SCREEN_WID / 2 - x;
 	game->player.direction += (int)SENS * (int)a / 20;
 	game->minimap.pa += deg_to_rad((int)SENS * (int)a / 20);
