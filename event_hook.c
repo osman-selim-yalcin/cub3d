@@ -27,6 +27,7 @@ void	set_idle_state(t_game *game)
 			{
 				game->enemy->attack_state = -1;
 				game->enemy->frame_counter = 0;
+				game->enemy->sleep = 70;
 			}
 		}
 		game->enemy = game->enemy->next;

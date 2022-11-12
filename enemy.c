@@ -44,7 +44,7 @@ void enemy_walk(t_game *game)
 	tmp_enemy = game->enemy;
 	while (game->enemy)
 	{
-		if (game->enemy->alive)
+		if (game->enemy->alive && game->enemy->sleep == 0)
 		{
 			game->enemy->middle += M_PI;
 			if (game->enemy->middle > 2 * M_PI)
@@ -68,6 +68,8 @@ void enemy_walk(t_game *game)
 				game->enemy->posy = offset;
 			}
 		}
+		else if (game->enemy->sleep != 0)
+			--game->enemy->sleep;
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp_enemy;
