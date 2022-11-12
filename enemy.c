@@ -71,6 +71,7 @@ void enemy_walk(t_game *game)
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp_enemy;
+
 }
 
 void get_enemy(t_game *game)

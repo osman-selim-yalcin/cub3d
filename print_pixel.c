@@ -45,29 +45,32 @@ void pixelput(t_game *game, double hypo, double ray_counter)
 		++a;
 		++real_wall;
 	}
-	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), real_wall, start);
+	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), real_wall, start, wall);
 	enemy_print(game, ray_counter, hypo);
 }
 
-void put_floorceil(t_game *game, int x, int wall, int start)
+void put_floorceil(t_game *game, int x, int real_wall, int start, int wall)
 {
 	int y;
+	int a;
 
-	y = 0;
+	a = start + wall / 2;
+	y = wall / 2;
 	game->img.ceil_index_x = game->img.ceilx * game->player.ray_abs / 360;	
-	while (y < start)
+	while (y < start + (wall / 2))
 	{
 		if (y >= SCREEN_LEN)
 			break;
-		game->img.ceil_index_y = game->img.ceily * y / (SCREEN_LEN);
+		game->img.ceil_index_y = (game->img.ceily * (SCREEN_LEN - y) / (SCREEN_LEN)) - 1;
 		if ((y < SCREEN_LEN && y >= 0) && (x >= 0 && x < SCREEN_WID))
-			my_mlx_pixel_put(game, x, y, take_texture(game, game->img.ceil_index_x, game->img.ceil_index_y, 6));
+			my_mlx_pixel_put(game, x, a - y, take_texture(game, game->img.ceil_index_x, game->img.ceil_index_y, 6));
 		y++;
 	}
-	while (y + wall < SCREEN_LEN)
+	y -= wall / 2;
+	while (y + real_wall < SCREEN_LEN)
 	{
 		if ((y < SCREEN_LEN && y >= 0) && (x >= 0 && x < SCREEN_WID))
-			my_mlx_pixel_put(game, x, y + wall, game->map.floor_rgb);
+			my_mlx_pixel_put(game, x, y + real_wall, game->map.floor_rgb);
 		y++;
 	}
 }

@@ -7,6 +7,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <string.h>
+# include <time.h>
 # include "minilibx/mlx.h"
 # define SCREEN_LEN 1080
 # define SCREEN_WID 1920
@@ -331,7 +332,7 @@ void draw_ray(t_game *game, float ray_len);
 //print_pixel.c
 void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	put_floorceil(t_game *game, int x, int wall, int start);
+void put_floorceil(t_game *game, int x, int real_wall, int start, int wall);
 
 //print_texture.c
 unsigned int take_texture(t_game *game, int x, int y, int which_wall);
