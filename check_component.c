@@ -25,7 +25,6 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 				game->player.direction = 180;
 			if (line[i] == 'E')
 				game->player.direction = 0;//BAKALIM
-			print_map(game->map.map);
 			game->map.player_count += 1;
 		}
 		++i;

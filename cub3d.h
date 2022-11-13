@@ -245,7 +245,7 @@ void key_e(t_game *game);
 
 //event_hook.c
 int hook_event(t_game *game);
-void	set_idle_state(t_game *game);
+void move(t_game *game);
 
 //event_keys_walk.c
 int player_collision(t_game *game, float x, float y);
@@ -255,10 +255,9 @@ void key_w(t_game *game);
 void key_s(t_game *game);
 
 //event_keys.c
-int key_event(int keycode, t_game *game);
+int key_event_down(int keycode, t_game *game);
 void	synchronize_settings(t_game *game);
-
-
+int key_event_up(int keycode, t_game *game);
 
 //event_mouse.c
 int mouse_move(int x, int y, t_game *game);
@@ -324,6 +323,4 @@ int	ray_angle(t_game *game);
 int	degree_angle(int degree);
 
 
-void move(t_game *game);
-int key_event_2(int keycode, t_game *game);
 #endif

@@ -44,8 +44,6 @@ void	get_door_position(t_game *game)
 	game->map.doors = malloc(sizeof(int *) * (game->map.door_number + 1));
 	counter = 0;
 	i = 0;
-	printf("%d\n", game->minimap.empty_column);
-	print_map(game->map.map);
 	while (game->map.map[i])
 	{
 		j = 0;
@@ -55,7 +53,6 @@ void	get_door_position(t_game *game)
 			{
 				game->map.doors[counter] = malloc(sizeof(int) * 2);
 				game->map.doors[counter][1] = 100 * (i) + 50;
-				printf("empty colum: %d\n", game->minimap.empty_column);
 				game->map.doors[counter][0] = 100 * (j) + 50;
 				++counter;
 			}
