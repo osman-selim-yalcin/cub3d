@@ -51,6 +51,8 @@ typedef struct s_map
 	int		total_row;
 	int		total_column;
 	int		player_count;
+	int		**doors;
+	int		door_number;
 }		t_map;
 
 typedef struct s_player
@@ -192,7 +194,9 @@ int	is_right_valid(char **map, int row, int column);
 int	check_all_twos(char **map);
 
 //check_door.c
-int	check_door_position(t_game *game);
+int		check_door_position(t_game *game);
+void	add_door_position(t_game *game);
+void	get_door_position(t_game *game);
 
 //check_file_xpm.c
 int is_xpm_exist(t_game *game,char *texture, int i);

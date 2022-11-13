@@ -30,5 +30,58 @@ int	check_door_position(t_game *game)
 		}
 		++i;
 	}
+	add_door_position(game);
+	get_door_position(game);
 	return (0);
+}
+
+void	get_door_position(t_game *game)
+{
+	int i;
+	int j;
+	int	counter;
+
+	game->map.doors = malloc(sizeof(int *) * (game->map.door_number + 1));
+	counter = 0;
+	i = 0;
+	while (game->map.map[i])
+	{
+		j = 0;
+		while (game->map.map[i][j])
+		{
+			if (game->map.map[i][j] == 'C')
+			{
+				game->map.doors[counter] = malloc(sizeof(int) * 2);
+				game->map.doors[counter][0] = 100 * (i + 1) + 50;
+				game->map.doors[counter][1] = 100 * (j + 1) + 50;
+				++counter;
+			}
+			++j;
+		}
+		++i;
+	}
+	game->map.doors[counter] = NULL;
+}
+
+void	add_door_position(t_game *game)
+{
+	int i;
+	int	j;
+
+	game->map.door_number = 0;
+	game->map.doors = NULL;
+	i = 0;
+	while (game->map.map[i])
+	{
+		j = 0;
+		while (game->map.map[i][j])
+		{
+			if (game->map.map[i][j] == 'C')
+			{
+				++game->map.door_number;
+			}
+			++j;
+		}
+		++i;
+	}
 }
