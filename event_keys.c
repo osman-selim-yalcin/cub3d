@@ -13,6 +13,7 @@ void	synchronize_settings(t_game *game)
 
 int key_event(int keycode, t_game *game)
 {
+	printf("keycode %d\n", keycode);
 	if (keycode == 123) // left
 	{
 		game->player.direction += 10;
@@ -27,7 +28,7 @@ int key_event(int keycode, t_game *game)
 		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
 		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
 	}
-	if (keycode == 124) // right
+	else if (keycode == 124) // right
 	{
 		game->player.direction -= 10;
 		if (game->player.direction < 0)
@@ -40,19 +41,31 @@ int key_event(int keycode, t_game *game)
 		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
 		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
 	}
-	if (keycode == 0) //5 yaptım çok hızlı gibiydi
+	else if (keycode == 126)
+	{
+		game->mouse_horizontal += 30;
+		if (game->mouse_horizontal > (SCREEN_LEN / 2))
+			game->mouse_horizontal = (SCREEN_LEN / 2);
+	}
+	else if (keycode == 125)
+	{
+		game->mouse_horizontal -= 30;
+		if (game->mouse_horizontal < -(SCREEN_LEN / 2))
+			game->mouse_horizontal = -(SCREEN_LEN / 2);
+	}
+	else if (keycode == 0) //5 yaptım çok hızlı gibiydi
 		key_a(game);
-	if (keycode == 2)//5 yaptım çok hızlı gibiydi
+	else if (keycode == 2)//5 yaptım çok hızlı gibiydi
 		key_d(game);
-	if (keycode == 13)
+	else if (keycode == 13)
 		key_w(game);
-	if (keycode == 1)
+	else if (keycode == 1)
 		key_s(game);
-	if (keycode == 53)
+	else if (keycode == 53)
 		tmp_exit();
-	if (keycode == 14)
+	else if (keycode == 14)
 		key_e(game);
-	if (keycode == 46) //m
+	else if (keycode == 46) //m
 	{
 		if (game->settings.minimap_scale == game->minimap.full_scale)
 		{
@@ -68,7 +81,7 @@ int key_event(int keycode, t_game *game)
 		}
 		synchronize_settings(game);
 	}
-	if (keycode == 53)
+	else if (keycode == 53)
 		tmp_exit();
 	return(0);
 }
