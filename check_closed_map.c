@@ -136,5 +136,7 @@ int	put_frame_to_map(t_game *game)
 	}
 	free_2d_char_arr(game->map.map);
 	game->map.map = tmp;
+	find_first_empty_columns(game);
+	find_last_empty_columns(game);
 	return (0);
 }

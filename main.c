@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/11/13 14:37:16 by osyalcin         ###   ########.fr       */
+/*   Updated: 2022/11/13 15:45:59 by bmat             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int main(int ac, char **av)
 		return (1);
 	get_value(&game);
 
+	// printf("door coor: %d, %d\n", game.map.doors[0][0], game.map.doors[0][1]);
+	// printf("player coor: %f, %f\n", game.player.pos_x, game.player.pos_y);
 	mlx_mouse_hide();
 	mlx_mouse_move(game.libx.win, SCREEN_WID / 2, SCREEN_LEN / 2);
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);

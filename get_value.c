@@ -132,8 +132,6 @@ void	set_scale_factor(t_game *game)
 
 void	get_value(t_game *game)
 {
-	find_first_empty_columns(game);
-	find_last_empty_columns(game);
 	set_scale_factor(game);
 	fill_struct_libx_and_img(game);
 	game_settings(game);
