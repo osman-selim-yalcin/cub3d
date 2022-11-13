@@ -13,7 +13,6 @@ void	synchronize_settings(t_game *game)
 
 int key_event(int keycode, t_game *game)
 {
-	printf("keycode %d\n", keycode);
 	if (keycode == 123) // left
 	{
 		game->player.direction += 10;

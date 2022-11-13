@@ -68,36 +68,6 @@ void draw_player(t_game *game)
 	}
 }
 
-void	draw_enemies(t_game *game)
-{
-	t_enemy *current_enemy;
-	int		x;
-	int		y;
-
-	current_enemy = game->enemy;
-	// if (current_enemy == NULL)
-	// 	return ;
-	while (current_enemy != NULL)
-	{
-		if (current_enemy->alive == 0)
-		{
-			current_enemy = current_enemy->next;
-			continue ;
-		}
-		x = 0;
-		while (x < game->settings.player_size)
-		{
-			y = 0;
-			while (y < game->settings.player_size)
-			{
-				my_mlx_pixel_put(game, current_enemy->mini_x + x - game->settings.player_size / 2 + game->minimap.shift_x, current_enemy->mini_y + y - game->settings.player_size / 2 + game->minimap.shift_y, 0x03B6FC);
-				++y;
-			}
-			++x;
-		}
-		current_enemy = current_enemy->next;
-	}
-}
 
 void draw_ray(t_game *game, float ray_len)
 {
@@ -110,29 +80,10 @@ void draw_ray(t_game *game, float ray_len)
 	}
 }
 
-void	set_enemy_mini_position(t_game *game)
-{
-	t_enemy *current_enemy;
-
-	current_enemy = game->enemy;
-	while (current_enemy != NULL)
-	{
-		if (current_enemy->alive == 0)
-		{
-			current_enemy = current_enemy->next;
-			continue ;
-		}
-		current_enemy->mini_x = (current_enemy->posx - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
-		current_enemy->mini_y = current_enemy->posy / 100 * game->settings.minimap_scale;
-		current_enemy = current_enemy->next;
-	}
-}
 
 void display_minimap(t_game *game)
 {
-	set_enemy_mini_position(game);
 	draw_map(game);
-	draw_enemies(game);
 	draw_player(game);
 	draw_ray(game, game->settings.ray_len);
 }

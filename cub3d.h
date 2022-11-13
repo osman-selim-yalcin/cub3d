@@ -101,32 +101,11 @@ typedef struct s_img
 	int		west_x;
 	int		west_y;
 
-	void 	*enemy_idle_img[7];
-	void 	*enemy_idle_addr[7];
-	void	*enemy_attack_img[4];
-	void	*enemy_attack_addr[4];
-	int		enemy_bits_per_pixel[2];
-	int		enemy_line_length[2];
-	int		enemy_endian[2];
-	int		enemy_x;
-	int		enemy_y;
-
-
 	void *img;
 	void *addr;
 	int	line_length;
 	int bits_per_pixel;
 	int endian;
-
-	void *ceil_img;
-	void *ceil_addr;
-	int		ceil_bits_per_pixel;
-	int		ceil_line_length;
-	int		ceil_endian;
-	int ceilx;
-	int ceily;
-	int ceil_index_x;
-	int ceil_index_y;
 
 	void	*door_img;
 	void	*door_addr;
@@ -149,30 +128,6 @@ typedef struct s_libx
 	void	*win;
 }			t_libx;
 
-typedef struct s_enemy
-{
-	float posx;
-	float posy;
-	float	mini_x;
-	float	mini_y;
-	double start;
-	double middle;
-	double distance;
-	unsigned int e_wall_x;
-	unsigned int e_wall_y;
-	int width;
-	int pixel;
-	float forx_count;
-	short int alive;
-	struct s_enemy	*next;
-	struct s_enemy	*head;
-	int id;
-	short int	attack_state;
-	short int	frame_counter;
-	int			sleep;
-}	t_enemy;
-
-
 typedef struct s_settings
 {
 	int		minimap_scale;
@@ -189,9 +144,6 @@ typedef struct s_game
 	t_img		img;
 	t_minimap	minimap;
 	t_settings	settings;
-	t_enemy		*enemy;
-	short int	enemy_idle_state;
-	short int	enemy_count;
 	int		mouse_horizontal;
 }			t_game;
 
@@ -231,7 +183,6 @@ int	put_frame_to_map(t_game *game);
 //check_component.c
 int		is_line_valid(t_game *game, char *line, int coor_y);
 int		check_component(t_game *game);
-void	append_enemy(t_game *game, int coor_y, int coor_x);
 
 //check_direction.c
 int	is_bottom_valid(char **map, int row, int column);
@@ -272,11 +223,6 @@ char	**append_2d_array(char **map, char *line);
 int		is_nl(t_game *game, char *line);
 void	free_2d_char_arr(char **ptr);
 
-//enemy.c
-void get_enemy(t_game *game);
-void enemy_walk(t_game *game);
-int enemy_collision(t_game *game, float x, float y);
-void enemy_print(t_game *game, int ray_counter, int hypo_tmp);
 
 //event_door_key.c
 void key_e(t_game *game);
@@ -296,16 +242,11 @@ void key_s(t_game *game);
 int key_event(int keycode, t_game *game);
 void	synchronize_settings(t_game *game);
 
-//event_kill.c
-void	kill_all(t_game *game);
-void	revive_all(t_game *game);
+
 
 //event_mouse.c
 int mouse_move(int x, int y, t_game *game);
-int	temporary_killer(int code, int x, int y, t_game *game); // to be changed
 
-//fps_sprite.c
-void	draw_weapon(t_game *game);
 
 //get_value.c
 void fill_struct_map(t_game *game, char **av);
@@ -322,7 +263,6 @@ int tmp_exit(void);
 int main(int ac, char **av);
 
 //minimap.c
-void	set_enemy_mini_position(t_game *game);
 void display_minimap(t_game *game);
 void draw_64(int x, int y, t_game *game);
 void draw_map(t_game *game);
@@ -332,7 +272,7 @@ void draw_ray(t_game *game, float ray_len);
 //print_pixel.c
 void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void put_floorceil(t_game *game, int x, int real_wall, int start, int wall);
+void put_floorceil(t_game *game, int x, int real_wall, int start);
 
 //print_texture.c
 unsigned int take_texture(t_game *game, int x, int y, int which_wall);
