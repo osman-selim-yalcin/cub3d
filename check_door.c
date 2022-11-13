@@ -54,8 +54,9 @@ void	get_door_position(t_game *game)
 			if (game->map.map[i][j] == 'C')
 			{
 				game->map.doors[counter] = malloc(sizeof(int) * 2);
-				game->map.doors[counter][1] = 100 * (i + 1) - 50;
-				game->map.doors[counter][0] = 100 * (j + 1) + 50 - ((game->minimap.empty_column) * 100);
+				game->map.doors[counter][1] = 100 * (i) + 50;
+				printf("empty colum: %d\n", game->minimap.empty_column);
+				game->map.doors[counter][0] = 100 * (j) + 50;
 				++counter;
 			}
 			else if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S' || game->map.map[i][j] == 'W' || game->map.map[i][j] == 'E')
