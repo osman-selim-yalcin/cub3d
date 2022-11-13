@@ -35,11 +35,8 @@ void pixelput(t_game *game, double hypo, double ray_counter)
 		a = -start;
 	while (a < wall)
 	{
-		if ((start + a < SCREEN_LEN && start + a >= 0) && (SCREEN_WID - 1 - (ray_counter) >= 0 && SCREEN_WID - 1 - (ray_counter) < SCREEN_WID))
-		{
-			game->img.wall_y = a * t / wall;
-			my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + a, take_texture(game, game->img.wall_x, game->img.wall_y, game->img.which_wall));
-		}
+		game->img.wall_y = a * t / wall;
+		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), start + a, take_texture(game, game->img.wall_x, game->img.wall_y, game->img.which_wall));
 		if (start + a >= SCREEN_LEN)
 			break;
 		++a;
@@ -57,14 +54,12 @@ void put_floorceil(t_game *game, int x, int real_wall, int start)
 	{
 		if (y >= SCREEN_LEN)
 			break;
-		if ((y < SCREEN_LEN && y >= 0) && (x >= 0 && x < SCREEN_WID))
-			my_mlx_pixel_put(game, x, y, game->map.ceilling_rgb);
+		my_mlx_pixel_put(game, x, y, game->map.ceilling_rgb);
 		y++;
 	}
 	while (y + real_wall < SCREEN_LEN)
 	{
-		if ((y < SCREEN_LEN && y >= 0) && (x >= 0 && x < SCREEN_WID))
-			my_mlx_pixel_put(game, x, y + real_wall, game->map.floor_rgb);
+		my_mlx_pixel_put(game, x, y + real_wall, game->map.floor_rgb);
 		y++;
 	}
 }
@@ -73,6 +68,10 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
+	if (!((y < SCREEN_LEN && y >= 0) && (x >= 0 && x < SCREEN_WID)))
+	{
+		return ;
+	}
 	dst = game->img.addr + (y * game->img.line_length + x * (game->img.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }

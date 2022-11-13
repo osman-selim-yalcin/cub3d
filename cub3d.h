@@ -151,23 +151,23 @@ typedef struct s_game
 void start(t_game *game);
 
 //area_top_right.c
-int find_wall_vertical_one(double hor, double ver, t_game *game, double ray_counter);
-int find_wall_horizontal_one(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_vertical_one(double hor, double ver, t_game *game);
+int find_wall_horizontal_one(double hor, double ver, t_game *game);
 void top_right(t_game *game, double ray_counter);
 
 //area_top_left.c
-int find_wall_vertical_two(double hor, double ver, t_game *game, double ray_counter);
-int find_wall_horizontal_two(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_vertical_two(double hor, double ver, t_game *game);
+int find_wall_horizontal_two(double hor, double ver, t_game *game);
 void top_left(t_game *game, double ray_counter);
 
 //area_bottom_left.c
 void bottom_left(t_game *game, double ray_counter);
-int find_wall_vertical_three(double hor, double ver, t_game *game, double ray_counter);
-int find_wall_horizontal_three(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_vertical_three(double hor, double ver, t_game *game);
+int find_wall_horizontal_three(double hor, double ver, t_game *game);
 
 //area_bottom_right.c
-int find_wall_vertical_four(double hor, double ver, t_game *game, double ray_counter);
-int find_wall_horizontal_four(double hor, double ver, t_game *game, double ray_counter);
+int find_wall_vertical_four(double hor, double ver, t_game *game);
+int find_wall_horizontal_four(double hor, double ver, t_game *game);
 void bottom_right(t_game *game, double ray_counter);
 
 //check_closed_map.c
