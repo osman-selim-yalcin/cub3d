@@ -4,6 +4,7 @@
 int	is_line_valid(t_game *game, char *line, int coor_y)
 {
 	int	i;
+	(void)coor_y;
 
 	if (line == NULL)
 		return (0);
@@ -24,8 +25,7 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 				game->player.direction = 180;
 			if (line[i] == 'E')
 				game->player.direction = 0;//BAKALIM
-			game->player.pos_x = 100 * (i + 1) + 50;
-			game->player.pos_y = 100 * (coor_y + 1) + 50;
+			print_map(game->map.map);
 			game->map.player_count += 1;
 		}
 		++i;

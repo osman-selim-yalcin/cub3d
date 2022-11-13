@@ -55,8 +55,13 @@ void	get_door_position(t_game *game)
 			{
 				game->map.doors[counter] = malloc(sizeof(int) * 2);
 				game->map.doors[counter][1] = 100 * (i + 1) - 50;
-				game->map.doors[counter][0] = 100 * (j + 1) + 50 - ((game->minimap.empty_column - 2) * 100);
+				game->map.doors[counter][0] = 100 * (j + 1) + 50 - ((game->minimap.empty_column) * 100);
 				++counter;
+			}
+			else if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S' || game->map.map[i][j] == 'W' || game->map.map[i][j] == 'E')
+			{
+				game->player.pos_x = 100 * (j) + 50;
+				game->player.pos_y = 100 * (i) + 50;
 			}
 			++j;
 		}
