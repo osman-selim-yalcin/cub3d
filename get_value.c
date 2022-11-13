@@ -67,6 +67,15 @@ void	game_settings(t_game *game)
 	game->settings.step_size = game->settings.minimap_scale / 10;
 	game->settings.player_size = game->settings.minimap_scale / 4;
 	game->settings.ray_len = 2 * game->settings.minimap_scale / 5;
+	game->settings.key_a = 0;
+	game->settings.key_w = 0;
+	game->settings.key_s = 0;
+	game->settings.key_d = 0;
+	game->settings.key_right = 0;
+	game->settings.key_left = 0;
+	game->settings.key_up = 0;
+	game->settings.key_down = 0;
+	game->mouse_horizontal = 0;
 }
 
 void	find_first_empty_columns(t_game *game)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmat <bmat@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: osyalcin <osyalcin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:11:12 by osyalcin          #+#    #+#             */
-/*   Updated: 2022/11/13 11:56:47 by bmat             ###   ########.fr       */
+/*   Updated: 2022/11/13 14:37:16 by osyalcin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int main(int ac, char **av)
 		return (1);
 	get_value(&game);
 
-	game.mouse_horizontal = 0;
 	mlx_mouse_hide();
 	mlx_mouse_move(game.libx.win, SCREEN_WID / 2, SCREEN_LEN / 2);
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);
-	mlx_hook(game.libx.win, 2, 1L << 0, key_event, &game); //0L ile farkı?
+	mlx_hook(game.libx.win, 2,  0, key_event, &game); //0L ile farkı?
+	mlx_hook(game.libx.win, 3,  0, key_event_2, &game); //0L ile farkı?
 	mlx_hook(game.libx.win, 6, 0L, mouse_move, &game);
 	mlx_hook(game.libx.win, 17, 0L, tmp_exit, &game);
 	mlx_loop(game.libx.mlx);

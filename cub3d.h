@@ -136,6 +136,14 @@ typedef struct s_settings
 	float	step_size;
 	float 	player_size;
 	float	ray_len;//tmp
+	int		key_a;
+	int		key_s;
+	int		key_d;
+	int		key_w;
+	int		key_left;
+	int		key_right;
+	int		key_up;
+	int		key_down;
 }	t_settings;
 
 typedef struct s_game
@@ -147,6 +155,7 @@ typedef struct s_game
 	t_minimap	minimap;
 	t_settings	settings;
 	int		mouse_horizontal;
+
 }			t_game;
 
 //area__start.c
@@ -315,5 +324,6 @@ int	ray_angle(t_game *game);
 int	degree_angle(int degree);
 
 
-
+void move(t_game *game);
+int key_event_2(int keycode, t_game *game);
 #endif

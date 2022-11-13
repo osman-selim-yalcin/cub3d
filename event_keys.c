@@ -13,58 +13,27 @@ void	synchronize_settings(t_game *game)
 
 int key_event(int keycode, t_game *game)
 {
-	if (keycode == 123) // left
-	{
-		game->player.direction += 10;
-		if (game->player.direction >= 360)
-			game->player.direction -= 360;
-		game->minimap.pa += 2 * M_PI / 36;
-		if (game->minimap.pa > 2 * M_PI)
-		{
-			game->minimap.pa -= 2 * M_PI;
-		}
-
-		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
-		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
-	}
-	else if (keycode == 124) // right
-	{
-		game->player.direction -= 10;
-		if (game->player.direction < 0)
-			game->player.direction += 360;
-		game->minimap.pa -= 2 * M_PI / 36;
-		if (game->minimap.pa < 0)
-		{
-			game->minimap.pa += 2 * M_PI;
-		}
-		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
-		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
-	}
+	if (keycode == 123)
+		game->settings.key_left = 1;
+	else if (keycode == 124)
+		game->settings.key_right = 1;
 	else if (keycode == 126)
-	{
-		game->mouse_horizontal += 30;
-		if (game->mouse_horizontal > (SCREEN_LEN / 2))
-			game->mouse_horizontal = (SCREEN_LEN / 2);
-	}
+		game->settings.key_up = 1;
 	else if (keycode == 125)
-	{
-		game->mouse_horizontal -= 30;
-		if (game->mouse_horizontal < -(SCREEN_LEN / 2))
-			game->mouse_horizontal = -(SCREEN_LEN / 2);
-	}
-	else if (keycode == 0) //5 yaptım çok hızlı gibiydi
-		key_a(game);
-	else if (keycode == 2)//5 yaptım çok hızlı gibiydi
-		key_d(game);
+		game->settings.key_down = 1;
+	else if (keycode == 0)
+		game->settings.key_a = 1;
+	else if (keycode == 2)
+		game->settings.key_d= 1;
 	else if (keycode == 13)
-		key_w(game);
+		game->settings.key_w = 1;
 	else if (keycode == 1)
-		key_s(game);
+		game->settings.key_s = 1;
 	else if (keycode == 53)
 		tmp_exit();
 	else if (keycode == 14)
 		key_e(game);
-	else if (keycode == 46) //m
+	else if (keycode == 46)
 	{
 		if (game->settings.minimap_scale == game->minimap.full_scale)
 		{
@@ -82,5 +51,27 @@ int key_event(int keycode, t_game *game)
 	}
 	else if (keycode == 53)
 		tmp_exit();
+	return(0);
+}
+
+int key_event_2(int keycode, t_game *game)
+{
+	if (keycode == 0)
+		game->settings.key_a = 0;
+	else if (keycode == 1)
+		game->settings.key_s = 0;
+	else if (keycode == 2)
+		game->settings.key_d= 0;
+	else if (keycode == 13)
+		game->settings.key_w = 0;
+	else if (keycode == 123)
+		game->settings.key_left = 0;
+	else if (keycode == 124)
+		game->settings.key_right = 0;
+	else if (keycode == 126)
+		game->settings.key_up = 0;
+	else if (keycode == 125)
+		game->settings.key_down = 0;
+	
 	return(0);
 }
