@@ -11,7 +11,7 @@ void	synchronize_settings(t_game *game)
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
 }
 
-int key_event(int keycode, t_game *game)
+int key_event_down(int keycode, t_game *game)
 {
 	if (keycode == 123)
 		game->settings.key_left = 1;
@@ -54,7 +54,7 @@ int key_event(int keycode, t_game *game)
 	return(0);
 }
 
-int key_event_2(int keycode, t_game *game)
+int key_event_up(int keycode, t_game *game)
 {
 	if (keycode == 0)
 		game->settings.key_a = 0;
