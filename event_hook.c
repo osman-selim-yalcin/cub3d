@@ -25,10 +25,10 @@ void move(t_game *game)
 		key_w(game);
 	if (game->settings.key_left == 1) //123
 	{
-		game->player.direction += 10;
+		game->player.direction += 3;
 		if (game->player.direction >= 360)
 			game->player.direction -= 360;
-		game->minimap.pa += 2 * M_PI / 36;
+		game->minimap.pa += 3 * M_PI / 180;
 		if (game->minimap.pa > 2 * M_PI)
 			game->minimap.pa -= 2 * M_PI;
 		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
@@ -36,10 +36,10 @@ void move(t_game *game)
 	}
 	if (game->settings.key_right == 1)
 	{
-		game->player.direction -= 10;
+		game->player.direction -= 3;
 		if (game->player.direction < 0)
 			game->player.direction += 360;
-		game->minimap.pa -= 2 * M_PI / 36;
+		game->minimap.pa -= 3 * M_PI / 180;
 		if (game->minimap.pa < 0)
 			game->minimap.pa += 2 * M_PI;
 		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
