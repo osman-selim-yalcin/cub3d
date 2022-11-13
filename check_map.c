@@ -160,6 +160,11 @@ int check_map(t_game *game, int ac)
 		printf("Map is not surrounded by walls\n");
 		return (1);
 	}
+	if (check_door_position(game))
+	{
+		printf("All doors must have only two empty sides.\n");
+		return (1);
+	}
 	if (check_partition(game))
 	{
 		printf("Map contains multiple parts that player cannot reach\n");

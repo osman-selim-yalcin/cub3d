@@ -191,6 +191,9 @@ int	is_left_valid(char **map, int row, int column);
 int	is_right_valid(char **map, int row, int column);
 int	check_all_twos(char **map);
 
+//check_door.c
+int	check_door_position(t_game *game);
+
 //check_file_xpm.c
 int is_xpm_exist(t_game *game,char *texture, int i);
 int get_xpm_files(t_game *game, char *texture, int i);

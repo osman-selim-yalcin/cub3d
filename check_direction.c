@@ -6,7 +6,7 @@ int	is_bottom_valid(char **map, int row, int column)
 		return (1);
 	if (map[row + 1][column] == '0' || map[row + 1][column] == 'N' || \
 		map[row + 1][column] == 'S' || map[row + 1][column] == 'E' || \
-		map[row + 1][column] == 'W')
+		map[row + 1][column] == 'W' || map[row + 1][column] == 'C')
 		return (0);
 	return (1);
 }
@@ -17,7 +17,7 @@ int	is_top_valid(char **map, int row, int column)
 		return (1);
 	if (map[row - 1][column] == '0' || map[row - 1][column] == 'N' || \
 		map[row - 1][column] == 'S' || map[row - 1][column] == 'E' || \
-		map[row - 1][column] == 'W')
+		map[row - 1][column] == 'W' || map[row - 1][column] == 'C')
 		return (0);
 	return (1);
 }
@@ -28,7 +28,7 @@ int	is_right_valid(char **map, int row, int column)
 		return (1);
 	if (map[row][column + 1] == '0' || map[row][column + 1] == 'N' || \
 		map[row][column + 1] == 'S' || map[row][column + 1] == 'E' || \
-		map[row][column + 1] == 'W')
+		map[row][column + 1] == 'W' || map[row][column + 1] == 'C')
 		return (0);
 	return (1);
 }
@@ -39,7 +39,7 @@ int	is_left_valid(char **map, int row, int column)
 		return (1);
 	if (map[row][column - 1] == '0' || map[row][column - 1] == 'N' || \
 		map[row][column - 1] == 'S' || map[row][column - 1] == 'E' || \
-		map[row][column - 1] == 'W')
+		map[row][column - 1] == 'W' || map[row][column - 1] == 'C')
 		return (0);
 	return (1);
 }
