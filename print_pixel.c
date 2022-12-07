@@ -43,7 +43,29 @@ void pixelput(t_game *game, double hypo, double ray_counter)
 		++real_wall;
 	}
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), real_wall, start);
+	if (SCREEN_LEN < 1024 || SCREEN_WID < 1024)
+		put_hand(game, ray_counter);
 }
+
+void put_hand(t_game *game, int ray_counter)
+{
+	(void)game;
+	(void)ray_counter;
+	// int handx;
+	// int handy;
+	// int i = 0;
+	// handx = game->img.hands[game->img.which_hand].x * ray_counter / SCREEN_WID;
+	// while (i < SCREEN_LEN)
+	// {
+	// 	handy = game->img.hands[game->img.which_hand].y * i / SCREEN_LEN;
+	// 	if (take_texture(game, handx, handy, 10) != (unsigned int)-16777216)
+	// 	{
+	// 		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), i, take_texture(game, handx, handy, 10));
+	// 	}
+	// 	i++; 
+	// }	
+}
+
 
 void put_floorceil(t_game *game, int x, int real_wall, int start)
 {

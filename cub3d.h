@@ -80,6 +80,13 @@ typedef struct s_template
 	int		y;
 }	t_template;
 
+typedef struct s_hand
+{
+	int left_hand;
+	int right_hand;
+	t_template	hand_img[25];
+} t_hand;
+
 typedef struct s_img
 {
 	void	*north_img;
@@ -134,7 +141,7 @@ typedef struct s_img
 	unsigned int wall_x;
 	unsigned int wall_y;
 
-	t_template hands[25];
+	t_hand		hand;
 }			t_img;
 
 typedef struct s_libx
@@ -301,6 +308,8 @@ void draw_ray(t_game *game, float ray_len);
 void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void put_floorceil(t_game *game, int x, int real_wall, int start);
+void put_hand(t_game *game, int ray_counter);
+
 
 //print_texture.c
 unsigned int take_texture(t_game *game, int x, int y, int which_wall);

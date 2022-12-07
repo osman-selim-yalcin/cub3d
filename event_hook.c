@@ -8,12 +8,13 @@ int hook_event(t_game *game)
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 	start(game);
 	display_minimap(game);
-	printf("%p\n", game->img.hands[0].img);
-	printf("%p\n", game->img.hands[1].img);
 	move(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
-	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hands[0].img, SCREEN_WID / 3, 300);
-	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hands[1].img, 0, 0);
+	if (SCREEN_LEN >= 1024 && SCREEN_WID >= 1024)
+	{
+		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[0].img, SCREEN_WID / 2  - 1024 / 2, SCREEN_LEN - 1024);
+		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[1].img, SCREEN_WID / 2  - 1024 / 2, SCREEN_LEN - 1024);
+	}
 	return (0);
 }
 

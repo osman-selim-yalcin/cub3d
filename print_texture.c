@@ -23,6 +23,10 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall)
 	{
 		dst = game->img.door_addr + (y * game->img.door_line_length + x * (game->img.door_bits_per_pixel / 8));	
 	}
+	else if (which_wall == 10)//east
+	{
+		// dst = game->img.hands[game->img.which_hand].addr + (y * game->img.hands[game->img.which_hand].line_length + x * (game->img.hands[game->img.which_hand].bits_per_pixel / 8));
+	}
 	else
 	{
 		// dst = game->img.enemy_idle_addr[game->enemy_idle_state] + (y * game->img.enemy_line_length + x * (game->img.enemy_bits_per_pixel / 8));
