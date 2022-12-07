@@ -199,4 +199,5 @@ void	get_value(t_game *game)
 	set_hand_struct_v2(game);
 	game->img.hand.left_hand = 0;
 	game->img.hand.right_hand = 2;
+	game->img.hand.attack = 0;
 }

@@ -49,6 +49,8 @@ int key_event_down(int keycode, t_game *game)
 		}
 		synchronize_settings(game);
 	}
+	else if (keycode == 3)
+		game->img.hand.attack = 1;
 	else if (keycode == 53)
 		tmp_exit();
 	return(0);

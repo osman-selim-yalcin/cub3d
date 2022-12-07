@@ -9,8 +9,13 @@ void	set_hand_state(t_game *game)
 		counter = 0;
 		if (++game->img.hand.left_hand == 2)
 			game->img.hand.left_hand = 0;
-		if (++game->img.hand.right_hand == 25)
+		if (++game->img.hand.right_hand == 14 && !game->img.hand.attack)
+			game->img.hand.right_hand = 8;
+		else if (game->img.hand.right_hand == 25)
+		{
+			game->img.hand.attack = 0;
 			game->img.hand.right_hand = 2;
+		}
 	}
 
 }

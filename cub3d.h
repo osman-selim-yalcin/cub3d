@@ -82,6 +82,7 @@ typedef struct s_template
 
 typedef struct s_hand
 {
+	int attack;
 	int left_hand;
 	int right_hand;
 	t_template	hand_img[25];
