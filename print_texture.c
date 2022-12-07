@@ -23,9 +23,13 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall)
 	{
 		dst = game->img.door_addr + (y * game->img.door_line_length + x * (game->img.door_bits_per_pixel / 8));	
 	}
-	else if (which_wall == 10)//east
+	else if (which_wall == 10)//left
 	{
-		// dst = game->img.hands[game->img.which_hand].addr + (y * game->img.hands[game->img.which_hand].line_length + x * (game->img.hands[game->img.which_hand].bits_per_pixel / 8));
+		dst = game->img.hand.hand_img[game->img.hand.left_hand].addr + (y * game->img.hand.hand_img[game->img.hand.left_hand].line_length + x * (game->img.hand.hand_img[game->img.hand.left_hand].bits_per_pixel / 8));
+	}
+	else if (which_wall == 11)//right
+	{
+		dst = game->img.hand.hand_img[game->img.hand.right_hand].addr + (y * game->img.hand.hand_img[game->img.hand.right_hand].line_length + x * (game->img.hand.hand_img[game->img.hand.right_hand].bits_per_pixel / 8));
 	}
 	else
 	{

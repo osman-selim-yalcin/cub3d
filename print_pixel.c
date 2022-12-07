@@ -43,27 +43,33 @@ void pixelput(t_game *game, double hypo, double ray_counter)
 		++real_wall;
 	}
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), real_wall, start);
-	if (SCREEN_LEN < 1024 || SCREEN_WID < 1024)
+	if (SCREEN_LEN < 800 || SCREEN_WID < 800)
 		put_hand(game, ray_counter);
 }
 
 void put_hand(t_game *game, int ray_counter)
 {
-	(void)game;
-	(void)ray_counter;
-	// int handx;
-	// int handy;
-	// int i = 0;
-	// handx = game->img.hands[game->img.which_hand].x * ray_counter / SCREEN_WID;
-	// while (i < SCREEN_LEN)
-	// {
-	// 	handy = game->img.hands[game->img.which_hand].y * i / SCREEN_LEN;
-	// 	if (take_texture(game, handx, handy, 10) != (unsigned int)-16777216)
-	// 	{
-	// 		my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), i, take_texture(game, handx, handy, 10));
-	// 	}
-	// 	i++; 
-	// }	
+	int hand_l_x;
+	int hand_l_y;
+	int hand_r_x;
+	int hand_r_y;
+	int i = 0;
+	hand_l_x = game->img.hand.hand_img[game->img.hand.left_hand].x * ray_counter / SCREEN_WID;
+	hand_r_x = game->img.hand.hand_img[game->img.hand.right_hand].x * ray_counter / SCREEN_WID;
+	while (i < SCREEN_LEN)
+	{
+		hand_l_y = game->img.hand.hand_img[game->img.hand.left_hand].y * i / SCREEN_LEN;
+		hand_r_y = game->img.hand.hand_img[game->img.hand.right_hand].y * i / SCREEN_LEN;
+		if (take_texture(game, hand_l_x, hand_l_y, 10) != (unsigned int)-16777216)
+		{
+			my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), i, take_texture(game, hand_l_x, hand_l_y, 10));
+		}
+		if (take_texture(game, hand_r_x, hand_r_y, 11) != (unsigned int)-16777216)
+		{
+			my_mlx_pixel_put(game, SCREEN_WID - 1 - (ray_counter), i, take_texture(game, hand_r_x, hand_r_y, 11));
+		}
+		i++; 
+	}	
 }
 
 
