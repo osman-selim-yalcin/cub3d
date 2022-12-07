@@ -29,8 +29,8 @@ int hook_event(t_game *game)
 
 	if (SCREEN_LEN >= 1024 && SCREEN_WID >= 1024)
 	{
-		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[0].img, SCREEN_WID / 2  - 1024 / 2, SCREEN_LEN - 1024);
-		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[1].img, SCREEN_WID / 2  - 1024 / 2, SCREEN_LEN - 1024);
+		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.left_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8 , SCREEN_LEN - game->img.hand.hand_img[game->img.hand.left_hand].y);
+		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.right_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.right_hand].x / 2 + SCREEN_WID / 19.2, SCREEN_LEN - game->img.hand.hand_img[game->img.hand.right_hand].y);
 	}
 	return (0);
 }

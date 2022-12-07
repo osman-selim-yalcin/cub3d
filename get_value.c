@@ -157,11 +157,11 @@ void	set_hand_struct(t_game *game)
 	game->img.hand.hand_img[11].img = mlx_xpm_file_to_image(game->libx.mlx, "images/hand/192.xpm", &game->img.hand.hand_img[11].x, &game->img.hand.hand_img[11].y);
 	game->img.hand.hand_img[11].addr = mlx_get_data_addr(game->img.hand.hand_img[11].img, &game->img.hand.hand_img[11].bits_per_pixel, &game->img.hand.hand_img[11].line_length, &game->img.hand.hand_img[11].endian);
 	game->img.hand.hand_img[12].img = mlx_xpm_file_to_image(game->libx.mlx, "images/hand/193.xpm", &game->img.hand.hand_img[12].x, &game->img.hand.hand_img[12].y);
+	game->img.hand.hand_img[12].addr = mlx_get_data_addr(game->img.hand.hand_img[12].img, &game->img.hand.hand_img[12].bits_per_pixel, &game->img.hand.hand_img[12].line_length, &game->img.hand.hand_img[12].endian);
 }
 
 void	set_hand_struct_v2(t_game *game)
 {
-	game->img.hand.hand_img[12].addr = mlx_get_data_addr(game->img.hand.hand_img[12].img, &game->img.hand.hand_img[12].bits_per_pixel, &game->img.hand.hand_img[12].line_length, &game->img.hand.hand_img[12].endian);
 	game->img.hand.hand_img[13].img = mlx_xpm_file_to_image(game->libx.mlx, "images/hand/194.xpm", &game->img.hand.hand_img[13].x, &game->img.hand.hand_img[13].y);
 	game->img.hand.hand_img[13].addr = mlx_get_data_addr(game->img.hand.hand_img[13].img, &game->img.hand.hand_img[13].bits_per_pixel, &game->img.hand.hand_img[13].line_length, &game->img.hand.hand_img[13].endian);
 	game->img.hand.hand_img[14].img = mlx_xpm_file_to_image(game->libx.mlx, "images/hand/195.xpm", &game->img.hand.hand_img[14].x, &game->img.hand.hand_img[14].y);
@@ -191,12 +191,12 @@ void	set_hand_struct_v2(t_game *game)
 
 void	get_value(t_game *game)
 {
-	set_hand_struct(game);
-	set_hand_struct_v2(game);
 	set_scale_factor(game);
 	fill_struct_libx_and_img(game);
 	game_settings(game);
 	fill_struct_minimap(game);
+	set_hand_struct(game);
+	set_hand_struct_v2(game);
 	game->img.hand.left_hand = 0;
-	game->img.hand.right_hand = 0;
+	game->img.hand.right_hand = 2;
 }
