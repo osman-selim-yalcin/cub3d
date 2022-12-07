@@ -1,5 +1,20 @@
 #include "cub3d.h"
 
+void	set_hand_state(t_game *game)
+{
+	static int counter;
+
+	if (++counter > 2)
+	{
+		counter = 0;
+		if (++game->img.hand.left_hand == 2)
+			game->img.hand.left_hand = 0;
+		if (++game->img.hand.right_hand == 25)
+			game->img.hand.right_hand = 2;
+	}
+
+}
+
 int hook_event(t_game *game)
 {
 	mlx_clear_window(game->libx.mlx, game->libx.win);
@@ -10,6 +25,8 @@ int hook_event(t_game *game)
 	display_minimap(game);
 	move(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
+	set_hand_state(game);
+
 	if (SCREEN_LEN >= 1024 && SCREEN_WID >= 1024)
 	{
 		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[0].img, SCREEN_WID / 2  - 1024 / 2, SCREEN_LEN - 1024);
