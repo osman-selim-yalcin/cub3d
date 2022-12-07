@@ -69,6 +69,17 @@ typedef struct s_player
 	double	ray_start;
 }		t_player;
 
+typedef struct s_template
+{
+	void	*img;
+	void	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		x;
+	int		y;
+}	t_template;
+
 typedef struct s_img
 {
 	void	*north_img;
@@ -122,6 +133,8 @@ typedef struct s_img
 	unsigned int which_wall;
 	unsigned int wall_x;
 	unsigned int wall_y;
+
+	t_template hands[25];
 }			t_img;
 
 typedef struct s_libx
