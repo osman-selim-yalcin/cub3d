@@ -27,13 +27,25 @@ int is_xpm_exist(t_game *game, char *texture, int i)
 		return (1);
 	}
 	if (i == 1)
+	{
+		free(game->map.north_wall);
 		game->map.north_wall = ft_strdup(tmp);
+	}
 	else if (i == 3)
+	{
+		free(game->map.south_wall);
 		game->map.south_wall = ft_strdup(tmp);
+	}
 	else if (i == 2)
+	{
+		free(game->map.west_wall);
 		game->map.west_wall = ft_strdup(tmp);
+	}
 	else if (i == 4)
+	{
+		free(game->map.east_wall);
 		game->map.east_wall = ft_strdup(tmp);
+	}
 	free(tmp);
 	close(fd);
 	return (0);

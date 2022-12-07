@@ -23,7 +23,7 @@ void move(t_game *game)
 		key_d(game);
 	if (game->settings.key_w == 1)
 		key_w(game);
-	if (game->settings.key_left == 1) //123
+	if (game->settings.key_left == 1)
 	{
 		game->player.direction += 10;
 		if (game->player.direction >= 360)

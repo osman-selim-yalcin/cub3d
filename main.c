@@ -17,8 +17,8 @@ int main(int ac, char **av)
 	mlx_mouse_hide();
 	mlx_mouse_move(game.libx.win, SCREEN_WID / 2, SCREEN_LEN / 2);
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);
-	mlx_hook(game.libx.win, 2,  0, key_event_down, &game); //0L ile farkı?
-	mlx_hook(game.libx.win, 3,  0, key_event_up, &game); //0L ile farkı?
+	mlx_hook(game.libx.win, 2,  0, key_event_down, &game);
+	mlx_hook(game.libx.win, 3,  0, key_event_up, &game);
 	mlx_hook(game.libx.win, 6, 0L, mouse_move, &game);
 	mlx_hook(game.libx.win, 17, 0L, tmp_exit, &game);
 	mlx_loop(game.libx.mlx);

@@ -10,7 +10,7 @@ FLAGS =  -Wall -Wextra -Werror
 
 RM = rm -rf
 
-NAME = cub3d
+NAME = cub3D
 
 all :$(EXT) $(NAME)
 
