@@ -4,17 +4,17 @@ void	set_hand_state(t_game *game)
 {
 	static int counter;
 
-	if (++counter > 2)
+	if (++counter > 5)
 	{
 		counter = 0;
-		if (++game->img.hand.left_hand == 2)
+		if (++game->img.hand.left_hand == 4)
 			game->img.hand.left_hand = 0;
-		if (++game->img.hand.right_hand == 14 && !game->img.hand.attack)
-			game->img.hand.right_hand = 8;
-		else if (game->img.hand.right_hand == 25)
+		if (++game->img.hand.right_hand == 16 && !game->img.hand.attack)
+			game->img.hand.right_hand = 10;
+		else if (game->img.hand.right_hand == 27)
 		{
 			game->img.hand.attack = 0;
-			game->img.hand.right_hand = 2;
+			game->img.hand.right_hand = 4;
 		}
 	}
 

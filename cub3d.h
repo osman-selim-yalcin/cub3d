@@ -9,8 +9,8 @@
 # include <string.h>
 # include <time.h>
 # include "minilibx/mlx.h"
-# define SCREEN_LEN 1080
-# define SCREEN_WID 1920
+# define SCREEN_LEN 800
+# define SCREEN_WID 1600
 # define D_FOV 60
 # define R_FOV (M_PI / 3)
 # define SENS 1
@@ -85,7 +85,7 @@ typedef struct s_hand
 	int attack;
 	int left_hand;
 	int right_hand;
-	t_template	hand_img[25];
+	t_template	hand_img[27];
 } t_hand;
 
 typedef struct s_img
