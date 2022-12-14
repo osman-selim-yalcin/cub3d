@@ -1,5 +1,48 @@
 #include "cub3d.h"
 
+void   append_enemy(t_game *game, int coor_y, int coor_x)
+{
+
+      t_enemy *tmp_enemy;
+      if (game->enemy == NULL)
+      {
+              game->enemy = malloc(sizeof(t_enemy));
+              game->enemy->posx = 100 * (coor_x + 1) + 50;
+              game->enemy->posy = 100 * (coor_y + 1) + 50;
+              game->enemy->alive = 1;
+              game->enemy->next = NULL;
+              game->enemy->head = game->enemy;
+              game->enemy_count = 1;
+              game->enemy->attack_state = -1;
+              game->enemy->frame_counter = 0;
+              game->enemy->sleep = 0;
+      }
+      else
+      {
+              tmp_enemy = game->enemy;
+              while (tmp_enemy->next != NULL)
+              {
+                      tmp_enemy = tmp_enemy->next;
+              }
+              tmp_enemy = game->enemy;
+              while (tmp_enemy->next != NULL)
+              {
+                      tmp_enemy = tmp_enemy->next;
+              }
+              tmp_enemy->next = malloc(sizeof(t_enemy));
+              tmp_enemy->next->posx = 100 * (coor_x + 1) + 50;
+              tmp_enemy->next->posy = 100 * (coor_y + 1) + 50;
+              tmp_enemy->next->alive = 1;
+              tmp_enemy->next->head = game->enemy;
+              tmp_enemy->next->next = NULL;
+              ++game->enemy_count;
+              tmp_enemy->next->attack_state = -1;
+              tmp_enemy->next->frame_counter = 0;
+              tmp_enemy->next->sleep = 0;
+      }
+}
+
+
 
 int	is_line_valid(t_game *game, char *line, int coor_y)
 {
@@ -13,7 +56,8 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 	{
 		if (line[i] != 32 && line[i] != 'N' && line[i] != 'S' \
 			&& line[i] != 'W' && line[i] != 'E' && line[i] != '\n' \
-			&& line[i] != '1' && line[i] != '0' && line[i] != 'C')
+			&& line[i] != '1' && line[i] != '0' && line[i] != 'C' \
+			&& line[i] != 'V')
 			return (0);
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
 		{
@@ -27,6 +71,10 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 				game->player.direction = 0;//BAKALIM
 			game->map.player_count += 1;
 		}
+		else if (line[i] == 'V')
+		{
+			append_enemy(game, coor_y, i);
+		}
 		++i;
 	}
 	return (1);
@@ -36,6 +84,7 @@ int	check_component(t_game *game)
 {
 	int	i;
 
+	game->enemy = NULL;
 	i = 0;
 	while (game->map.map[i] != NULL)
 	{

@@ -4,6 +4,16 @@ void start(t_game *game)
 {
 	double ray_counter = 0;
 
+    t_enemy *tmp_enemy;
+ 
+    tmp_enemy = game->enemy;
+    while (game->enemy)
+    {
+		if (0 > game->enemy->pixel - game->enemy->width / 2 && 0 < game->enemy->pixel + game->enemy->width / 2)
+				game->enemy->forx_count -= game->enemy->pixel - game->enemy->width / 2;
+		game->enemy = game->enemy->next;
+	}
+	game->enemy = tmp_enemy;
 	while (ray_counter < SCREEN_WID)
 	{
 		game->player.ray_abs = (game->player.direction - game->player.fov / 2) + (ray_counter / SCREEN_WID * D_FOV);
