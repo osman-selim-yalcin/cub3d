@@ -7,12 +7,12 @@ int player_collision(t_game *game, float x, float y)
 	tmp_enemy = game->enemy;
 	while (game->enemy)
 	{
-			if (hypot(game->enemy->posx - x, game->enemy->posy - y) < 80 && game->enemy->alive == 1)
-			{
-					game->enemy = tmp_enemy;
-					return (0);
-			}
-			game->enemy = game->enemy->next;
+		if (hypot(game->enemy->posx - x, game->enemy->posy - y) < 80 && game->enemy->alive == 1)
+		{
+			game->enemy = tmp_enemy;
+			return (0);
+		}
+		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp_enemy;
 	if (game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != '1' && game->map.map[(int)(y)/ 100][(int)(x - 20)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x)/ 100] != 'C' && game->map.map[(int)(y)/ 100][(int)(x + 20)/ 100] != 'C')

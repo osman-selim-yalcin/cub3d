@@ -1,37 +1,39 @@
 #include "cub3d.h"
 
-void   set_idle_state(t_game *game)
+void	set_idle_state(t_game *game)
 {
-	static int      idle_counter;
+	static int	idle_counter;
 
 	game->enemy_idle_state = idle_counter / 3;
 	++idle_counter;
 	if (idle_counter == 21)
 		idle_counter = 0;
 	
+
 	t_enemy *tmp;
 	tmp = game->enemy;
 	while (game->enemy)
 	{
 		if (game->enemy->attack_state != -1)
-                       ++game->enemy->frame_counter;
-		if (game->enemy->frame_counter <= 7)
+		{
+			++game->enemy->frame_counter;
+			if (game->enemy->frame_counter <= 7)
 				game->enemy->attack_state = game->enemy->frame_counter / 4;
-		else if (game->enemy->frame_counter > 7 && game->enemy->frame_counter < 40)
-		{
+			else if (game->enemy->frame_counter > 7 && game->enemy->frame_counter < 40)
+			{
 				game->enemy->attack_state = 2 + game->enemy->frame_counter % 2;
-		}
-		else
-		{
+			}
+			else
+			{
 				game->enemy->attack_state = -1;
 				game->enemy->frame_counter = 0;
 				game->enemy->sleep = 70;
+			}
 		}
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp;
 }
-
 
 void	set_hand_state(t_game *game)
 {
@@ -65,9 +67,8 @@ int hook_event(t_game *game)
 	display_minimap(game);
 	move(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
-	set_idle_state(game);
 	set_hand_state(game);
-
+	set_idle_state(game);
 	if (SCREEN_LEN >= 800 && SCREEN_WID >= 800)
 	{
 		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.left_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8 , SCREEN_LEN - game->img.hand.hand_img[game->img.hand.left_hand].y);

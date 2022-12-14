@@ -6,7 +6,6 @@ int find_wall_vertical_three(double hor, double ver, t_game *game)
 	hor /= 100;
 	ver /= 100;
 	hor--;
-
 	if (ver <= 0 || ver > game->map.length || hor <= 0 || hor > game->map.width)
  	{
 		return (2);

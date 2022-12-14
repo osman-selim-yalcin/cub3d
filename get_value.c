@@ -54,17 +54,14 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.east_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.east_wall, &game->img.east_x, &game->img.east_y);
 	game->img.east_addr = mlx_get_data_addr(game->img.east_img, &game->img.east_bits_per_pixel, &game->img.east_line_length, &game->img.east_endian);
 
-	game->img.door_img = mlx_xpm_file_to_image(game->libx.mlx, "images/door.xpm", &game->img.door_x, &game->img.door_y);
-	game->img.door_addr = mlx_get_data_addr(game->img.door_img, &game->img.door_bits_per_pixel, &game->img.door_line_length, &game->img.door_endian);
-
 	game->img.enemy_idle_img[0] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle1.xpm",  &game->img.enemy_x, &game->img.enemy_y);
 	game->img.enemy_idle_addr[0] = mlx_get_data_addr(game->img.enemy_idle_img[0], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
 	game->img.enemy_idle_img[1] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle2.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_idle_addr[1] = mlx_get_data_addr(game->img.enemy_idle_img[1], &game->img.enemy_bits_per_pixel[0],&game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_addr[1] = mlx_get_data_addr(game->img.enemy_idle_img[1], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
 	game->img.enemy_idle_img[2] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle3.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_idle_addr[2] = mlx_get_data_addr(game->img.enemy_idle_img[2], &game->img.enemy_bits_per_pixel[0],&game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_addr[2] = mlx_get_data_addr(game->img.enemy_idle_img[2], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
 	game->img.enemy_idle_img[3] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle4.xpm",  &game->img.enemy_x, &game->img.enemy_y);
-	game->img.enemy_idle_addr[3] = mlx_get_data_addr(game->img.enemy_idle_img[3], &game->img.enemy_bits_per_pixel[0],&game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
+	game->img.enemy_idle_addr[3] = mlx_get_data_addr(game->img.enemy_idle_img[3], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
 	game->img.enemy_idle_img[4] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle5.xpm",  &game->img.enemy_x, &game->img.enemy_y);
 	game->img.enemy_idle_addr[4] = mlx_get_data_addr(game->img.enemy_idle_img[4], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
 	game->img.enemy_idle_img[5] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/idle/idle6.xpm",  &game->img.enemy_x, &game->img.enemy_y);
@@ -86,9 +83,13 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.ceil_img = mlx_xpm_file_to_image(game->libx.mlx, "images/0.xpm", &game->img.ceilx, &game->img.ceily);
 	game->img.ceil_addr = mlx_get_data_addr(game->img.ceil_img, &game->img.ceil_bits_per_pixel, &game->img.ceil_line_length, &game->img.ceil_endian);
 
+	game->img.door_img = mlx_xpm_file_to_image(game->libx.mlx, "images/door.xpm", &game->img.door_x, &game->img.door_y);
+	game->img.door_addr = mlx_get_data_addr(game->img.door_img, &game->img.door_bits_per_pixel, &game->img.door_line_length, &game->img.door_endian);
 
 	game->img.wall_y = 0;
 	game->img.wall_x = 0;
+	game->img.ceil_index_x = 0;
+	game->img.ceil_index_y = 0;
 	game->img.which_wall = 0;
 }
 
@@ -161,6 +162,7 @@ void	set_scale_factor(t_game *game)
 	game->minimap.shift_y = 0;
 }
 
+
 void	set_hand_struct(t_game *game)
 {
 	game->img.hand.hand_img[0].img = mlx_xpm_file_to_image(game->libx.mlx, "images/hand/179.xpm", &game->img.hand.hand_img[0].x, &game->img.hand.hand_img[0].y);
@@ -226,6 +228,8 @@ void	set_hand_struct_v2(t_game *game)
 
 void	get_value(t_game *game)
 {
+	find_first_empty_columns(game);
+	find_last_empty_columns(game);
 	set_scale_factor(game);
 	fill_struct_libx_and_img(game);
 	game_settings(game);

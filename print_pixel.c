@@ -99,6 +99,25 @@ void put_floorceil(t_game *game, int x, int real_wall, int start, int wall)
 	}
 }
 
+
+// void put_floorceil(t_game *game, int x, int real_wall, int start, int wall)
+// {
+// 	int y;
+
+// 	y = 0;
+// 	while (y < start)
+// 	{
+// 		if (y >= SCREEN_LEN)
+// 			break;
+// 		my_mlx_pixel_put(game, x, y, game->map.ceilling_rgb);
+// 		y++;
+// 	}
+// 	while (y + real_wall < SCREEN_LEN)
+// 	{
+// 		my_mlx_pixel_put(game, x, y + real_wall, game->map.floor_rgb);
+// 	}
+// }
+
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
 	char	*dst;
