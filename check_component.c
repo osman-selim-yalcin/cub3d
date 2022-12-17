@@ -1,15 +1,13 @@
 #include "cub3d.h"
 
-void	append_enemy(t_game *game, int coor_y, int coor_x)
+void	append_enemy(t_game *game)
 {
 	t_enemy *tmp_enemy;
 
 	if (game->enemy == NULL)
 	{
 		game->enemy = malloc(sizeof(t_enemy));
-		game->enemy->posx = 100 * (coor_x + 1) + 50;
-		game->enemy->posy = 100 * (coor_y + 1) + 50;
-		game->enemy->alive = 1;
+		game->enemy->alive = 0;
 		game->enemy->next = NULL;
 		game->enemy->head = game->enemy;
 		game->enemy_count = 1;
@@ -25,15 +23,40 @@ void	append_enemy(t_game *game, int coor_y, int coor_x)
 			tmp_enemy = tmp_enemy->next;
 		}
 		tmp_enemy->next = malloc(sizeof(t_enemy));
-		tmp_enemy->next->posx = 100 * (coor_x + 1) + 50;
-		tmp_enemy->next->posy = 100 * (coor_y + 1) + 50;
-		tmp_enemy->next->alive = 1;
+		tmp_enemy->next->alive = 0;
 		tmp_enemy->next->head = game->enemy;
 		tmp_enemy->next->next = NULL;
 		++game->enemy_count;
 		tmp_enemy->next->attack_state = -1;
 		tmp_enemy->next->frame_counter = 0;
 		tmp_enemy->next->sleep = 0;
+	}
+}
+
+void	append_spawn(t_game *game, int pos_y, int pos_x)
+{
+	t_spawn *tmp_spawn;
+
+	if (game->spawn == NULL)
+	{
+		game->spawn = malloc(sizeof(t_spawn));
+		game->spawn->pos_x = 100 * (pos_x + 1) + 50;
+		game->spawn->pos_y = 100 * (pos_y + 1) + 50;
+		game->spawn->next = NULL;
+		game->spawn_count = 1;
+	}
+	else
+	{
+		tmp_spawn = game->spawn;
+		while (tmp_spawn->next != NULL)
+		{
+			tmp_spawn = tmp_spawn->next;
+		}
+		tmp_spawn->next = malloc(sizeof(t_spawn));
+		tmp_spawn->next->pos_x = 100 * (pos_x + 1) + 50;
+		tmp_spawn->next->pos_y = 100 * (pos_y + 1) + 50;
+		tmp_spawn->next->next = NULL;
+		++game->spawn_count;
 	}
 }
 
@@ -66,7 +89,7 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 		}
 		else if (line[i] == 'V')
 		{
-			append_enemy(game, coor_y, i);
+			append_spawn(game, coor_y, i);
 		}
 		++i;
 	}
@@ -78,6 +101,7 @@ int	check_component(t_game *game)
 	int	i;
 
 	game->enemy = NULL;
+	game->spawn = NULL;
 	i = 0;
 	while (game->map.map[i] != NULL)
 	{
@@ -87,5 +111,9 @@ int	check_component(t_game *game)
 	}
 	if (game->map.player_count != 1)
 		return (2);
+	for (int n = 0;n < 6;++n)
+	{
+		append_enemy(game);
+	}
 	return (0);
 }

@@ -14,6 +14,7 @@ int main(int ac, char **av)
 	if (check_map(&game, ac))
 		return (1);
 	get_value(&game);
+	srand(time(NULL));
 
 //tmp area;!!!
 	game.player.hp = 4;
