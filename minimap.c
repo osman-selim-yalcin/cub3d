@@ -96,17 +96,20 @@ void	draw_enemies(t_game *game)
 	// 	return ;
 	while (current_enemy != NULL)
 	{
-		if (current_enemy->alive == 0)
-		{
-			current_enemy = current_enemy->next;
-			continue ;
-		}
+		// if (current_enemy->alive == 0)
+		// {
+		// 	current_enemy = current_enemy->next;
+		// 	continue ;
+		// }
 		x = 0;
 		while (x < game->settings.player_size)
 		{
 			y = 0;
 			while (y < game->settings.player_size)
 			{
+				if (current_enemy->alive == 0)
+				my_mlx_pixel_put(game, current_enemy->mini_x + x - game->settings.player_size / 2 + game->minimap.shift_x, current_enemy->mini_y + y - game->settings.player_size / 2 + game->minimap.shift_y, 0x077777);
+				else
 				my_mlx_pixel_put(game, current_enemy->mini_x + x - game->settings.player_size / 2 + game->minimap.shift_x, current_enemy->mini_y + y - game->settings.player_size / 2 + game->minimap.shift_y, 0x03B6FC);
 				++y;
 			}

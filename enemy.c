@@ -7,17 +7,14 @@ int enemy_collision(t_game *game, float x, float y)
 	tmp_enemy = game->enemy->head;
 	while (tmp_enemy)
 	{
-		if (tmp_enemy->alive)
+		if (tmp_enemy == game->enemy)
 		{
-			if (tmp_enemy == game->enemy)
-			{
-				if (!tmp_enemy->next)
-					break;
-				tmp_enemy = tmp_enemy->next;
-			}
-			if (hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 20)
-				return (1);
+			if (!tmp_enemy->next)
+				break;
+			tmp_enemy = tmp_enemy->next;
 		}
+		if (tmp_enemy->alive && hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 20)
+			return (1);
 		tmp_enemy = tmp_enemy->next;
 	}
 	if (hypot(x - game->player.pos_x, y - game->player.pos_y) < 80)

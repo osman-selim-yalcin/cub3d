@@ -88,6 +88,9 @@ void	spawn_enemy(t_game *game)
 				}
 				tmp_enemy->posx = tmp_spawn->pos_x;
 				tmp_enemy->posy = tmp_spawn->pos_y;
+				tmp_enemy->attack_state = -1;
+				tmp_enemy->frame_counter = 0;
+				tmp_enemy->sleep = 0;
 				tmp_enemy->alive = 1;
 				break ;
 			}
