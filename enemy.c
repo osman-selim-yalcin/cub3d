@@ -116,8 +116,11 @@ void get_enemy(t_game *game)
 			if (deg_to_rad(game->player.ray_start) > middle)
 				middle_tmp = middle + 2 * M_PI;
 			while (deg_to_rad(game->player.ray_start )< middle_tmp && !take_approximate(deg_to_rad(game->player.ray_start) + k, middle_tmp))
+			{
+				if ((3 *  R_FOV / 2 ) < k)
+					break ; 
 				k += 0.00001;
-
+			}
 			game->enemy->pixel = (float)SCREEN_WID * (k * (180 / M_PI)) / D_FOV;
 			while (game->enemy->pixel > SCREEN_WID * (360 / D_FOV - 1))
 				game->enemy->pixel -= SCREEN_WID * (360 / D_FOV);
