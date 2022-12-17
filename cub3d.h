@@ -195,6 +195,12 @@ typedef struct s_enemy
 	int			sleep;
 }	t_enemy;
 
+typedef struct s_spawn
+{
+	int pos_x;
+	int pos_y;
+	struct s_spawn *next;
+}	t_spawn;
 
 typedef struct s_settings
 {
@@ -221,8 +227,10 @@ typedef struct s_game
 	t_minimap	minimap;
 	t_settings	settings;
 	t_enemy		*enemy;
+	t_spawn		*spawn;
 	short int	enemy_idle_state;
 	short int	enemy_count;
+	short int	spawn_count;
 	int		mouse_horizontal;
 }			t_game;
 
@@ -262,7 +270,7 @@ int	put_frame_to_map(t_game *game);
 //check_component.c
 int		is_line_valid(t_game *game, char *line, int coor_y);
 int		check_component(t_game *game);
-void	append_enemy(t_game *game, int coor_y, int coor_x);
+void	append_enemy(t_game *game);
 
 //check_direction.c
 int	is_bottom_valid(char **map, int row, int column);

@@ -55,12 +55,47 @@ void	set_hand_state(t_game *game)
 
 }
 
+void	spawn_enemy(t_game *game)
+{
+	static int counter;
+	int i;
+	t_enemy *tmp_enemy;
+	t_spawn *tmp_spawn;
+
+	if (counter >= 100)
+	{
+		counter = 0;
+		i = 0;
+		tmp_enemy = game->enemy;
+		while (tmp_enemy)
+		{
+			if (tmp_enemy->alive == 0)
+			{
+				i = rand() % game->spawn_count;
+				tmp_spawn = game->spawn;
+				while (tmp_spawn && i != 0)
+				{
+					tmp_spawn = tmp_spawn->next;
+					--i;
+				}
+				tmp_enemy->posx = tmp_spawn->pos_x;
+				tmp_enemy->posy = tmp_spawn->pos_y;
+				tmp_enemy->alive = 1;
+				break ;
+			}
+			tmp_enemy = tmp_enemy->next;
+		}
+	}
+	++counter;
+}
+
 int hook_event(t_game *game)
 {
 	mlx_clear_window(game->libx.mlx, game->libx.win);
 	mlx_destroy_image(game->libx.mlx, game->img.img);
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
+	spawn_enemy(game);
 	get_enemy(game);
 	enemy_walk(game);
 	start(game);
