@@ -15,6 +15,12 @@ int main(int ac, char **av)
 		return (1);
 	get_value(&game);
 
+//tmp area;!!!
+	game.player.hp = 4;
+	print_frame(&game, 2);
+	game.player.hp_count = 50;
+//tmp area;!!!
+
 	mlx_mouse_hide();
 	mlx_mouse_move(game.libx.win, SCREEN_WID / 2, SCREEN_LEN / 2);
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);

@@ -39,7 +39,7 @@ void	set_hand_state(t_game *game)
 {
 	static int counter;
 
-	if (++counter > 5)
+	if (++counter > 2)
 	{
 		counter = 0;
 		if (++game->img.hand.left_hand == 4)
@@ -52,7 +52,15 @@ void	set_hand_state(t_game *game)
 			game->img.hand.right_hand = 4;
 		}
 	}
+}
 
+void	set_heal(t_game *game)
+{
+	if (game->player.hp != 4 && game->player.hp_count-- <= 0)
+	{
+		print_frame(game, 0);
+		game->player.hp_count = 50;
+	}
 }
 
 int hook_event(t_game *game)
@@ -67,8 +75,10 @@ int hook_event(t_game *game)
 	display_minimap(game);
 	move(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
+	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img_frame, 0, 0);
 	set_hand_state(game);
 	set_idle_state(game);
+	set_heal(game);
 	if (SCREEN_LEN >= 800 && SCREEN_WID >= 800)
 	{
 		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.left_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8 , SCREEN_LEN - game->img.hand.hand_img[game->img.hand.left_hand].y);

@@ -7,14 +7,17 @@ int enemy_collision(t_game *game, float x, float y)
 	tmp_enemy = game->enemy->head;
 	while (tmp_enemy)
 	{
-		if (tmp_enemy == game->enemy)
+		if (tmp_enemy->alive)
 		{
-			if (!tmp_enemy->next)
-				break;
-			tmp_enemy = tmp_enemy->next;
+			if (tmp_enemy == game->enemy)
+			{
+				if (!tmp_enemy->next)
+					break;
+				tmp_enemy = tmp_enemy->next;
+			}
+			if (hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 20)
+				return (1);
 		}
-		if (hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 20)
-			return (1);
 		tmp_enemy = tmp_enemy->next;
 	}
 	if (hypot(x - game->player.pos_x, y - game->player.pos_y) < 80)
@@ -54,6 +57,7 @@ void enemy_walk(t_game *game)
 			if ((x_collision == 2 || y_collision == 2) && game->enemy->attack_state == -1)
 			{
 				game->enemy->attack_state = 0;
+				print_frame(game, 1);
 				game->enemy = game->enemy->next;
 				continue ;
 			}
@@ -93,7 +97,7 @@ void get_enemy(t_game *game)
 				game->player.ray_start += 360;
 
 			game->enemy->distance = hypot(game->enemy->posx - game->player.pos_x, game->enemy->posy - game->player.pos_y);
-			game->enemy->width = ((30 * SCREEN_WID) / (game->enemy->distance * 2));
+			game->enemy->width = ((70 * SCREEN_WID) / (game->enemy->distance * 2));
 			
 			middle = atan((game->enemy->posx - game->player.pos_x) / (game->enemy->posy - game->player.pos_y));
 			if (game->player.pos_x > game->enemy->posx)
@@ -110,7 +114,6 @@ void get_enemy(t_game *game)
 				else
 					middle += deg_to_rad(270);
 			}
-
 			k = 0;
 			middle_tmp = middle;
 			if (deg_to_rad(game->player.ray_start) > middle)

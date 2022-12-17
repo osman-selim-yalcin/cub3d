@@ -42,6 +42,9 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 
+	game->img.img_frame = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
+	game->img.addr_f = mlx_get_data_addr(game->img.img_frame, &game->img.bits_per_pixel_f, &game->img.line_length_f, &game->img.endian_f);
+
 	game->img.north_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.north_wall, &game->img.north_x, &game->img.north_y);
 	game->img.north_addr = mlx_get_data_addr(game->img.north_img, &game->img.north_bits_per_pixel, &game->img.north_line_length, &game->img.north_endian);
 

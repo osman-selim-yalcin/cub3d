@@ -67,6 +67,8 @@ typedef struct s_player
 	int direction;
 	double	ray_abs;
 	double	ray_start;
+	unsigned short int hp;
+	unsigned short int hp_count;	
 }		t_player;
 
 typedef struct s_template
@@ -132,6 +134,11 @@ typedef struct s_img
 	int		enemy_x;
 	int		enemy_y;
 
+	void *img_frame;
+	void *addr_f;
+	int	line_length_f;
+	int bits_per_pixel_f;
+	int endian_f;
 
 	void *img;
 	void *addr;
@@ -365,6 +372,13 @@ void draw_map(t_game *game);
 void draw_player(t_game *game);
 void draw_ray(t_game *game, float ray_len);
 
+//player_attack.c
+void p_attack(t_game *game);
+
+//print_frame.c
+void	my_mlx_pixel_put_frame(t_game *game, int x, int y, int color);
+void print_frame(t_game *game, int action);
+
 //print_pixel.c
 void 	pixelput(t_game *game, double hypo_tmp, double ray_counter);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
@@ -403,6 +417,8 @@ double take_approximate(double a, double b);
 int	direction_angle(t_game *game);
 int	ray_angle(t_game *game);
 int	degree_angle(int degree);
+
+
 
 
 #endif
