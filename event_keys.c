@@ -50,7 +50,10 @@ int key_event_down(int keycode, t_game *game)
 		synchronize_settings(game);
 	}
 	else if (keycode == 3 && game->img.hand.attack == 0)
-		p_attack(game);
+	{
+		game->img.hand.attack = 1;
+		// p_attack(game);
+	}
 	else if (keycode == 53)
 		tmp_exit();
 	return(0);

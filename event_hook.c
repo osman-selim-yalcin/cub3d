@@ -61,6 +61,13 @@ void	set_hand_state(t_game *game)
 			game->img.hand.left_hand = 0;
 		if (++game->img.hand.right_hand == 16 && !game->img.hand.attack)
 			game->img.hand.right_hand = 10;
+	}
+	if (game->img.hand.attack == 1)
+	{
+		if (counter != 0)
+			++game->img.hand.right_hand;
+		if (game->img.hand.right_hand == 23)
+			p_attack(game);
 		else if (game->img.hand.right_hand == 27)
 		{
 			game->img.hand.attack = 0;
@@ -142,6 +149,8 @@ int hook_event(t_game *game)
 
 void move(t_game *game)
 {
+	if (game->img.hand.attack == 1)
+		return ;
 	if (game->settings.key_a == 1)
 		key_a(game);
 	if (game->settings.key_s == 1)
