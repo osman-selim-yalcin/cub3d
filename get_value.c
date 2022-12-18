@@ -124,7 +124,7 @@ void	game_settings(t_game *game)
 	game->settings.key_left = 0;
 	game->settings.key_up = 0;
 	game->settings.key_down = 0;
-	game->mouse_horizontal = 0;
+	game->mouse_vertical = -85;
 }
 
 void	find_first_empty_columns(t_game *game)
@@ -243,6 +243,19 @@ void	set_hand_struct_v2(t_game *game)
 
 }
 
+void set_level_struct(t_game *game)
+{
+	game->img.hand.left_hand = 0;
+	game->img.hand.right_hand = 4;
+	game->img.hand.attack = 0;
+	game->level.regen = 100;
+	game->level.enemy_spawn_rate = 100;
+	game->level.sleep = 70;
+	game->level.enemy_speed = 5;
+	game->player.hp = HP;
+	game->player.hp_count = game->level.regen;
+}
+
 void	get_value(t_game *game)
 {
 	find_first_empty_columns(game);
@@ -253,7 +266,6 @@ void	get_value(t_game *game)
 	fill_struct_minimap(game);
 	set_hand_struct(game);
 	set_hand_struct_v2(game);
-	game->img.hand.left_hand = 0;
-	game->img.hand.right_hand = 4;
-	game->img.hand.attack = 0;
+	set_level_struct(game);
+	print_frame(game, 2);
 }

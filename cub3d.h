@@ -14,6 +14,8 @@
 # define D_FOV 60
 # define R_FOV (M_PI / 3)
 # define SENS 1
+# define HP 4
+# define ENEMY_COUNT 5
 
 typedef struct s_minimap
 {
@@ -228,6 +230,14 @@ typedef struct s_settings
 	int		key_down;
 }	t_settings;
 
+typedef struct s_level
+{
+	int enemy_spawn_rate;
+	int regen;
+	int sleep;
+	int enemy_speed;
+} t_level;
+
 typedef struct s_game
 {
 	t_libx		libx;
@@ -238,10 +248,12 @@ typedef struct s_game
 	t_settings	settings;
 	t_enemy		*enemy;
 	t_spawn		*spawn;
+	t_level		level;
 	short int	enemy_idle_state;
 	short int	enemy_count;
 	short int	spawn_count;
-	int		mouse_horizontal;
+	int		mouse_vertical;
+	clock_t time;
 }			t_game;
 
 //area__start.c
