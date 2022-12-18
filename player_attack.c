@@ -17,7 +17,7 @@ void p_attack(t_game *game)
 		{		
 			if (game->enemy->distance < 300 && SCREEN_WID / 2 > game->enemy->pixel - (game->enemy->width / 4) && SCREEN_WID / 2 < game->enemy->pixel + (game->enemy->width / 4))
 			{
-				game->enemy->alive = 0;
+				game->enemy->vanish_state = 0;
 				break;
 			}
 		}

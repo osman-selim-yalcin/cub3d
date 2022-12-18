@@ -82,6 +82,20 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.enemy_attack_img[3] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/shriek/shriek4.xpm", &game->img.enemy_x, &game->img.enemy_y);
 	game->img.enemy_attack_addr[3] = mlx_get_data_addr(game->img.enemy_attack_img[3], &game->img.enemy_bits_per_pixel[0], &game->img.enemy_line_length[0], &game->img.enemy_endian[0]);
 
+	game->img.enemy_vanish_img[0] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish1.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_vanish_addr[0] = mlx_get_data_addr(game->img.enemy_vanish_img[0], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
+	game->img.enemy_vanish_img[1] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish2.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_vanish_addr[1] = mlx_get_data_addr(game->img.enemy_vanish_img[1], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
+	game->img.enemy_vanish_img[2] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish3.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_vanish_addr[2] = mlx_get_data_addr(game->img.enemy_vanish_img[2], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
+	game->img.enemy_vanish_img[3] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish4.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_vanish_addr[3] = mlx_get_data_addr(game->img.enemy_vanish_img[3], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
+	game->img.enemy_vanish_img[4] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish5.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_vanish_addr[4] = mlx_get_data_addr(game->img.enemy_vanish_img[4], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
+	game->img.enemy_vanish_img[5] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish6.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_vanish_addr[5] = mlx_get_data_addr(game->img.enemy_vanish_img[5], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
+	game->img.enemy_vanish_img[6] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish7.xpm", &game->img.enemy_x, &game->img.enemy_y);
+	game->img.enemy_vanish_addr[6] = mlx_get_data_addr(game->img.enemy_vanish_img[6], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
 
 	game->img.ceil_img = mlx_xpm_file_to_image(game->libx.mlx, "images/0.xpm", &game->img.ceilx, &game->img.ceily);
 	game->img.ceil_addr = mlx_get_data_addr(game->img.ceil_img, &game->img.ceil_bits_per_pixel, &game->img.ceil_line_length, &game->img.ceil_endian);

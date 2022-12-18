@@ -21,8 +21,10 @@ unsigned int take_texture(t_game *game, int x, int y, int which_wall)
 	}
 	else if (which_wall == 5) //enemy
 	{
-		if (game->enemy->attack_state == -1)
+		if (game->enemy->attack_state == -1 && game->enemy->vanish_state == -1)
 			dst = game->img.enemy_idle_addr[game->enemy_idle_state] + (y * game->img.enemy_line_length[0] + x * (game->img.enemy_bits_per_pixel[0] / 8));
+		else if (game->enemy->vanish_state != -1)
+			dst = game->img.enemy_vanish_addr[game->enemy->vanish_state] + (y * game->img.enemy_line_length[1] + x * (game->img.enemy_bits_per_pixel[1] / 8));
 		else
 		{
 			dst = game->img.enemy_attack_addr[game->enemy->attack_state] + (y * game->img.enemy_line_length[0] + x * (game->img.enemy_bits_per_pixel[0] / 8));

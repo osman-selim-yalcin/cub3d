@@ -53,6 +53,11 @@ void enemy_walk(t_game *game)
 				game->enemy->middle -= 2 * M_PI;
 			x_collision = enemy_collision(game, game->enemy->posx + round_double(5 * (cos(game->enemy->middle))), game->enemy->posy);
 			y_collision = enemy_collision(game, game->enemy->posx, game->enemy->posy - round_double(5 * (sin(game->enemy->middle))));
+			if (game->enemy->vanish_state != -1)
+			{
+				game->enemy = game->enemy->next;
+				continue ;
+			}
 			if ((x_collision == 2 || y_collision == 2) && game->enemy->attack_state == -1)
 			{
 				game->enemy->attack_state = 0;

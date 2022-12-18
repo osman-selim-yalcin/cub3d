@@ -128,6 +128,8 @@ typedef struct s_img
 	void 	*enemy_idle_addr[7];
 	void	*enemy_attack_img[4];
 	void	*enemy_attack_addr[4];
+	void	*enemy_vanish_img[7];
+	void	*enemy_vanish_addr[7];
 	int		enemy_bits_per_pixel[2];
 	int		enemy_line_length[2];
 	int		enemy_endian[2];
@@ -198,6 +200,7 @@ typedef struct s_enemy
 	struct s_enemy	*head;
 	int id;
 	short int	attack_state;
+	short int	vanish_state;
 	short int	frame_counter;
 	int			sleep;
 }	t_enemy;

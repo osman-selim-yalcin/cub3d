@@ -30,6 +30,21 @@ void	set_idle_state(t_game *game)
 				game->enemy->sleep = 70;
 			}
 		}
+		else if (game->enemy->vanish_state != -1)
+		{
+			++game->enemy->frame_counter;
+			if (game->enemy->frame_counter >= 4)
+			{
+				game->enemy->frame_counter = 0;
+				++game->enemy->vanish_state;
+			}
+			if (game->enemy->vanish_state == 7)
+			{
+				game->enemy->vanish_state = -1;
+				game->enemy->frame_counter = 0;
+				game->enemy->alive = 0;
+			}
+		}
 		game->enemy = game->enemy->next;
 	}
 	game->enemy = tmp;
@@ -70,7 +85,7 @@ void	spawn_enemy(t_game *game)
 	t_enemy *tmp_enemy;
 	t_spawn *tmp_spawn;
 
-	if (counter >= 10)
+	if (counter >= 40)
 	{
 		counter = 0;
 		i = 0;
