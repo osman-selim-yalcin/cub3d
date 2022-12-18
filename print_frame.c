@@ -13,7 +13,7 @@ void print_frame(t_game *game, int action)
 	if (action == 1 && trans > 180)
 	{
 		trans -= 20;
-		game->player.hp_count = 50;
+		game->player.hp_count = game->level.regen;
 		game->player.hp--;
 	}
 	if (!action && trans <= 235)
@@ -31,6 +31,24 @@ void print_frame(t_game *game, int action)
 		}
 		a++;
 	}
+	a = SCREEN_WID / 2 - 10;
+	b = SCREEN_LEN / 2 - 10;
+	while (a < SCREEN_WID / 2 + 10)
+	{
+		if (!(a < SCREEN_WID / 2 + 3 && a > SCREEN_WID / 2 - 3))
+		{
+			my_mlx_pixel_put_frame(game, a + 30, SCREEN_LEN / 2 - 80,  create_trgb(0, 200, 100, 100));
+		}
+		a++;
+	}
+	while (b < SCREEN_LEN / 2 + 10)
+	{
+		if (!(b < SCREEN_LEN / 2 + 3 && b > SCREEN_LEN / 2 - 3))
+			my_mlx_pixel_put_frame(game, SCREEN_WID / 2 + 30, b - 80,  create_trgb(0, 200, 100, 100));
+		b++;
+	}
+	
+	
 }
 
 

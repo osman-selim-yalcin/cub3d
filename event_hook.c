@@ -27,7 +27,7 @@ void	set_idle_state(t_game *game)
 			{
 				game->enemy->attack_state = -1;
 				game->enemy->frame_counter = 0;
-				game->enemy->sleep = 70;
+				game->enemy->sleep = game->level.sleep;
 			}
 		}
 		game->enemy = game->enemy->next;
@@ -56,10 +56,10 @@ void	set_hand_state(t_game *game)
 
 void	set_heal(t_game *game)
 {
-	if (game->player.hp != 4 && game->player.hp_count-- <= 0)
+	if (game->player.hp != HP && game->player.hp_count-- <= 0)
 	{
 		print_frame(game, 0);
-		game->player.hp_count = 50;
+		game->player.hp_count = game->level.regen;
 	}
 }
 
@@ -70,7 +70,7 @@ void	spawn_enemy(t_game *game)
 	t_enemy *tmp_enemy;
 	t_spawn *tmp_spawn;
 
-	if (counter >= 10)
+	if (counter >= game->level.enemy_spawn_rate)
 	{
 		counter = 0;
 		i = 0;
@@ -159,15 +159,15 @@ void move(t_game *game)
 	}
 	if (game->settings.key_up == 1)
 	{
-		game->mouse_horizontal += 30;
-		if (game->mouse_horizontal > (SCREEN_LEN / 2))
-			game->mouse_horizontal = (SCREEN_LEN / 2);
+		game->mouse_vertical += 30;
+		if (game->mouse_vertical > (SCREEN_LEN / 2))
+			game->mouse_vertical = (SCREEN_LEN / 2);
 	}
 	if (game->settings.key_down == 1)
 	{
-		game->mouse_horizontal -= 30;
-		if (game->mouse_horizontal < -(SCREEN_LEN / 2))
-			game->mouse_horizontal = -(SCREEN_LEN / 2);
+		game->mouse_vertical -= 30;
+		if (game->mouse_vertical < -(SCREEN_LEN / 2))
+			game->mouse_vertical = -(SCREEN_LEN / 2);
 	}
 	
 	

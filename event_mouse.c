@@ -4,8 +4,8 @@ int mouse_move(int x, int y, t_game *game)
 {
 	int b;
 	b = (y - (SCREEN_LEN / 2)) / 3;
-	if ((game->mouse_horizontal - b > -(SCREEN_LEN / 2)) && (game->mouse_horizontal - b < SCREEN_LEN / 2))
-		game->mouse_horizontal -= b;
+	if ((game->mouse_vertical - b > -(SCREEN_LEN / 2)) && (game->mouse_vertical - b < SCREEN_LEN / 2))
+		game->mouse_vertical -= b;
 
 	int a = SCREEN_WID / 2 - x;
 	game->player.direction += (int)SENS * (int)a / 20;

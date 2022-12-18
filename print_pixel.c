@@ -30,7 +30,7 @@ void pixelput(t_game *game, double hypo, double ray_counter)
 		t = game->img.east_y;
 	if (game->img.which_wall == 7)
 		t = game->img.door_y;
-	start += game->mouse_horizontal;
+	start += game->mouse_vertical;
 	if (start < 0)
 		a = -start;
 	while (a < wall)

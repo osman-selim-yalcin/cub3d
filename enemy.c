@@ -41,6 +41,7 @@ void enemy_walk(t_game *game)
 	int	y_collision;
 	float offset;
 	double middle_tmp;
+	int enemy_speed = game->level.enemy_speed;
 
 	tmp_enemy = game->enemy;
 	while (game->enemy)
@@ -51,8 +52,8 @@ void enemy_walk(t_game *game)
 			game->enemy->middle += M_PI;
 			if (game->enemy->middle > 2 * M_PI)
 				game->enemy->middle -= 2 * M_PI;
-			x_collision = enemy_collision(game, game->enemy->posx + round_double(5 * (cos(game->enemy->middle))), game->enemy->posy);
-			y_collision = enemy_collision(game, game->enemy->posx, game->enemy->posy - round_double(5 * (sin(game->enemy->middle))));
+			x_collision = enemy_collision(game, game->enemy->posx + round_double(enemy_speed * (cos(game->enemy->middle))), game->enemy->posy);
+			y_collision = enemy_collision(game, game->enemy->posx, game->enemy->posy - round_double(enemy_speed * (sin(game->enemy->middle))));
 			if ((x_collision == 2 || y_collision == 2) && game->enemy->attack_state == -1)
 			{
 				game->enemy->attack_state = 0;
@@ -60,12 +61,12 @@ void enemy_walk(t_game *game)
 				game->enemy = game->enemy->next;
 				continue ;
 			}
-			offset = game->enemy->posx + round_double(5 * (cos(game->enemy->middle)));
+			offset = game->enemy->posx + round_double(enemy_speed * (cos(game->enemy->middle)));
 			if (!enemy_collision(game, offset,game->enemy->posy))
 			{
 				game->enemy->posx = offset;
 			}
-			offset = game->enemy->posy - round_double(5 * (sin(game->enemy->middle)));
+			offset = game->enemy->posy - round_double(enemy_speed * (sin(game->enemy->middle)));
 			if (!enemy_collision(game, game->enemy->posx, offset))
 			{
 				game->enemy->posy = offset;
@@ -173,7 +174,7 @@ void enemy_print(t_game *game, int ray_counter, int hypo_tmp)
 					if (a % 2 == 1)
 						a++;
 					start = (SCREEN_LEN - a) / 2;
-					start += game->mouse_horizontal;
+					start += game->mouse_vertical;
 					if (start < 0)
 						cnt = -start;
 					while (cnt < a)
