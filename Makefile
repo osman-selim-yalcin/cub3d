@@ -2,7 +2,7 @@ SRCS = *c
 
 OBJS = $(SRCS:.c=.o)
 
-EXT = minilibx/libmlx.a 
+MLX = minilibx/libmlx.a 
 
 CC = gcc
 
@@ -12,21 +12,23 @@ RM = rm -rf
 
 NAME = cub3D
 
-all :$(EXT) $(NAME)
+	
+all :$(MLX) $(NAME)
 
-$(EXT):
+$(MLX):
 	make -C minilibx
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(EXT) $(FLAGS) -framework OpenGL -framework AppKit -o $(NAME) -g
+$(NAME): $(MLX) $(OBJS)
+	$(CC) $(OBJS) $(MLX) $(FLAGS) -framework OpenGL -framework AppKit -o $(NAME)
+
 fclean : clean
 	$(RM) *.a
 	$(RM) $(NAME)
+	make clean -C minilibx
 
 clean :
 	$(RM) *.o
 
 re : fclean all
-
 
 .PHONY : all bonus fclean clean re

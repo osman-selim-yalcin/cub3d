@@ -5,7 +5,6 @@ void p_attack(t_game *game)
 {
 	t_enemy *tmp_enemy;
 	int which_enemy;
-	// game->img.hand.attack = 1;
 	
 	tmp_enemy = game->enemy;
 	which_enemy = game->enemy_count;
