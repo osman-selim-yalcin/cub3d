@@ -14,7 +14,7 @@ void p_attack(t_game *game)
 			game->enemy = game->enemy->next;
 		if (game->enemy->alive)
 		{		
-			if (game->enemy->distance < 600 && SCREEN_WID / 2 + 10 > game->enemy->pixel - (game->enemy->width / 4) && SCREEN_WID / 2 - 50 < game->enemy->pixel + (game->enemy->width / 4))
+			if (game->enemy->distance < 600 && SCREEN_WID / 2 + 10 > game->enemy->pixel - (game->enemy->width / 4) && SCREEN_WID / 2 - 50 < game->enemy->pixel + (game->enemy->width / 4) && game->enemy->vanish_state == -1 )
 			{
 				game->enemy->vanish_state = 0;
 				break;

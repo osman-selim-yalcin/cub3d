@@ -124,6 +124,8 @@ void	spawn_enemy(t_game *game)
 
 int hook_event(t_game *game)
 {
+	if (game->player.hp <= 0)
+		mlx_loop_hook(game->libx.mlx, game_over, game);
 	mlx_clear_window(game->libx.mlx, game->libx.win);
 	mlx_destroy_image(game->libx.mlx, game->img.img);
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);

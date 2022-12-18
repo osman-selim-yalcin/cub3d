@@ -14,7 +14,7 @@
 # define D_FOV 60
 # define R_FOV (M_PI / 3)
 # define SENS 1
-# define HP 4
+# define HP 1
 # define ENEMY_COUNT 5
 
 typedef struct s_minimap
@@ -117,6 +117,14 @@ typedef struct s_img
 	int		east_endian;
 	int		east_x;
 	int		east_y;
+
+	void	*dedge_img;
+	void	*dedge_addr;
+	int		dedge_bits_per_pixel;
+	int		dedge_line_length;
+	int		dedge_endian;
+	int		dedge_x;
+	int		dedge_y;
 
 	void	*west_img;
 	void	*west_addr;
@@ -441,7 +449,8 @@ int	direction_angle(t_game *game);
 int	ray_angle(t_game *game);
 int	degree_angle(int degree);
 
-
+//game_over.c
+int game_over(t_game *game);
 
 
 #endif

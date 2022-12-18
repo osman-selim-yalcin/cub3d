@@ -97,6 +97,9 @@ void fill_struct_libx_and_img(t_game *game)
 	game->img.enemy_vanish_img[6] = mlx_xpm_file_to_image(game->libx.mlx, "images/ghost/vanish/vanish7.xpm", &game->img.enemy_x, &game->img.enemy_y);
 	game->img.enemy_vanish_addr[6] = mlx_get_data_addr(game->img.enemy_vanish_img[6], &game->img.enemy_bits_per_pixel[1], &game->img.enemy_line_length[1], &game->img.enemy_endian[1]);
 
+	game->img.dedge_img = mlx_xpm_file_to_image(game->libx.mlx, "images/3x.xpm", &game->img.dedge_x, &game->img.dedge_y);
+	game->img.dedge_addr = mlx_get_data_addr(game->img.dedge_img, &game->img.dedge_bits_per_pixel, &game->img.dedge_line_length, &game->img.dedge_endian);
+
 	game->img.ceil_img = mlx_xpm_file_to_image(game->libx.mlx, "images/0.xpm", &game->img.ceilx, &game->img.ceily);
 	game->img.ceil_addr = mlx_get_data_addr(game->img.ceil_img, &game->img.ceil_bits_per_pixel, &game->img.ceil_line_length, &game->img.ceil_endian);
 
