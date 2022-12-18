@@ -111,7 +111,7 @@ int	check_component(t_game *game)
 	}
 	if (game->map.player_count != 1)
 		return (2);
-	for (int n = 0;n < 6;++n)
+	for (int n = 0;n < 5;++n)
 	{
 		append_enemy(game);
 	}

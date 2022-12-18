@@ -13,7 +13,7 @@ int enemy_collision(t_game *game, float x, float y)
 				break;
 			tmp_enemy = tmp_enemy->next;
 		}
-		if (tmp_enemy->alive && hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 20)
+		if (tmp_enemy->alive && hypot(x - tmp_enemy->posx, y - tmp_enemy->posy) < 25)
 			return (1);
 		tmp_enemy = tmp_enemy->next;
 	}
@@ -40,12 +40,14 @@ void enemy_walk(t_game *game)
 	int x_collision;
 	int	y_collision;
 	float offset;
+	double middle_tmp;
 
 	tmp_enemy = game->enemy;
 	while (game->enemy)
 	{
 		if (game->enemy->alive && game->enemy->sleep == 0)
 		{
+			middle_tmp = game->enemy->middle;
 			game->enemy->middle += M_PI;
 			if (game->enemy->middle > 2 * M_PI)
 				game->enemy->middle -= 2 * M_PI;
@@ -68,6 +70,7 @@ void enemy_walk(t_game *game)
 			{
 				game->enemy->posy = offset;
 			}
+			game->enemy->middle = middle_tmp;
 		}
 		else if (game->enemy->sleep != 0)
 			--game->enemy->sleep;
@@ -88,6 +91,7 @@ void get_enemy(t_game *game)
 		{
 			double middle;
 			double middle_tmp;
+			double k_tmp;
 			double k;
 			game->player.ray_start = (game->player.direction - game->player.fov / 2);
 			if (game->player.ray_start < 0)
@@ -97,29 +101,24 @@ void get_enemy(t_game *game)
 			game->enemy->width = ((70 * SCREEN_WID) / (game->enemy->distance * 2));
 			
 			middle = atan((game->enemy->posx - game->player.pos_x) / (game->enemy->posy - game->player.pos_y));
-			if (game->player.pos_x > game->enemy->posx)
-			{
-				if (game->player.pos_y > game->enemy->posy)
-					middle += deg_to_rad(90);
-				else
-					middle = middle + deg_to_rad(270);
-			}
+
+			if (game->player.pos_y > game->enemy->posy)
+				middle += deg_to_rad(90);
 			else
-			{
-				if (game->player.pos_y > game->enemy->posy)
-					middle += deg_to_rad(90);
-				else
-					middle += deg_to_rad(270);
-			}
-			k = 0;
+				middle += deg_to_rad(270);
+			k =  2 * M_PI - (R_FOV) / 4;
+			k_tmp = 0;
 			middle_tmp = middle;
 			if (deg_to_rad(game->player.ray_start) > middle)
 				middle_tmp = middle + 2 * M_PI;
-			while (deg_to_rad(game->player.ray_start )< middle_tmp && !take_approximate(deg_to_rad(game->player.ray_start) + k, middle_tmp))
+			while (deg_to_rad(game->player.ray_start)< middle_tmp && !take_approximate(deg_to_rad(game->player.ray_start) + k, middle_tmp))
 			{
-				if ((3 *  R_FOV / 2 ) < k)
-					break ; 
+				if (( R_FOV / 2 + R_FOV) < k_tmp)
+					break ;
+				if (k >= 2 * M_PI)
+					k = 0;
 				k += 0.00001;
+				k_tmp += 0.00001;
 			}
 			game->enemy->pixel = (float)SCREEN_WID * (k * (180 / M_PI)) / D_FOV;
 			while (game->enemy->pixel > SCREEN_WID * (360 / D_FOV - 1))

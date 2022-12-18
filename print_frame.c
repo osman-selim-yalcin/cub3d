@@ -7,7 +7,7 @@ void print_frame(t_game *game, int action)
 	static int trans = 255;
 	int a;
 	int b;
-	static int color = 220;
+	static int color = 120;
 
 	a = 0;
 	if (action == 1 && trans > 180)

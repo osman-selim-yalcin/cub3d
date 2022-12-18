@@ -70,7 +70,7 @@ void	spawn_enemy(t_game *game)
 	t_enemy *tmp_enemy;
 	t_spawn *tmp_spawn;
 
-	if (counter >= 100)
+	if (counter >= 10)
 	{
 		counter = 0;
 		i = 0;
@@ -113,7 +113,6 @@ int hook_event(t_game *game)
 	display_minimap(game);
 	move(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
-	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img_frame, 0, 0);
 	set_hand_state(game);
 	set_idle_state(game);
 	set_heal(game);
@@ -122,6 +121,7 @@ int hook_event(t_game *game)
 		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.left_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8 , SCREEN_LEN - game->img.hand.hand_img[game->img.hand.left_hand].y);
 		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.right_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.right_hand].x / 2 + SCREEN_WID / 19.2, SCREEN_LEN - game->img.hand.hand_img[game->img.hand.right_hand].y);
 	}
+	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img_frame, 0, 0);
 	return (0);
 }
 
