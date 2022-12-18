@@ -14,7 +14,7 @@
 # define D_FOV 60
 # define R_FOV (M_PI / 3)
 # define SENS 1
-# define HP 1
+# define HP 4
 # define ENEMY_COUNT 5
 
 typedef struct s_minimap
