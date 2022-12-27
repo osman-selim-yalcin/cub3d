@@ -6,13 +6,13 @@ cub3d is a 3D graphics engine that uses raycasting technology to create and disp
 
 Raycasting is a rendering technique used to generate 2D images from 3D environments. It works by simulating the path of light rays as they pass through the 3D world and intersect with objects. By calculating the intersection points and the colors of the objects at these points, it is possible to generate a 2D image that appears to be 3D.
 
-#Table of Contents
+# Table of Contents
 
-+ <a href="#installation"> Installation </a>
-+ <a href="#usage"> Usage </a>
-+ <a href="#map"> Map </a>
-+ <a href="#gameplay"> Gameplay </a>
-+ <a href="#license"> License </a>
+1 <a href="#installation"> Installation </a>
+1 <a href="#usage"> Usage </a>
+1 <a href="#map"> Map </a>
+1 <a href="#gameplay"> Gameplay </a>
+1 <a href="#license"> License </a>
 
 # <span id="installation"> Installation </span>
 ## macOS
