@@ -8,12 +8,13 @@ Raycasting is a rendering technique used to generate 2D images from 3D environme
 
 #Table of Contents
 
+<a href="#installation"> Installation </a>
+<a href="#usage"> Usage </a>
 <a href="#map"> Map </a>
-    Gameplay
-    Contributing
-    License
+<a href="#gameplay"> Gameplay </a>
+<a href="#license"> License </a>
 
-# Installation
+# <span id="installation"> Installation </span>
 ## macOS
 
 To install cub3d on macOS, you will need to have the following dependencies installed:
@@ -53,7 +54,7 @@ git clone https://github.com/osman-selim-yalcin/cub3d.git
 cd cub3d
 make
 
-# Usage
+# <span id="usage"> Usage </span> 
 
 To run cub3d, use the following command:
 
@@ -73,7 +74,7 @@ The map file should follow these rules:
     1: Wall
     0: Empty area
 
-# Gameplay
+# <span id="gameplay"> Gameplay </span>
 
 In cub3d, you have 4 lives. You can use the following keys to control your character:
 
@@ -96,6 +97,6 @@ This will display the 3D graphics in a window and allow you to control your char
 
 If you'd like to contribute to the development of cub3d, please follow the contributing guidelines.
 
-# License
+# <span id="license"> License </span>
 
 cub3d is licensed under the MIT License.
