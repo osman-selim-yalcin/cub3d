@@ -8,11 +8,11 @@ Raycasting is a rendering technique used to generate 2D images from 3D environme
 
 #Table of Contents
 
-<a href="#installation"> Installation </a>
-<a href="#usage"> Usage </a>
-<a href="#map"> Map </a>
-<a href="#gameplay"> Gameplay </a>
-<a href="#license"> License </a>
++ <a href="#installation"> Installation </a>
++ <a href="#usage"> Usage </a>
++ <a href="#map"> Map </a>
++ <a href="#gameplay"> Gameplay </a>
++ <a href="#license"> License </a>
 
 # <span id="installation"> Installation </span>
 ## macOS
