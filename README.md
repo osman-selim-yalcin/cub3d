@@ -1,7 +1,8 @@
 # cub3d
 
-cub3d is a 3D graphics engine that allows you to create and display 3D graphics in a terminal window.
-Installation
+cub3d is a 3D graphics engine that uses raycasting technology to create and display 3D graphics in a terminal window.
+
+Raycasting is a rendering technique used to generate 2D images from 3D environments. It works by simulating the path of light rays as they pass through the 3D world and intersect with objects. By calculating the intersection points and the colors of the objects at these points, it is possible to generate a 2D image that appears to be 3D.
 
 To install cub3d, you will need to have the following dependencies installed:
 
