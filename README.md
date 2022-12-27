@@ -95,16 +95,6 @@ In cub3d, you have 4 lives. You can use the following keys to control your chara
     up/down/right/left: Change direction
     Mouse rotation is also available
 
-## Example
-
-To run cub3d with a map file called map.cub, use the following command:
-
-```
-./cub3d map.cub
-```
-
-This will display the 3D graphics in a window and allow you to control your character using the keys described above.
-
 ## <span id="license">  License
 
 cub3d is licensed under the MIT License.
