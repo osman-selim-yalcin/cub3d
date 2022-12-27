@@ -92,7 +92,7 @@ void	spawn_enemy(t_game *game)
 	t_enemy *tmp_enemy;
 	t_spawn *tmp_spawn;
 
-	if (counter >= game->level.enemy_spawn_rate)
+	if (game->spawn_count && counter >= game->level.enemy_spawn_rate)
 	{
 		counter = 0;
 		i = 0;

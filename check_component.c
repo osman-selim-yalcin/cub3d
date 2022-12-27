@@ -104,6 +104,7 @@ int	check_component(t_game *game)
 
 	game->enemy = NULL;
 	game->spawn = NULL;
+	game->spawn_count = 0;
 	i = 0;
 	while (game->map.map[i] != NULL)
 	{
