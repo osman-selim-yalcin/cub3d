@@ -8,7 +8,7 @@ Raycasting is a rendering technique used to generate 2D images from 3D environme
 
 #Table of Contents
 
-    Changing the Map
+<a href="Map"> Map </a>
     Gameplay
     Contributing
     License
@@ -61,7 +61,7 @@ To run cub3d, use the following command:
 
 where map.cub is the path to a map file. The map file should contain a description of the 3D world, including the position of walls and objects.
 
-# Changing the Map
+# <span id="map"> Changing the Map </span>
 
 To change the map in cub3d, you will need to create a new map file and specify its path when running the cub3d command. The map file should contain a description of the 3D world, including the position of walls and objects.
 
