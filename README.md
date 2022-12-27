@@ -95,6 +95,10 @@ In cub3d, you have 4 lives. You can use the following keys to control your chara
     up/down/right/left: Change direction
     Mouse rotation is also available
 
+## Contributior
+
+I devoloped this project with [Burak Mat](https://github.com/burakmat)
+
 ## <span id="license">  License
 
-cub3d is licensed under the MIT License.
+cub3d is licensed under the [MIT](https://github.com/osman-selim-yalcin/cub3d/blob/main/LICENSE) License.
