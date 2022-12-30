@@ -13,7 +13,7 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 	{
 		if (line[i] != 32 && line[i] != 'N' && line[i] != 'S' \
 			&& line[i] != 'W' && line[i] != 'E' && line[i] != '\n' \
-			&& line[i] != '1' && line[i] != '0' && line[i] != 'C')
+			&& line[i] != '1' && line[i] != '0')
 			return (0);
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
 		{
