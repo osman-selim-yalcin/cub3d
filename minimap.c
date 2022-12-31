@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: burak <burak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:33:11 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:33:29 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2022/12/31 23:49:46 by burak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,47 +20,20 @@ void	draw_64(int x, int y, t_game *game)
 	x2 = 0;
 	y2 = 0;
 	if (game->map.map[y][x] == '1')
-	{
-		while (x2 <= game->settings.minimap_scale)
-		{
-			y2 = 0;
-			while (y2 <= game->settings.minimap_scale)
-			{
-				if (x2 < game->settings.minimap_scale / 10 || x2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10) || \
-					y2 < game->settings.minimap_scale / 10 || y2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10) || x2 == 0 || y2 == 0)//grid frame
-					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x007b2d26);
-				else//wall
-					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x00d7c9aa);
-				y2++;
-			}
-			x2++;
-		}
-	}
+		draw_mini_wall(game, x, y);
 	else if (game->map.map[y][x] == 'C')
-	{
-		while (x2 <= game->settings.minimap_scale)
-		{
-			y2 = 0;
-			while (y2 <= game->settings.minimap_scale)
-			{
-				if (x2 < game->settings.minimap_scale / 10 || x2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10) || \
-					y2 < game->settings.minimap_scale / 10 || y2 >= game->settings.minimap_scale - (game->settings.minimap_scale / 10) || x2 == 0 || y2 == 0)//grid frame
-					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x00FF6B00);
-				else//wall
-					my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x009ea3b0);
-				y2++;
-			}
-			x2++;
-		}
-	}
-	else if (game->map.map[y][x] != '2')//background
+		draw_mini_door(game, x, y);
+	else if (game->map.map[y][x] != '2')
 	{
 		while (x2 < game->settings.minimap_scale)
 		{
 			y2 = 0;
 			while (y2 < game->settings.minimap_scale)
 			{
-				my_mlx_pixel_put(game, (x - game->minimap.empty_column) * game->settings.minimap_scale + x2 + game->minimap.shift_x, y * game->settings.minimap_scale + y2 + game->minimap.shift_y, 0x00000000);
+				my_mlx_pixel_put(game, (x - game->minimap.empty_column) \
+					* game->settings.minimap_scale + x2 + \
+					game->minimap.shift_x, y * game->settings.minimap_scale \
+					+ y2 + game->minimap.shift_y, 0x00000000);
 				y2++;
 			}
 			x2++;
@@ -86,10 +59,10 @@ void	draw_map(t_game *game)
 	}
 }
 
-void draw_player(t_game *game)
+void	draw_player(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -108,7 +81,6 @@ void draw_player(t_game *game)
 	}
 }
 
-
 void	draw_ray(t_game *game, float ray_len)
 {
 	float	offset;
@@ -124,7 +96,6 @@ void	draw_ray(t_game *game, float ray_len)
 		offset += 0.2;
 	}
 }
-
 
 void	display_minimap(t_game *game)
 {
