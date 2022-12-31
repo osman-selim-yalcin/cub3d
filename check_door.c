@@ -6,11 +6,35 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:50:53 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:02:48 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/01 01:08:12 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	check_door_position_if(t_game *game, int i, int j)
+{
+	if (game->map.map[i][j] == 'C')
+	{
+		if (game->map.map[i][j + 1] != '1' \
+		&& game->map.map[i][j - 1] != '1')
+		{
+			if (game->map.map[i - 1][j] != '1' \
+				|| game->map.map[i + 1][j] != '1')
+				return (1);
+		}
+		else if (game->map.map[i + 1][j] != '1' \
+			&& game->map.map[i - 1][j] != '1')
+		{
+			if (game->map.map[i][j + 1] != '1' \
+				|| game->map.map[i][j - 1] != '1')
+				return (1);
+		}
+		else
+			return (1);
+	}
+	return (0);
+}
 
 int	check_door_position(t_game *game)
 {
@@ -23,25 +47,8 @@ int	check_door_position(t_game *game)
 		j = 0;
 		while (game->map.map[i][j])
 		{
-			if (game->map.map[i][j] == 'C')
-			{
-				if (game->map.map[i][j + 1] != '1' \
-					&& game->map.map[i][j - 1] != '1')
-				{
-					if (game->map.map[i - 1][j] != '1' \
-						|| game->map.map[i + 1][j] != '1')
-						return (1);
-				}
-				else if (game->map.map[i + 1][j] != '1' \
-					&& game->map.map[i - 1][j] != '1')
-				{
-					if (game->map.map[i][j + 1] != '1' \
-						|| game->map.map[i][j - 1] != '1')
-						return (1);
-				}
-				else
-					return (1);
-			}
+			if (check_door_position_if(game, i, j))
+				return (1);
 			++j;
 		}
 		++i;
@@ -49,6 +56,23 @@ int	check_door_position(t_game *game)
 	add_door_position(game);
 	get_door_position(game);
 	return (0);
+}
+
+void	get_door_position_while(t_game *game, int i, int j, int *counter)
+{
+	if (game->map.map[i][j] == 'C')
+	{
+		game->map.doors[*counter] = malloc(sizeof(int) * 2);
+		game->map.doors[*counter][1] = 100 * (i) + 50;
+		game->map.doors[*counter][0] = 100 * (j) + 50;
+		++*counter;
+	}
+	else if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S' \
+		|| game->map.map[i][j] == 'W' || game->map.map[i][j] == 'E')
+	{
+		game->player.pos_x = 100 * (j) + 50;
+		game->player.pos_y = 100 * (i) + 50;
+	}
 }
 
 void	get_door_position(t_game *game)
@@ -65,19 +89,7 @@ void	get_door_position(t_game *game)
 		j = 0;
 		while (game->map.map[i][j])
 		{
-			if (game->map.map[i][j] == 'C')
-			{
-				game->map.doors[counter] = malloc(sizeof(int) * 2);
-				game->map.doors[counter][1] = 100 * (i) + 50;
-				game->map.doors[counter][0] = 100 * (j) + 50;
-				++counter;
-			}
-			else if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S' \
-				|| game->map.map[i][j] == 'W' || game->map.map[i][j] == 'E')
-			{
-				game->player.pos_x = 100 * (j) + 50;
-				game->player.pos_y = 100 * (i) + 50;
-			}
+			get_door_position_while(game, i, j, &counter);
 			++j;
 		}
 		++i;

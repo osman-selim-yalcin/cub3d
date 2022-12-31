@@ -6,32 +6,16 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:21:33 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:21:36 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2022/12/31 23:12:31 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	pixelput(t_game *game, double hypo, double ray_counter)
+int	take_t(t_game *game)
 {
-	int	a;
-	int	wall;
-	int	start;
 	int	t;
-	int	real_wall;
 
-	a = 0;
-	real_wall = 0;
-	if (hypo == 0)
-		return ;
-	while ((double)a < (150 / hypo) * (SCREEN_LEN / 2))
-		a++;
-	if (a % 2 == 1)
-		a++;
-	wall = a;
-	start = (SCREEN_LEN - a) / 2;
-
-	a = 0;
 	if (game->img.which_wall == 1)
 		t = game->img.north_y;
 	if (game->img.which_wall == 2)
@@ -42,7 +26,18 @@ void	pixelput(t_game *game, double hypo, double ray_counter)
 		t = game->img.east_y;
 	if (game->img.which_wall == 7)
 		t = game->img.door_y;
-	start += game->mouse_horizontal;
+	return (t);
+}
+
+int	put_start(t_game *game, int ray_counter, int start, int wall)
+{
+	int	t;
+	int	a;
+	int	real_wall;
+
+	t = take_t(game);
+	a = 0;
+	real_wall = 0;
 	if (start < 0)
 		a = -start;
 	while (a < wall)
@@ -56,6 +51,27 @@ void	pixelput(t_game *game, double hypo, double ray_counter)
 		++a;
 		++real_wall;
 	}
+	return (real_wall);
+}
+
+void	pixelput(t_game *game, double hypo, double ray_counter)
+{
+	int	a;
+	int	wall;
+	int	start;
+	int	real_wall;
+
+	a = 0;
+	if (hypo == 0)
+		return ;
+	while ((double)a < (150 / hypo) * (SCREEN_LEN / 2))
+		a++;
+	if (a % 2 == 1)
+		a++;
+	start = (SCREEN_LEN - a) / 2;
+	wall = a;
+	start += game->mouse_horizontal;
+	real_wall = put_start(game, ray_counter, start, wall);
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), real_wall, start);
 	if (SCREEN_LEN < 800 || SCREEN_WID < 800)
 		put_hand(game, ray_counter);
@@ -90,7 +106,6 @@ void	put_hand(t_game *game, int ray_counter)
 	}	
 }
 
-
 void	put_floorceil(t_game *game, int x, int real_wall, int start)
 {
 	int	y;
@@ -108,17 +123,4 @@ void	put_floorceil(t_game *game, int x, int real_wall, int start)
 		my_mlx_pixel_put(game, x, y + real_wall, game->map.floor_rgb);
 		y++;
 	}
-}
-
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
-{
-	char	*dst;
-
-	if (!((y < SCREEN_LEN && y >= 0) && (x >= 0 && x < SCREEN_WID)))
-	{
-		return ;
-	}
-	dst = game->img.addr + (y * game->img.line_length \
-		+ x * (game->img.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }

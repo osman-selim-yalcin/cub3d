@@ -6,10 +6,9 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:51:21 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:16:58 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2022/12/31 23:12:53 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -26,7 +25,6 @@ int	main(int ac, char **av)
 	if (check_map(&game, ac))
 		return (1);
 	get_value(&game);
-
 	mlx_mouse_hide();
 	mlx_mouse_move(game.libx.win, SCREEN_WID / 2, SCREEN_LEN / 2);
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);

@@ -6,18 +6,14 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:50:50 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:00:58 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/01 00:54:36 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-int	is_line_valid(t_game *game, char *line, int coor_y)
+int	is_line_valid(t_game *game, char *line, int i)
 {
-	int	i;
-
-	(void)coor_y;
 	if (line == NULL)
 		return (0);
 	i = 0;
@@ -48,11 +44,13 @@ int	is_line_valid(t_game *game, char *line, int coor_y)
 int	check_component(t_game *game)
 {
 	int	i;
+	int	a;
 
 	i = 0;
+	a = 0;
 	while (game->map.map[i] != NULL)
 	{
-		if (!is_line_valid(game, game->map.map[i], i))
+		if (!is_line_valid(game, game->map.map[i], a))
 			return (1);
 		++i;
 	}

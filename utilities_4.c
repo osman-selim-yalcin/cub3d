@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:29:58 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:30:32 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2022/12/31 23:10:51 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,17 @@ char	*append_string(char *str, char *buf)
 	result[i] = '\0';
 	free(str);
 	return (result);
+}
+
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+{
+	char	*dst;
+
+	if (!((y < SCREEN_LEN && y >= 0) && (x >= 0 && x < SCREEN_WID)))
+	{
+		return ;
+	}
+	dst = game->img.addr + (y * game->img.line_length \
+		+ x * (game->img.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

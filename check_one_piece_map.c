@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:51:03 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:05:36 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/01 00:32:51 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,21 +119,5 @@ int	search_non_two(char **map)
 		}
 		++i;
 	}
-	return (0);
-}
-
-int	check_partition(t_game *game)
-{
-	char	**tmp;
-
-	tmp = copy_map(game);
-	set_player_index(game);
-	set_bg_to_two(tmp, game->player.row, game->player.column);
-	if (search_non_two(tmp))
-	{
-		free_copy_map(game, tmp);
-		return (1);
-	}
-	free_copy_map(game, tmp);
 	return (0);
 }

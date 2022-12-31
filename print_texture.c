@@ -6,11 +6,28 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:21:44 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:30:55 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2022/12/31 22:53:07 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+unsigned int	hand_return(t_game *game, int x, int y, int which_wall)
+{
+	char	*dst;
+
+	dst = NULL;
+	if (which_wall == 10)
+		dst = game->img.hand.hand_img[game->img.hand.left_hand].addr + (y * \
+		game->img.hand.hand_img[game->img.hand.left_hand].line_length + x * \
+		(game->img.hand.hand_img[game->img.hand.left_hand].bits_per_pixel / 8));
+	else if (which_wall == 11)
+		dst = game->img.hand.hand_img[game->img.hand.right_hand].addr + (y * \
+		game->img.hand.hand_img[game->img.hand.right_hand].line_length + x * \
+		(game->img.hand.hand_img \
+		[game->img.hand.right_hand].bits_per_pixel / 8));
+	return (*(unsigned int *)dst);
+}
 
 unsigned int	take_texture(t_game *game, int x, int y, int which_wall)
 {
@@ -32,13 +49,7 @@ unsigned int	take_texture(t_game *game, int x, int y, int which_wall)
 	else if (which_wall == 7)
 		dst = game->img.door_addr + (y * game->img.door_line_length + \
 		x * (game->img.door_bits_per_pixel / 8));
-	else if (which_wall == 10)
-		dst = game->img.hand.hand_img[game->img.hand.left_hand].addr + (y * \
-		game->img.hand.hand_img[game->img.hand.left_hand].line_length + x * \
-		(game->img.hand.hand_img[game->img.hand.left_hand].bits_per_pixel / 8));
-	else if (which_wall == 11)
-		dst = game->img.hand.hand_img[game->img.hand.right_hand].addr + (y * \
-		game->img.hand.hand_img[game->img.hand.right_hand].line_length + x * \
-		(game->img.hand.hand_img[game->img.hand.right_hand].bits_per_pixel / 8));
+	else if (which_wall == 10 || which_wall == 11)
+		hand_return(game, x, y, which_wall);
 	return (*(unsigned int *)dst);
 }

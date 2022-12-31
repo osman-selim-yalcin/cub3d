@@ -6,11 +6,21 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:49:59 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 21:50:31 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/01 00:40:10 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	cal(t_game *game, double ray_counter)
+{
+	game->player.ray_abs = (game->player.direction - game->player.fov / 2) \
+		+ (ray_counter / SCREEN_WID * D_FOV);
+	if (game->player.ray_abs < 0)
+		game->player.ray_abs += 360;
+	else if (game->player.ray_abs >= 360)
+		game->player.ray_abs -= 360;
+}
 
 void	start(t_game *game)
 {
@@ -19,11 +29,7 @@ void	start(t_game *game)
 	ray_counter = 0;
 	while (ray_counter < SCREEN_WID)
 	{
-		game->player.ray_abs = (game->player.direction - game->player.fov / 2) + (ray_counter / SCREEN_WID * D_FOV);
-		if (game->player.ray_abs < 0)
-			game->player.ray_abs += 360;
-		else if (game->player.ray_abs >= 360)
-			game->player.ray_abs -= 360;
+		cal(game, ray_counter);
 		if (ray_angle(game) == 1)
 		{
 			top_right(game, ray_counter);
@@ -34,7 +40,7 @@ void	start(t_game *game)
 		}
 		else if (ray_angle(game) == 3)
 		{
-			bottom_left(game,ray_counter);
+			bottom_left(game, ray_counter);
 		}
 		else if (ray_angle(game) == 4)
 		{

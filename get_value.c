@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:51:22 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:16:16 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/01 02:22:16 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,42 +32,52 @@ void	fill_struct_map(t_game *game, char **av)
 
 void	fill_struct_minimap(t_game *game)
 {
-	game->minimap.pos_x = (game->player.pos_x - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
-	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
+	game->minimap.pos_x = (game->player.pos_x - game->minimap.empty_column \
+		* 100) / 100 * game->settings.minimap_scale;
+	game->minimap.pos_y = game->player.pos_y / 100 * \
+		game->settings.minimap_scale;
 	game->minimap.pa = (deg_to_rad(game->player.direction));
-
-
-	game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
-	game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
-	
-	
+	game->minimap.step_offset_x = cos(game->minimap.pa) * \
+		game->settings.minimap_scale / 10;
+	game->minimap.step_offset_y = sin(game->minimap.pa) * \
+		game->settings.minimap_scale / 10;
 	game->minimap.mapx = game->map.width;
 	game->minimap.mapy = game->map.length;
 }
 
-void fill_struct_libx_and_img(t_game *game)
+void	fill_struct_libx_and_img(t_game *game)
 {
 	game->libx.mlx = mlx_init();
-	game->libx.win = mlx_new_window(game->libx.mlx, SCREEN_WID, SCREEN_LEN, "cub3d");
-
+	game->libx.win = mlx_new_window \
+		(game->libx.mlx, SCREEN_WID, SCREEN_LEN, "cub3d");
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
-
-	game->img.north_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.north_wall, &game->img.north_x, &game->img.north_y);
-	game->img.north_addr = mlx_get_data_addr(game->img.north_img, &game->img.north_bits_per_pixel, &game->img.north_line_length, &game->img.north_endian);
-
-	game->img.west_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.west_wall,  &game->img.west_x, &game->img.west_y);
-	game->img.west_addr = mlx_get_data_addr(game->img.west_img, &game->img.west_bits_per_pixel, &game->img.west_line_length, &game->img.west_endian);
-
-	game->img.south_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.south_wall, &game->img.south_x, &game->img.south_y);
-	game->img.south_addr = mlx_get_data_addr(game->img.south_img, &game->img.south_bits_per_pixel, &game->img.south_line_length, &game->img.south_endian);
-
-	game->img.east_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.east_wall, &game->img.east_x, &game->img.east_y);
-	game->img.east_addr = mlx_get_data_addr(game->img.east_img, &game->img.east_bits_per_pixel, &game->img.east_line_length, &game->img.east_endian);
-
-	game->img.door_img = mlx_xpm_file_to_image(game->libx.mlx, "images/door.xpm", &game->img.door_x, &game->img.door_y);
-	game->img.door_addr = mlx_get_data_addr(game->img.door_img, &game->img.door_bits_per_pixel, &game->img.door_line_length, &game->img.door_endian);
-
+	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel \
+		, &game->img.line_length, &game->img.endian);
+	game->img.north_img = mlx_xpm_file_to_image(game->libx.mlx, game->map. \
+		north_wall, &game->img.north_x, &game->img.north_y);
+	game->img.north_addr = mlx_get_data_addr(game->img.north_img, &game->img. \
+		north_bits_per_pixel, &game->img.north_line_length, \
+			&game->img.north_endian);
+	game->img.west_img = mlx_xpm_file_to_image(game->libx.mlx, \
+		game->map.west_wall, &game->img.west_x, &game->img.west_y);
+	game->img.west_addr = mlx_get_data_addr(game->img.west_img, &game->img. \
+		west_bits_per_pixel, &game->img.west_line_length, \
+			&game->img.west_endian);
+	game->img.south_img = mlx_xpm_file_to_image(game->libx.mlx, game->map \
+		.south_wall, &game->img.south_x, &game->img.south_y);
+	game->img.south_addr = mlx_get_data_addr(game->img.south_img, &game->img. \
+		south_bits_per_pixel, &game->img.south_line_length, \
+			&game->img.south_endian);
+	game->img.east_img = mlx_xpm_file_to_image(game->libx.mlx, game->map.\
+		east_wall, &game->img.east_x, &game->img.east_y);
+	game->img.east_addr = mlx_get_data_addr(game->img.east_img, &game->img. \
+		east_bits_per_pixel, &game->img.east_line_length, \
+			&game->img.east_endian);
+	game->img.door_img = mlx_xpm_file_to_image(game->libx.mlx, \
+		"images/door.xpm", &game->img.door_x, &game->img.door_y);
+	game->img.door_addr = mlx_get_data_addr(game->img.door_img, &game->img. \
+		door_bits_per_pixel, &game->img.door_line_length, \
+			&game->img.door_endian);
 	game->img.wall_y = 0;
 	game->img.wall_x = 0;
 	game->img.which_wall = 0;
