@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_file_xpm.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:50:54 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:03:07 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int is_xpm_exist(t_game *game, char *texture, int i)
+int	is_xpm_exist(t_game *game, char *texture, int i)
 {
-	int fd;
-	char *tmp;
-	int a;
+	int		fd;
+	char	*tmp;
+	int		a;
 
 	a = 0;
 	tmp = malloc(sizeof(char) * ft_strlen(texture) + 1);
@@ -17,7 +29,7 @@ int is_xpm_exist(t_game *game, char *texture, int i)
 	while (texture[a] != '\0')
 	{
 		if (texture[a] != ' ' && texture[a] != '\n')
-			return(1);
+			return (1);
 		a++;
 	}
 	fd = open(tmp, O_RDONLY);
@@ -51,9 +63,9 @@ int is_xpm_exist(t_game *game, char *texture, int i)
 	return (0);
 }
 
-int get_xpm_files(t_game *game, char *texture, int i)
+int	get_xpm_files(t_game *game, char *texture, int i)
 {
-	int a;
+	int	a;
 
 	a = 0;
 	while (texture[a] == ' ')

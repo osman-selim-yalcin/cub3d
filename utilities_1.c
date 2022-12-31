@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utilities_1.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 22:26:02 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:30:28 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	ft_strlen(char *s)
@@ -69,31 +81,4 @@ int	check_newline(char *ptr)
 		ptr++;
 	}
 	return (1);
-}
-
-char	*append_string(char *str, char *buf)
-{
-	char	*result;
-	int		i;
-	int		j;
-
-	if (!buf)
-		return (NULL);
-	if (!str)
-	{	
-		str = malloc(1);
-		*str = '\0';
-	}
-	result = malloc(string_length(str) + string_length(buf) + 1);
-	if (!result)
-		return (NULL);
-	i = -1;
-	while (str[++i])
-		result[i] = str[i];
-	j = 0;
-	while (buf[j])
-		result[i++] = buf[j++];
-	result[i] = '\0';
-	free(str);
-	return (result);
 }

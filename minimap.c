@@ -1,9 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 22:33:11 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:33:29 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void draw_64(int x, int y, t_game *game)
+void	draw_64(int x, int y, t_game *game)
 {
-	int x2 = 0;
-	int y2 = 0;
+	int	x2;
+	int	y2;
+
+	x2 = 0;
+	y2 = 0;
 	if (game->map.map[y][x] == '1')
 	{
 		while (x2 <= game->settings.minimap_scale)
@@ -53,10 +68,12 @@ void draw_64(int x, int y, t_game *game)
 	}
 }
 
-void draw_map(t_game *game)
+void	draw_map(t_game *game)
 {
-	int x = 1;
-	int y;
+	int	x;
+	int	y;
+
+	x = 1;
 	while (x < game->minimap.mapx)
 	{
 		y = 1;
@@ -71,14 +88,20 @@ void draw_map(t_game *game)
 
 void draw_player(t_game *game)
 {
-	int x = 0;
-	int y = 0;
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
 	while (x < game->settings.player_size)
 	{
 		y = 0;
 		while (y < game->settings.player_size)
 		{
-			my_mlx_pixel_put(game, game->minimap.pos_x + x - game->settings.player_size / 2 + game->minimap.shift_x, game->minimap.pos_y + y - game->settings.player_size / 2 + game->minimap.shift_y, 0x00fae1df);
+			my_mlx_pixel_put(game, game->minimap.pos_x + x - \
+			game->settings.player_size / 2 + game->minimap.shift_x, \
+			game->minimap.pos_y + y - game->settings.player_size / 2 \
+			+ game->minimap.shift_y, 0x00fae1df);
 			++y;
 		}
 		++x;
@@ -86,19 +109,24 @@ void draw_player(t_game *game)
 }
 
 
-void draw_ray(t_game *game, float ray_len)
+void	draw_ray(t_game *game, float ray_len)
 {
-	float offset = 0;
+	float	offset;
 
+	offset = 0;
 	while (offset < ray_len)
 	{
-		my_mlx_pixel_put(game, game->minimap.pos_x + cos(game->minimap.pa) * game->settings.minimap_scale / 10 * offset + game->minimap.shift_x, game->minimap.pos_y + sin(game->minimap.pa) * game->settings.minimap_scale / 10 * -offset + game->minimap.shift_y, 0x00fae1df);
+		my_mlx_pixel_put(game, game->minimap.pos_x + cos(game->minimap.pa) * \
+		game->settings.minimap_scale / 10 * offset + game->minimap.shift_x, \
+		game->minimap.pos_y + sin(game->minimap.pa) \
+		* game->settings.minimap_scale / 10 * -offset + \
+		game->minimap.shift_y, 0x00fae1df);
 		offset += 0.2;
 	}
 }
 
 
-void display_minimap(t_game *game)
+void	display_minimap(t_game *game)
 {
 	draw_map(game);
 	draw_player(game);

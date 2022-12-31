@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utilities_3.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 22:26:22 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:29:48 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	element_strncmp(char *s1, char *s2, size_t size)
@@ -108,9 +120,4 @@ char	**ft_split(char *s, char c)
 	}
 	arr[a] = NULL;
 	return (arr);
-}
-
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
 }

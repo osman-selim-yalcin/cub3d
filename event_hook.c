@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event_hook.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:51:16 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:10:48 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	set_hand_state(t_game *game)
 {
-	static int counter;
+	static int	counter;
 
 	if (++counter > 5)
 	{
@@ -20,16 +32,18 @@ void	set_hand_state(t_game *game)
 
 }
 
-int hook_event(t_game *game)
+int	hook_event(t_game *game)
 {
 	mlx_clear_window(game->libx.mlx, game->libx.win);
 	mlx_destroy_image(game->libx.mlx, game->img.img);
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
+	game->img.addr = mlx_get_data_addr(game->img.img, \
+		&game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 	start(game);
 	display_minimap(game);
 	move(game);
-	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
+	mlx_put_image_to_window(game->libx.mlx, \
+		game->libx.win, game->img.img, 0, 0);
 	set_hand_state(game);
 
 	if (SCREEN_LEN >= 800 && SCREEN_WID >= 800)
@@ -40,7 +54,7 @@ int hook_event(t_game *game)
 	return (0);
 }
 
-void move(t_game *game)
+void	move(t_game *game)
 {
 	if (game->settings.key_a == 1)
 		key_a(game);
@@ -84,7 +98,4 @@ void move(t_game *game)
 		if (game->mouse_horizontal < -(SCREEN_LEN / 2))
 			game->mouse_horizontal = -(SCREEN_LEN / 2);
 	}
-	
-	
-	
 }

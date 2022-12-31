@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_value.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:51:22 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:16:16 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void fill_struct_map(t_game *game, char **av)
+void	fill_struct_map(t_game *game, char **av)
 {
 	game->map.map_path = av[1];
 	game->map.gnl_count = 0;
@@ -18,7 +30,7 @@ void fill_struct_map(t_game *game, char **av)
 	game->player.fov = D_FOV;
 }
 
-void fill_struct_minimap(t_game *game)
+void	fill_struct_minimap(t_game *game)
 {
 	game->minimap.pos_x = (game->player.pos_x - game->minimap.empty_column * 100) / 100 * game->settings.minimap_scale;
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
@@ -108,7 +120,8 @@ void	find_last_empty_columns(t_game *game)
 	while (1)
 	{
 		i = 0;
-		while (i < game->map.total_row && game->map.map[i][j - game->minimap.empty_column2] == '2')
+		while (i < game->map.total_row && game->map.map[i] \
+			[j - game->minimap.empty_column2] == '2')
 			++i;
 		if (i < game->map.total_row)
 			return ;
@@ -118,14 +131,14 @@ void	find_last_empty_columns(t_game *game)
 
 void	set_scale_factor(t_game *game)
 {
-	if ((float)(game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2) / game->map.length < (float)SCREEN_WID / SCREEN_LEN)//len-vertical wider
-	{
-		game->minimap.full_scale = ((float)SCREEN_LEN / (game->map.length + 1)) - 1;
-	}
+	if ((float)(game->map.total_column - game->minimap.empty_column - \
+		game->minimap.empty_column2) / \
+			game->map.length < (float)SCREEN_WID / SCREEN_LEN)
+		game->minimap.full_scale = \
+			((float)SCREEN_LEN / (game->map.length + 1)) - 1;
 	else
-	{
-		game->minimap.full_scale = (float)SCREEN_WID / (game->map.total_column - game->minimap.empty_column - game->minimap.empty_column2 + 1);
-	}
+		game->minimap.full_scale = (float)SCREEN_WID / (game->map.total_column \
+			- game->minimap.empty_column - game->minimap.empty_column2 + 1);
 	game->minimap.shift_x = 0;
 	game->minimap.shift_y = 0;
 }

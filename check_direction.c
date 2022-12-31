@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_direction.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:50:52 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:01:40 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	is_bottom_valid(char **map, int row, int column)
@@ -55,8 +67,9 @@ int	check_all_twos(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '2' && (!is_left_valid(map, i, j) || !is_right_valid(map, i, j) \
-				|| !is_top_valid(map, i, j) || !is_bottom_valid(map, i, j)))
+			if (map[i][j] == '2' && (!is_left_valid(map, i, j) \
+				|| !is_right_valid(map, i, j) \
+					|| !is_top_valid(map, i, j) || !is_bottom_valid(map, i, j)))
 				return (0);
 			++j;
 		}

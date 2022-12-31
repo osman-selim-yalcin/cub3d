@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_valid_map.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:51:05 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:06:10 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	free_2d_char_arr(char **ptr)
@@ -56,7 +68,7 @@ int	is_nl(t_game *game, char *line)
 		free(line);
 		return (1);
 	}
-	
+
 	return (0);
 }
 
@@ -70,6 +82,7 @@ int	read_map(t_game *game)
 	int		i;
 	int		fd;
 	char	*line;
+	int		a;
 
 	fd = open(game->map.map_path, O_RDONLY);
 	i = 0;
@@ -79,7 +92,7 @@ int	read_map(t_game *game)
 		free(line);
 	}
 	line = NULL;
-		int a=0;
+	a = 0;
 	while (is_nl(game, line) == 1)
 	{
 		a++;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event_keys.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:51:18 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:12:43 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	synchronize_settings(t_game *game)
@@ -11,7 +23,7 @@ void	synchronize_settings(t_game *game)
 	game->minimap.pos_y = game->player.pos_y / 100 * game->settings.minimap_scale;
 }
 
-int key_event_down(int keycode, t_game *game)
+int	key_event_down(int keycode, t_game *game)
 {
 	if (keycode == 123)
 		game->settings.key_left = 1;
@@ -24,7 +36,7 @@ int key_event_down(int keycode, t_game *game)
 	else if (keycode == 0)
 		game->settings.key_a = 1;
 	else if (keycode == 2)
-		game->settings.key_d= 1;
+		game->settings.key_d = 1;
 	else if (keycode == 13)
 		game->settings.key_w = 1;
 	else if (keycode == 1)
@@ -53,17 +65,17 @@ int key_event_down(int keycode, t_game *game)
 		game->img.hand.attack = 1;
 	else if (keycode == 53)
 		tmp_exit();
-	return(0);
+	return (0);
 }
 
-int key_event_up(int keycode, t_game *game)
+int	key_event_up(int keycode, t_game *game)
 {
 	if (keycode == 0)
 		game->settings.key_a = 0;
 	else if (keycode == 1)
 		game->settings.key_s = 0;
 	else if (keycode == 2)
-		game->settings.key_d= 0;
+		game->settings.key_d = 0;
 	else if (keycode == 13)
 		game->settings.key_w = 0;
 	else if (keycode == 123)
@@ -74,6 +86,5 @@ int key_event_up(int keycode, t_game *game)
 		game->settings.key_up = 0;
 	else if (keycode == 125)
 		game->settings.key_down = 0;
-	
-	return(0);
+	return (0);
 }

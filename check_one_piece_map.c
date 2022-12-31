@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_one_piece_map.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:51:03 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:05:36 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	free_copy_map(t_game *game, char **map)
@@ -77,7 +89,8 @@ void	set_player_index(t_game *game)
 		j = 0;
 		while (game->map.map[i][j])
 		{
-			if (game->map.map[i][j] == 'S' || game->map.map[i][j] == 'W' || game->map.map[i][j] == 'E' || game->map.map[i][j] == 'N')
+			if (game->map.map[i][j] == 'S' || game->map.map[i][j] == 'W' \
+				|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'N')
 			{
 				game->player.row = i;
 				game->player.column = j;

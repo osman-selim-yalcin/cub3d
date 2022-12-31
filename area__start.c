@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   area__start.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:49:59 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 21:50:31 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void start(t_game *game)
+void	start(t_game *game)
 {
-	double ray_counter = 0;
+	double	ray_counter;
 
+	ray_counter = 0;
 	while (ray_counter < SCREEN_WID)
 	{
 		game->player.ray_abs = (game->player.direction - game->player.fov / 2) + (ray_counter / SCREEN_WID * D_FOV);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_closed_map.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/31 21:51:07 by osmanyalcin       #+#    #+#             */
+/*   Updated: 2022/12/31 22:00:13 by osmanyalcin      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	line_len_wo_last_spaces(char *line)
@@ -84,11 +96,13 @@ void	get_map_to_tmp(t_game *game, char **tmp)
 	}
 }
 
-void print_map(char **map)
+void	print_map(char **map)
 {
-	int i = 0;
-	int j = 0;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
 	while (map[i])
 	{
 		j = 0;
