@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: burak <burak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:51:16 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 22:10:48 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/01 00:00:47 by burak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	set_hand_state(t_game *game)
 			game->img.hand.right_hand = 4;
 		}
 	}
-
 }
 
 int	hook_event(t_game *game)
@@ -45,13 +44,48 @@ int	hook_event(t_game *game)
 	mlx_put_image_to_window(game->libx.mlx, \
 		game->libx.win, game->img.img, 0, 0);
 	set_hand_state(game);
-
 	if (SCREEN_LEN >= 800 && SCREEN_WID >= 800)
 	{
-		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.left_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8 , SCREEN_LEN - game->img.hand.hand_img[game->img.hand.left_hand].y);
-		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.right_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.right_hand].x / 2 + SCREEN_WID / 19.2, SCREEN_LEN - game->img.hand.hand_img[game->img.hand.right_hand].y);
+		mlx_put_image_to_window(game->libx.mlx, game->libx.win, \
+			game->img.hand.hand_img[game->img.hand.left_hand].img, \
+			SCREEN_WID / 2 - game->img.hand.hand_img \
+			[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8, SCREEN_LEN \
+			- game->img.hand.hand_img[game->img.hand.left_hand].y);
+		mlx_put_image_to_window(game->libx.mlx, game->libx.win, \
+			game->img.hand.hand_img[game->img.hand.right_hand].img, SCREEN_WID \
+			/ 2 - game->img.hand.hand_img[game->img.hand.right_hand].x / 2 + \
+			SCREEN_WID / 19.2, SCREEN_LEN - game->img.hand.hand_img \
+			[game->img.hand.right_hand].y);
 	}
 	return (0);
+}
+
+void	key_right(t_game *game)
+{
+	game->player.direction -= 3;
+	if (game->player.direction < 0)
+		game->player.direction += 360;
+	game->minimap.pa -= 3 * M_PI / 180;
+	if (game->minimap.pa < 0)
+		game->minimap.pa += 2 * M_PI;
+	game->minimap.step_offset_x = cos(game->minimap.pa) \
+		* game->settings.minimap_scale / 10;
+	game->minimap.step_offset_y = sin(game->minimap.pa) \
+		* game->settings.minimap_scale / 10;
+}
+
+void	key_left(t_game *game)
+{
+	game->player.direction += 3;
+	if (game->player.direction >= 360)
+		game->player.direction -= 360;
+	game->minimap.pa += 3 * M_PI / 180;
+	if (game->minimap.pa > 2 * M_PI)
+		game->minimap.pa -= 2 * M_PI;
+	game->minimap.step_offset_x = cos(game->minimap.pa) \
+		* game->settings.minimap_scale / 10;
+	game->minimap.step_offset_y = sin(game->minimap.pa) \
+	* game->settings.minimap_scale / 10;
 }
 
 void	move(t_game *game)
@@ -65,27 +99,9 @@ void	move(t_game *game)
 	if (game->settings.key_w == 1)
 		key_w(game);
 	if (game->settings.key_left == 1)
-	{
-		game->player.direction += 3;
-		if (game->player.direction >= 360)
-			game->player.direction -= 360;
-		game->minimap.pa += 3 * M_PI / 180;
-		if (game->minimap.pa > 2 * M_PI)
-			game->minimap.pa -= 2 * M_PI;
-		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
-		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
-	}
+		key_left(game);
 	if (game->settings.key_right == 1)
-	{
-		game->player.direction -= 3;
-		if (game->player.direction < 0)
-			game->player.direction += 360;
-		game->minimap.pa -= 3 * M_PI / 180;
-		if (game->minimap.pa < 0)
-			game->minimap.pa += 2 * M_PI;
-		game->minimap.step_offset_x = cos(game->minimap.pa) * game->settings.minimap_scale / 10;
-		game->minimap.step_offset_y = sin(game->minimap.pa) * game->settings.minimap_scale / 10;
-	}
+		key_right(game);
 	if (game->settings.key_up == 1)
 	{
 		game->mouse_horizontal += 30;
