@@ -43,8 +43,8 @@ void pixelput(t_game *game, double hypo, double ray_counter)
 		++real_wall;
 	}
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), real_wall, start);
-	if (SCREEN_LEN < 800 || SCREEN_WID < 800)
-		put_hand(game, ray_counter);
+	// if (SCREEN_LEN < 800 || SCREEN_WID < 800)
+	// 	put_hand(game, ray_counter);
 }
 
 void put_hand(t_game *game, int ray_counter)

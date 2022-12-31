@@ -1,24 +1,5 @@
 #include "cub3d.h"
 
-void	set_hand_state(t_game *game)
-{
-	static int counter;
-
-	if (++counter > 5)
-	{
-		counter = 0;
-		if (++game->img.hand.left_hand == 4)
-			game->img.hand.left_hand = 0;
-		if (++game->img.hand.right_hand == 16 && !game->img.hand.attack)
-			game->img.hand.right_hand = 10;
-		else if (game->img.hand.right_hand == 27)
-		{
-			game->img.hand.attack = 0;
-			game->img.hand.right_hand = 4;
-		}
-	}
-
-}
 
 int hook_event(t_game *game)
 {
@@ -27,16 +8,9 @@ int hook_event(t_game *game)
 	game->img.img = mlx_new_image(game->libx.mlx, SCREEN_WID, SCREEN_LEN);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 	start(game);
-	display_minimap(game);
 	move(game);
 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.img, 0, 0);
-	set_hand_state(game);
 
-	if (SCREEN_LEN >= 800 && SCREEN_WID >= 800)
-	{
-		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.left_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8 , SCREEN_LEN - game->img.hand.hand_img[game->img.hand.left_hand].y);
-		mlx_put_image_to_window(game->libx.mlx, game->libx.win, game->img.hand.hand_img[game->img.hand.right_hand].img, SCREEN_WID / 2  - game->img.hand.hand_img[game->img.hand.right_hand].x / 2 + SCREEN_WID / 19.2, SCREEN_LEN - game->img.hand.hand_img[game->img.hand.right_hand].y);
-	}
 	return (0);
 }
 
@@ -84,7 +58,4 @@ void move(t_game *game)
 		if (game->mouse_horizontal < -(SCREEN_LEN / 2))
 			game->mouse_horizontal = -(SCREEN_LEN / 2);
 	}
-	
-	
-	
 }
