@@ -6,7 +6,7 @@
 /*   By: burak <burak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 23:21:08 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/02 15:16:56 by burak            ###   ########.fr       */
+/*   Updated: 2023/01/02 15:18:42 by burak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,7 +338,6 @@ void			set_hand_struct_4(t_game *game);
 // set_hand_img_56.c
 void			set_hand_struct_5(t_game *game);
 void			set_hand_struct_6(t_game *game);
-
 
 //utilities_1/2.c functions
 char			*newk(char *k);
