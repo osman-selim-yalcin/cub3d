@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: burak <burak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 23:21:08 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/01 02:16:45 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/02 15:16:56 by burak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,170 +184,190 @@ typedef struct s_game
 }			t_game;
 
 //area__start.c
-void	start(t_game *game);
+void			start(t_game *game);
 
 //area_top_right.c
-int		find_wall_vertical_one(double hor, double ver, t_game *game);
-int		find_wall_horizontal_one(double hor, double ver, t_game *game);
-void	top_right(t_game *game, double ray_counter);
+int				find_wall_vertical_one(double hor, double ver, t_game *game);
+int				find_wall_horizontal_one(double hor, double ver, t_game *game);
+void			top_right(t_game *game, double ray_counter);
 
 //area_top_left.c
-int		find_wall_vertical_two(double hor, double ver, t_game *game);
-int		find_wall_horizontal_two(double hor, double ver, t_game *game);
-void	top_left(t_game *game, double ray_counter);
+int				find_wall_vertical_two(double hor, double ver, t_game *game);
+int				find_wall_horizontal_two(double hor, double ver, t_game *game);
+void			top_left(t_game *game, double ray_counter);
 
 //area_bottom_left.c
-void	bottom_left(t_game *game, double ray_counter);
-int		find_wall_vertical_three(double hor, double ver, t_game *game);
-int		find_wall_horizontal_three(double hor, double ver, t_game *game);
+void			bottom_left(t_game *game, double ray_counter);
+int				find_wall_vertical_three(double hor, double ver, t_game *game);
+int				find_wall_horizontal_three(double h, double v, t_game *game);
 
 //area_bottom_right.c
-int		find_wall_vertical_four(double hor, double ver, t_game *game);
-int		find_wall_horizontal_four(double hor, double ver, t_game *game);
-void	bottom_right(t_game *game, double ray_counter);
+int				find_wall_vertical_four(double hor, double ver, t_game *game);
+int				find_wall_horizontal_four(double hor, double ver, t_game *game);
+void			bottom_right(t_game *game, double ray_counter);
 
 //check_closed_map.c
-int		line_len_wo_last_spaces(char *line);
-void	set_length_width(t_game *game);
-char	**open_up_space(t_game *game);
-void	get_line_from_map(t_game *game, char *map, char *tmp);
-void	get_map_to_tmp(t_game *game, char **tmp);
-void	print_map(char **map); //tmp
-void	fill_spaces(char **map);
-int		put_frame_to_map(t_game *game);
+int				line_len_wo_last_spaces(char *line);
+void			set_length_width(t_game *game);
+char			**open_up_space(t_game *game);
+void			get_line_from_map(t_game *game, char *map, char *tmp);
+void			get_map_to_tmp(t_game *game, char **tmp);
+void			print_map(char **map); //tmp
+void			fill_spaces(char **map);
+int				put_frame_to_map(t_game *game);
 
 //check_component.c
-int		is_line_valid(t_game *game, char *line, int i);
-int		check_component(t_game *game);
+int				is_line_valid(t_game *game, char *line, int i);
+int				check_component(t_game *game);
 
 //check_direction.c
-int		is_bottom_valid(char **map, int row, int column);
-int		is_top_valid(char **map, int row, int column);
-int		is_left_valid(char **map, int row, int column);
-int		is_right_valid(char **map, int row, int column);
-int		check_all_twos(char **map);
+int				is_bottom_valid(char **map, int row, int column);
+int				is_top_valid(char **map, int row, int column);
+int				is_left_valid(char **map, int row, int column);
+int				is_right_valid(char **map, int row, int column);
+int				check_all_twos(char **map);
 
 //check_door.c
-int		check_door_position(t_game *game);
-void	add_door_position(t_game *game);
-void	get_door_position(t_game *game);
+int				check_door_position(t_game *game);
+void			add_door_position(t_game *game);
+void			get_door_position(t_game *game);
 
 //check_file_xpm.c
-int		is_xpm_exist(t_game *game, char *texture, int i);
-int		get_xpm_files(t_game *game, char *texture, int i);
+int				is_xpm_exist(t_game *game, char *texture, int i);
+int				get_xpm_files(t_game *game, char *texture, int i);
 
 //check_map_find_utils.c
-int		is_top_num_tmp(char **map, int row, int column);
-int		is_left_num_tmp(char **map, int row, int column);
-int		is_right_num_tmp(char **map, int row, int column);
-int		is_bottom_num_tmp(char **map, int row, int column);
+int				is_top_num_tmp(char **map, int row, int column);
+int				is_left_num_tmp(char **map, int row, int column);
+int				is_right_num_tmp(char **map, int row, int column);
+int				is_bottom_num_tmp(char **map, int row, int column);
 
 //check_map.c
-int		map_element_check(t_game *game);
-int		rgb_check(t_game *game, int i, char *rgb_char);
-int		check_map(t_game *game, int ac);
-int		is_map_cube(t_game *game);
-int		rgb_check_before(t_game *game, int i, int a, int b);
+int				map_element_check(t_game *game);
+int				rgb_check(t_game *game, int i, char *rgb_char);
+int				check_map(t_game *game, int ac);
+int				is_map_cube(t_game *game);
+int				rgb_check_before(t_game *game, int i, int a, int b);
 
 //check_one_piece_map.c
-int		check_partition(t_game *game);
-void	free_copy_map(t_game *game, char **map);
-void	set_bg_to_two(char **tmp_map, int row, int column);
-char	**copy_map(t_game *game);
-void	set_player_index(t_game *game);
-int		search_non_two(char **map);
+int				check_partition(t_game *game);
+void			free_copy_map(t_game *game, char **map);
+void			set_bg_to_two(char **tmp_map, int row, int column);
+char			**copy_map(t_game *game);
+void			set_player_index(t_game *game);
+int				search_non_two(char **map);
 
 //check_valid_map.c
-int		read_map(t_game *game);
-int		after_map_is_valid(t_game *game, char *line, int fd);
-void	add_to_map(t_game *game, char *line);
-char	**append_2d_array(char **map, char *line);
-int		is_nl(t_game *game, char *line);
-void	free_2d_char_arr(char **ptr);
+int				read_map(t_game *game);
+int				after_map_is_valid(t_game *game, char *line, int fd);
+void			add_to_map(t_game *game, char *line);
+char			**append_2d_array(char **map, char *line);
+int				is_nl(t_game *game, char *line);
+void			free_2d_char_arr(char **ptr);
+
+//empty_column.c
+void			find_first_empty_columns(t_game *game);
+void			find_last_empty_columns(t_game *game);
 
 //event_door_key.c
-void	key_e(t_game *game);
+void			key_e(t_game *game);
 
 //event_hook.c
-int		hook_event(t_game *game);
-void	move(t_game *game);
+int				hook_event(t_game *game);
+void			move(t_game *game);
 
 //event_keys_walk.c
-int		player_collision(t_game *game, float x, float y);
-void	key_a(t_game *game);
-void	key_d(t_game *game);
-void	key_w(t_game *game);
-void	key_s(t_game *game);
+int				player_collision(t_game *game, float x, float y);
+void			key_a(t_game *game);
+void			key_d(t_game *game);
+void			key_w(t_game *game);
+void			key_s(t_game *game);
 
 //event_keys.c
-int		key_event_down(int keycode, t_game *game);
-void	synchronize_settings(t_game *game);
-int		key_event_up(int keycode, t_game *game);
+int				key_event_down(int keycode, t_game *game);
+void			synchronize_settings(t_game *game);
+int				key_event_up(int keycode, t_game *game);
 
 //event_mouse.c
-int		mouse_move(int x, int y, t_game *game);
+int				mouse_move(int x, int y, t_game *game);
 
 //get_value.c
-void	fill_struct_map(t_game *game, char **av);
-void	get_value(t_game *game);
-void	fill_struct_minimap(t_game *game);
-void	fill_struct_libx_and_img(t_game *game);
-void	game_settings(t_game *game);
-void	find_first_empty_columns(t_game *game);
-void	find_last_empty_columns(t_game *game);
-void	set_scale_factor(t_game *game);
+void			fill_struct_map(t_game *game, char **av);
+void			get_value(t_game *game);
+void			fill_struct_minimap(t_game *game);
+void			fill_struct_libx_and_img(t_game *game);
+void			game_settings(t_game *game);
+void			find_first_empty_columns(t_game *game);
+void			find_last_empty_columns(t_game *game);
+void			set_scale_factor(t_game *game);
 
 //main.c
-int		tmp_exit(void);
-int		main(int ac, char **av);
+int				tmp_exit(void);
+int				main(int ac, char **av);
 
 //minidraw.c
-void	draw_mini_wall(t_game *game, int x, int y);
-void	draw_mini_door(t_game *game, int x, int y);
+void			draw_mini_wall(t_game *game, int x, int y);
+void			draw_mini_door(t_game *game, int x, int y);
 //minimap.c
-void	display_minimap(t_game *game);
-void	draw_64(int x, int y, t_game *game);
-void	draw_map(t_game *game);
-void	draw_player(t_game *game);
-void	draw_ray(t_game *game, float ray_len);
+void			display_minimap(t_game *game);
+void			draw_64(int x, int y, t_game *game);
+void			draw_map(t_game *game);
+void			draw_player(t_game *game);
+void			draw_ray(t_game *game, float ray_len);
 
 //print_pixel.c
-void	pixelput(t_game *game, double hypo_tmp, double ray_counter);
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	put_floorceil(t_game *game, int x, int real_wall, int start);
-void	put_hand(t_game *game, int ray_counter);
+void			pixelput(t_game *game, double hypo_tmp, double ray_counter);
+void			my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void			put_floorceil(t_game *game, int x, int real_wall, int start);
+void			put_hand(t_game *game, int ray_counter);
 
 //print_texture.c
 unsigned int	take_texture(t_game *game, int x, int y, int which_wall);
 
+// set_attribute.c
+void			game_settings(t_game *game);
+void			set_scale_factor(t_game *game);
+
+// set_hand_img_04.c
+void			set_hand_struct(t_game *game);
+void			set_hand_struct_1(t_game *game);
+void			set_hand_struct_2(t_game *game);
+void			set_hand_struct_3(t_game *game);
+void			set_hand_struct_4(t_game *game);
+
+// set_hand_img_56.c
+void			set_hand_struct_5(t_game *game);
+void			set_hand_struct_6(t_game *game);
+
+
 //utilities_1/2.c functions
-char	*newk(char *k);
-char	*gnl_print(char *k);
-char	*rd(char *k, int fd);
-char	*get_next_line(int fd);
-int		ft_strlen(char *s);
-void	*ft_memcpy(void *dst, void *src, int n);
-char	*ft_strdup(char *s1);
-int		string_length(char *str);
-int		check_newline(char *ptr);
-char	*append_string(char *str, char *buf);
+char			*newk(char *k);
+char			*gnl_print(char *k);
+char			*rd(char *k, int fd);
+char			*get_next_line(int fd);
+int				ft_strlen(char *s);
+void			*ft_memcpy(void *dst, void *src, int n);
+char			*ft_strdup(char *s1);
+int				string_length(char *str);
+int				check_newline(char *ptr);
+char			*append_string(char *str, char *buf);
 
 //utilities_3
-int		element_strncmp(char *s1, char *s2, size_t size);
-int		ft_atoi(char *str);
-size_t	ft_strlcpy(char *dst, char *src, size_t b);
-char	**ft_split(char *s, char c);
-int		create_trgb(int t, int r, int g, int b);
+int				element_strncmp(char *s1, char *s2, size_t size);
+int				ft_atoi(char *str);
+size_t			ft_strlcpy(char *dst, char *src, size_t b);
+char			**ft_split(char *s, char c);
+int				create_trgb(int t, int r, int g, int b);
 
 //utilities_angle.c
-int		rad_to_deg(double rad);
-double	deg_to_rad(double degree);
-int		round_double(double num);
-double	take_approximate(double a, double b);
+int				rad_to_deg(double rad);
+double			deg_to_rad(double degree);
+int				round_double(double num);
+double			take_approximate(double a, double b);
 
 //utilities_find_area.c
-int		direction_angle(t_game *game);
-int		ray_angle(t_game *game);
-int		degree_angle(int degree);
+int				direction_angle(t_game *game);
+int				ray_angle(t_game *game);
+int				degree_angle(int degree);
 
 #endif
