@@ -1,43 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_valid_map_v2.c                               :+:      :+:    :+:   */
+/*   read_map_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: burak <burak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 01:27:48 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/01 01:28:44 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/02 13:40:44 by burak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	read_map(t_game *game)
+int	move_cursor(int *fd, t_game *game, char **line)
 {
-	int		i;
-	int		fd;
-	char	*line;
-	int		a;
+	int	i;
 
-	fd = open(game->map.map_path, O_RDONLY);
+	*fd = open(game->map.map_path, O_RDONLY);
 	i = 0;
 	while (i++ < game->map.gnl_count)
 	{
-		line = get_next_line(fd);
-		free(line);
+		*line = get_next_line(*fd);
+		free(*line);
 	}
-	line = NULL;
-	a = 0;
-	while (is_nl(game, line) == 1)
+	*line = NULL;
+	i = 0;
+	while (is_nl(game, *line) == 1)
 	{
-		a++;
-		line = get_next_line(fd);
+		++i;
+		*line = get_next_line(*fd);
 	}
-	if (line == NULL)
+	if (*line == NULL)
 	{
-		close(fd);
+		close(*fd);
 		return (1);
 	}
+	return (0);
+}
+
+int	read_map(t_game *game)
+{
+	int		fd;
+	char	*line;
+
+	if (move_cursor(&fd, game, &line) == 1)
+		return (1);
 	while (line != NULL && !is_nl(game, line))
 	{
 		add_to_map(game, line);
