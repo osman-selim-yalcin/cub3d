@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:51:21 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 23:12:53 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/17 22:29:54 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game.libx.mlx, hook_event, &game);
 	mlx_hook(game.libx.win, 2, 0, key_event_down, &game);
 	mlx_hook(game.libx.win, 3, 0, key_event_up, &game);
-	mlx_hook(game.libx.win, 6, 0L, mouse_move, &game);
 	mlx_hook(game.libx.win, 17, 0L, tmp_exit, &game);
 	mlx_loop(game.libx.mlx);
 	return (0);

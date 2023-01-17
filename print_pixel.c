@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:21:33 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2022/12/31 23:12:31 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/17 22:23:53 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	pixelput(t_game *game, double hypo, double ray_counter)
 	start += game->mouse_horizontal;
 	real_wall = put_start(game, ray_counter, start, wall);
 	put_floorceil(game, SCREEN_WID - 1 - (ray_counter), real_wall, start);
-	if (SCREEN_LEN < 800 || SCREEN_WID < 800)
-		put_hand(game, ray_counter);
+	// if (SCREEN_LEN < 800 || SCREEN_WID < 800)
+	// 	put_hand(game, ray_counter);
 }
 
 void	put_hand(t_game *game, int ray_counter)

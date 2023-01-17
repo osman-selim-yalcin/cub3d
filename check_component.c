@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:50:50 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/01 00:54:36 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/17 22:25:49 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_line_valid(t_game *game, char *line, int i)
 	{
 		if (line[i] != 32 && line[i] != 'N' && line[i] != 'S' \
 			&& line[i] != 'W' && line[i] != 'E' && line[i] != '\n' \
-			&& line[i] != '1' && line[i] != '0' && line[i] != 'C')
+			&& line[i] != '1' && line[i] != '0')
 			return (0);
 		if (line[i] == 'N' || line[i] == 'S' \
 			|| line[i] == 'W' || line[i] == 'E')
