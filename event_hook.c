@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:51:16 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/17 22:34:24 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/17 23:08:47 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	hook_event(t_game *game)
 	// 		SCREEN_WID / 19.2, SCREEN_LEN - game->img.hand.hand_img \
 	// 		[game->img.hand.right_hand].y);
 	// }
+	printf("x %f\n", game->player.pos_x);
+	printf("y %f\n", game->player.pos_y);
 	return (0);
 }
 

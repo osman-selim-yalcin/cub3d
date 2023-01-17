@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 22:21:33 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/17 22:23:53 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/17 23:04:22 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	put_start(t_game *game, int ray_counter, int start, int wall)
 		++a;
 		++real_wall;
 	}
+		// printf("game->img.wall_y %d\n", game->img.wall_y);
+		// printf("game->img.wall_x %d\n", game->img.wall_x);
 	return (real_wall);
 }
 
