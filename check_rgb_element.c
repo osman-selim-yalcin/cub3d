@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 02:11:09 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/01 02:16:19 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/28 13:01:46 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,8 @@ int	rgb_check(t_game *game, int i, char *rgb_char)
 	a = 0;
 	while (a < 3)
 	{
-		a++;
 		free(tmp[a]);
+		a++;
 	}
 	free(tmp);
 	return (0);
