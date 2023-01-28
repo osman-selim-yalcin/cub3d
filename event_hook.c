@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:51:16 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/17 23:08:47 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/28 12:42:31 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,9 @@ int	hook_event(t_game *game)
 	game->img.addr = mlx_get_data_addr(game->img.img, \
 		&game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 	start(game);
-	// display_minimap(game);
 	move(game);
 	mlx_put_image_to_window(game->libx.mlx, \
 		game->libx.win, game->img.img, 0, 0);
-	// set_hand_state(game);
-	// if (SCREEN_LEN >= 800 && SCREEN_WID >= 800)
-	// {
-	// 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, \
-	// 		game->img.hand.hand_img[game->img.hand.left_hand].img, \
-	// 		SCREEN_WID / 2 - game->img.hand.hand_img \
-	// 		[game->img.hand.left_hand].x / 2 - SCREEN_WID / 12.8, SCREEN_LEN \
-	// 		- game->img.hand.hand_img[game->img.hand.left_hand].y);
-	// 	mlx_put_image_to_window(game->libx.mlx, game->libx.win, \
-	// 		game->img.hand.hand_img[game->img.hand.right_hand].img, SCREEN_WID \
-	// 		/ 2 - game->img.hand.hand_img[game->img.hand.right_hand].x / 2 + \
-	// 		SCREEN_WID / 19.2, SCREEN_LEN - game->img.hand.hand_img \
-	// 		[game->img.hand.right_hand].y);
-	// }
-	printf("x %f\n", game->player.pos_x);
-	printf("y %f\n", game->player.pos_y);
 	return (0);
 }
 

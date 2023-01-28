@@ -6,7 +6,7 @@
 /*   By: osmanyalcin <osmanyalcin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 21:50:41 by osmanyalcin       #+#    #+#             */
-/*   Updated: 2023/01/17 22:51:45 by osmanyalcin      ###   ########.fr       */
+/*   Updated: 2023/01/28 12:42:42 by osmanyalcin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	bottom_left_vertical(t_game *game, double *hypo, double *y)
 void	bottom_left_find_hypo(t_game *game, double *ver, \
 	double *y, double *hypo)
 {
-	if ((*hypo > hypot(*y, *ver) || *hypo == 0)) //&& (game->player.ray_abs != 180))
+	if ((*hypo > hypot(*y, *ver) || *hypo == 0))
 	{
 		if (find_wall_horizontal_three(game->player.pos_x - *y, \
 		game->player.pos_y + *ver, game) == 3)
@@ -88,11 +88,6 @@ void	bottom_left(t_game *game, double ray_counter)
 	bottom_left_vertical(game, &hypo, &y);
 	while (1)
 	{
-		// if (game->player.ray_abs == 180)
-		// {
-		// 	printf("lol i broke %f\n", hypo);
-		// 	break ;
-		// }
 		y = (1 / fabs(tan(deg_to_rad(game->player.ray_abs)))) * ver;
 		if (find_wall_horizontal_three(game->player.pos_x - y, \
 			game->player.pos_y + ver, game))
