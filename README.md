@@ -89,8 +89,8 @@ The map file should follow these rules:
 In cub3d, you have 4 lives. You can use the following keys to control your character:
 
     M: Scale up/down the map
-    left click: Attack
-    E: Open wall
+    F: Attack
+    E: Open and close wall
     A/W/S/D: Movement
     up/down/right/left: Change direction
     Mouse rotation is also available
