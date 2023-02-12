@@ -67,7 +67,7 @@ make
 To run cub3d, use the following command:
 
 ```
-./cub3d [options] map.cub
+./cub3d map.cub
 ```
 
 where map.cub is the path to a map file. The map file should contain a description of the 3D world, including the position of walls and objects.
