@@ -2,7 +2,12 @@
 
 cub3d is a 3D graphics engine that uses raycasting technology to create and display 3D graphics in a terminal window.
 
+![demo1](https://github.com/osman-selim-yalcin/cub3d/blob/main/cover/gameplay.gif)
+
 Raycasting is a rendering technique used to generate 2D images from 3D environments. It works by simulating the path of light rays as they pass through the 3D world and intersect with objects. By calculating the intersection points and the colors of the objects at these points, it is possible to generate a 2D image that appears to be 3D.
+
+![demo1](https://github.com/osman-selim-yalcin/cub3d/blob/main/cover/demo1.png)
+![demo2](https://github.com/osman-selim-yalcin/cub3d/blob/main/cover/demo2.png)
 
 # Table of Contents
 
