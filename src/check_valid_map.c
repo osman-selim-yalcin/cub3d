@@ -79,10 +79,8 @@ int	read_map(t_game *game)
 		free(line);
 	}
 	line = NULL;
-		int a=0;
 	while (is_nl(game, line) == 1)
 	{
-		a++;
 		line = get_next_line(fd);
 	}
 	if (line == NULL)

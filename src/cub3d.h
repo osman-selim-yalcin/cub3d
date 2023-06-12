@@ -8,7 +8,7 @@
 # include <math.h>
 # include <string.h>
 # include <time.h>
-# include "minilibx/mlx.h"
+# include "../minilibx/mlx.h"
 # define SCREEN_LEN 800
 # define SCREEN_WID 1600
 # define D_FOV 60
